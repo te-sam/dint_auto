@@ -20,5 +20,8 @@ class LoginPage(BasePage):
     def click_enter_btn(self):
         self.find(locator_enter_btn).click()
     
-    def get_state_label_error(self):
-        return self.find(locator_error_login).get_attribute("style")
+    def get_state_label(self, attribute):
+        return self.find(locator_error_login).get_attribute(attribute)
+    
+    def get_text_label(self):
+        return self.find(locator_error_login).text

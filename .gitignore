@@ -4,3 +4,6 @@ allure-report/
 venv/
 pages/__pycache__/
 tests/__pycache__/
+results/*
+img/current*
+config.ini
