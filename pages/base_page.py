@@ -2,7 +2,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from time import sleep
 
 class BasePage:
     def __init__(self, driver):
@@ -11,8 +10,7 @@ class BasePage:
     def open_main(self, credentials):
         username, password = credentials
         self.driver.get(f'https://{username}:{password}@online-dint.ulapr.ru/app/')
-        sleep(2)
-        
+
     def find(self, args):
         return self.driver.find_element(*args)
     
@@ -29,7 +27,7 @@ class BasePage:
         ActionChains(self.driver).scroll_to_element(element).perform()
 
     def wait(self, locator):
-        wait = WebDriverWait(self.driver, 10, poll_frequency=.8)
+        wait = WebDriverWait(self.driver, 5, poll_frequency=.8)
         wait.until(EC.presence_of_element_located(locator))
 
     def true_url(self, true_url):
