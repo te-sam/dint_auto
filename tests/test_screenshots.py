@@ -3,7 +3,6 @@ import allure
 from pages.work_page import WorkPage
 
 @allure.title('Проверка отображения на 2D и 3D сценах')
-@allure.feature('Cкриншоты 2d и 3d')
 def test_screenshots(driver, credentials):
     work = WorkPage(driver)
     with allure.step('Открыть главную страницу'):

@@ -16,7 +16,7 @@ from pages.login_page import LoginPage
 # def test_failed_password(driver):
 #     pass
 
-
+@allure.feature('Авторизация')
 @allure.title('Пустое поле email при входе')
 def test_failed_login_empty_fields(driver, credentials):
     auth = LoginPage(driver)
