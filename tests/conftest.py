@@ -4,11 +4,10 @@ import pytest
 
 from selenium import webdriver
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="session")
 def driver():
     chrome_driver = webdriver.Chrome()
     chrome_driver.maximize_window()
-    chrome_driver.implicitly_wait(10)
     return chrome_driver
 
 @pytest.fixture(scope="session")
