@@ -18,10 +18,10 @@ from pages.login_page import LoginPage
 
 @allure.feature('Авторизация')
 @allure.title('Пустое поле email при входе')
-def test_failed_login_empty_fields(driver, credentials):
+def test_failed_login_empty_fields(driver):
     auth = LoginPage(driver)
     with allure.step('Открыть главную страницу'):
-        auth.open_main(credentials)
+        auth.open_main()
     with allure.step('Кликнуть по кнопке "Войти в аккаунт"'):
         auth.click_auth_btn()
         assert auth.get_state_label('style') == 'display: none;' 

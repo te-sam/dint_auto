@@ -1,3 +1,6 @@
+import os
+from dotenv import load_dotenv
+
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -7,8 +10,10 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
-    def open_main(self, credentials):
-        username, password = credentials
+    def open_main(self):
+        load_dotenv()
+        username = os.getenv("username")
+        password = os.getenv("password")
         self.driver.get(f'https://{username}:{password}@online-dint.ulapr.ru/app/')
 
     def find(self, args):
