@@ -7,9 +7,8 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
-    def open_main(self, credentials):
-        username, password = credentials
-        self.driver.get(f'https://{username}:{password}@online-dint.ulapr.ru/app/')
+    def open_main(self):
+        self.driver.get(f'https://online-dint.ulapr.ru/app/')
 
     def find(self, args):
         return self.driver.find_element(*args)
@@ -35,3 +34,6 @@ class BasePage:
     
     def create_screenshot(self, path: str) -> None:
         self.driver.save_screenshot(path)
+    
+    def get_attr(self, locator, attribute):
+        return self.find(locator).get_attribute(attribute)

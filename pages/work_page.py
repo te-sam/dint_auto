@@ -8,6 +8,8 @@ locator_canvas = (By.ID, 'canvas')
 locator_2d = (By.CSS_SELECTOR, '[data-view="2D"]')
 locator_3d = (By.CSS_SELECTOR, '[data-mode="orbit"][data-view="3D"]')
 locator_auth_btn = (By.CSS_SELECTOR, '.auth-btn')
+locator_name = (By.CSS_SELECTOR, 'div.logo > span > input')
+locator_dashboard = (By.CSS_SELECTOR, 'div.logo > a')
 
 class WorkPage(BasePage):
     def __init__(self, driver):
@@ -45,5 +47,9 @@ class WorkPage(BasePage):
             print("Изображения различаются")
             return False
 
-
-    
+    def rename_project(self, name):
+        input_element = self.find(locator_name)
+        self.driver.execute_script("arguments[0].setAttribute('value', arguments[1]);", input_element, name)
+        
+    def open_dashboard(self):
+        self.find(locator_dashboard).click()

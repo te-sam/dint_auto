@@ -5,7 +5,6 @@ locator_auth_btn = (By.CSS_SELECTOR, '.auth-btn')
 locator_email_login = (By.ID, 'login')
 locator_password_login = (By.ID, 'password')
 locator_enter_btn = (By.ID, 'enterButton')
-
 locator_error_login = (By.XPATH, '//*[@id="login_form"]/div[1]/label[2]')
 
 class LoginPage(BasePage):
@@ -21,7 +20,9 @@ class LoginPage(BasePage):
         self.find(locator_enter_btn).click()
     
     def get_state_label(self, attribute):
-        return self.find(locator_error_login).get_attribute(attribute)
+        return self.get_attr(locator_error_login, attribute)
     
     def get_text_label(self):
         return self.find(locator_error_login).text
+
+    
