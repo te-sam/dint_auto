@@ -2,8 +2,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from PIL import ImageChops, Image
 from pages.base_page import BasePage
+from time import sleep
 
-locator_wall = (By.CSS_SELECTOR, '[data-tool="wall"]')
+locator_wall = (By.CSS_SELECTOR, '.item[data-tool="wall"]')
 locator_canvas = (By.ID, 'canvas')
 locator_2d = (By.CSS_SELECTOR, '[data-view="2D"]')
 locator_3d = (By.CSS_SELECTOR, '[data-mode="orbit"][data-view="3D"]')
@@ -15,6 +16,7 @@ class WorkPage(BasePage):
     
     def click_wall(self):
         self.wait(locator_wall)
+        sleep(1)
         self.find(locator_wall).click()
 
     def click_2d(self):

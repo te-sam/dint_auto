@@ -5,6 +5,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from time import sleep
 
 class BasePage:
     def __init__(self, driver):
@@ -12,8 +13,8 @@ class BasePage:
 
     def open_main(self):
         load_dotenv()
-        username = os.getenv("username")
-        password = os.getenv("password")
+        username = os.getenv("USER")
+        password = os.getenv("PASSWORD")
         self.driver.get(f'https://{username}:{password}@online-dint.ulapr.ru/app/')
 
     def find(self, args):
@@ -32,11 +33,12 @@ class BasePage:
         ActionChains(self.driver).scroll_to_element(element).perform()
 
     def wait(self, locator):
-        wait = WebDriverWait(self.driver, 5, poll_frequency=.8)
+        wait = WebDriverWait(self.driver, 10, poll_frequency=1.5)
         wait.until(EC.presence_of_element_located(locator))
 
     def true_url(self, true_url):
         return self.driver.current_url == true_url
     
     def create_screenshot(self, path: str) -> None:
+        sleep(1)
         self.driver.save_screenshot(path)

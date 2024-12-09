@@ -1,9 +1,14 @@
 .pytest_cache/
 __pycache__/
 allure-report/
+allure-results/
 venv/
 pages/__pycache__/
 tests/__pycache__/
 results/*
 img/current*
 .env
+run_test.bat
+execution_log.txt
+
+

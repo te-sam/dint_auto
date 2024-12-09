@@ -1,0 +1,1 @@
+allure open %ALLURE_REPORT_DIRECTORY%
