@@ -12,12 +12,7 @@ echo install environment variable
 :: Проверяем, существует ли переменная ALLURE_HOME
 if not defined ALLURE_HOME (
     setx ALLURE_HOME "C:\allure" /M
-)
-
-:: Проверяем, существует ли нужный путь в PATH
-echo %PATH% | findstr /I "%ALLURE_HOME%\bin" > nul
-if %errorlevel% neq 0 (
-    setx PATH "%PATH%;%ALLURE_HOME%\bin" /M
+    setx PATH "%PATH%;C:\allure\bin" /M
 )
 
 :: Изменяем рабочий каталог на расположение текущего .bat файла
@@ -30,6 +25,6 @@ call venv\Scripts\activate
 echo install requiremets
 call pip install -r requirements.txt
 
-echo Установка завершена, можно запускать тесты
+echo Successful!
 
 pause
