@@ -1,5 +1,5 @@
 # Запуск тестов
-1. Установить [Python 3.13.0](https://www.python.org/downloads/release/python-3130/)
+1. Установить [Python 3.13.0]([https://www.python.org/downloads/release/python-3130/](https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe))
 2. Установить [Allure](https://github.com/allure-framework/allure2/releases/download/2.32.0/allure-2.32.0.zip) (распаковать в папку C:\allure)
 3. Добавить файл .env в корневой каталог
 4. Запустить файл prepare_env.bat для установки нужных компонентов
