@@ -10,5 +10,5 @@ img/current*
 .env
 run_test.bat
 execution_log.txt
-
+useful_code.py
 

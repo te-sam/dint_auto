@@ -21,10 +21,11 @@ echo Removing old results...
 if exist %ALLURE_RESULTS_DIRECTORY% rmdir /s /q %ALLURE_RESULTS_DIRECTORY% >> %LOG_FILE% 2>&1
 if exist %ALLURE_REPORT_DIRECTORY% rmdir /s /q %ALLURE_REPORT_DIRECTORY% >> %LOG_FILE% 2>&1
 
-REM Запуск pytest с плагином allure, генерируем результаты
+REM Запуск pytest с плагином allure и выводом в файл и консоль
 echo %date% %time% - Running pytest... >> %LOG_FILE%
 echo Running pytest...
-pytest --alluredir=%ALLURE_RESULTS_DIRECTORY% >> %LOG_FILE% 2>&1
+pytest --alluredir=%ALLURE_RESULTS_DIRECTORY% 
+:: >> %LOG_FILE% 2>&1
 
 REM Генерация отчета allure, если pytest завершился
 echo %date% %time% - Generating Allure report... >> %LOG_FILE%

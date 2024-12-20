@@ -1,6 +1,6 @@
 import allure
 
-from pages.login_page import LoginPage
+from pages.work_page import WorkPage
 
 
 # def test_successful_login(driver):
@@ -18,13 +18,39 @@ from pages.login_page import LoginPage
 
 @allure.feature('Авторизация')
 @allure.title('Пустое поле email при входе')
-def test_failed_login_empty_fields(driver):
-    auth = LoginPage(driver)
+def test_failed_login_empty_email(driver):
+    auth = WorkPage(driver)
+
     with allure.step('Открыть главную страницу'):
         auth.open_main()
+
     with allure.step('Кликнуть по кнопке "Войти в аккаунт"'):
         auth.click_auth_btn()
-        assert auth.get_state_label('style') == 'display: none;' 
+        assert auth.get_state_label_email('style') == 'display: none;', "Состояние метки должно быть 'display: none;'"
+
     with allure.step('Кликнуть по кнопке "Войти"'):
         auth.click_enter_btn()
-        assert auth.get_state_label('style') == 'display: inline-block;' and auth.get_text_label() == 'Не указан логин'
+        assert (auth.get_state_label_email('style') == 'display: inline-block;' and 
+                auth.get_text_label_email() == 'Не указан логин'), "Состояние метки должно быть 'display: inline-block;' и текст 'Не указан логин'"
+
+
+@allure.feature('Авторизация')
+@allure.title('Пустое поле пароль при входе')
+def test_failed_login_empty_password(driver):
+    auth = WorkPage(driver)
+
+    with allure.step('Открыть главную страницу'):
+        auth.open_main()
+
+
+    with allure.step('Кликнуть по кнопке "Войти в аккаунт"'):
+        auth.click_auth_btn()
+
+    with allure.step('Ввести email'):
+        auth.enter_login('art.samohwalov@yandex.ru')
+
+
+    with allure.step('Кликнуть по кнопке "Войти"'):
+        auth.click_enter_btn()
+        assert (auth.get_state_label_password('style') == 'display: inline-block;' and 
+                auth.get_text_label_password() == 'Не указан пароль'), "Состояние метки должно быть 'display: inline-block;' и текст 'Не указан логин'"
