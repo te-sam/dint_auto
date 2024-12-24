@@ -8,10 +8,9 @@ from pages.work_page import WorkPage
 
 
 class TestsWithAuth:
-    @pytest.mark.usefixtures("auth")
     @allure.feature('Работа с проектом')
     @allure.title('Переименование проекта')
-    def test_rename_project(self, driver, drop_project):
+    def test_rename_project(self, driver, auth, drop_project):
         name_project = "Сарай"
         work = WorkPage(driver)
         dash = DashboardPage(driver)
@@ -25,6 +24,35 @@ class TestsWithAuth:
         with allure.step('Открыть дашборд'):   
             work.open_dashboard()
         assert dash.is_project_named(name_project), 'Проект не переименовался'
+
+    
+    @allure.feature('Работа с проектом')
+    @allure.title('Создание нового проекта через дашборд')
+    def test_create_new_project(self, driver, drop_project):
+        work = WorkPage(driver)
+        dash = DashboardPage(driver) 
+
+        with allure.step('Открыть главную страницу'):
+            work.open_main()
+
+        with allure.step('Открыть дашборд'):
+            work.open_dashboard()
+
+        with allure.step('Посчитать количество проектов'):
+            old_value = dash.get_count_project()
+            print(f"{old_value=}")
+        
+        with allure.step('Кликнуть "Новый проект"'):
+            dash.click_new_project()
+        
+        with allure.step('Открыть дашборд'):
+            work.open_dashboard()
+
+        with allure.step('Посчитать новое количество проектов'): 
+            new_value = dash.get_count_project()
+            print(f"{new_value=}")
+            
+        assert new_value - old_value == 1, 'Новый проект не был создан'
 
 
 @allure.feature('Работа с проектом')

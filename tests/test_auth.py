@@ -42,7 +42,6 @@ def test_failed_login_empty_password(driver):
     with allure.step('Открыть главную страницу'):
         auth.open_main()
 
-
     with allure.step('Кликнуть по кнопке "Войти в аккаунт"'):
         auth.click_auth_btn()
 

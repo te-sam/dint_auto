@@ -16,10 +16,10 @@ echo %date% %time% - Report directories set to %ALLURE_RESULTS_DIRECTORY% and %A
 echo Report directories set to %ALLURE_RESULTS_DIRECTORY% and %ALLURE_REPORT_DIRECTORY%
 
 REM Удаление предыдущих результатов
-echo %date% %time% - Removing old results... >> %LOG_FILE%
-echo Removing old results...
-if exist %ALLURE_RESULTS_DIRECTORY% rmdir /s /q %ALLURE_RESULTS_DIRECTORY% >> %LOG_FILE% 2>&1
-if exist %ALLURE_REPORT_DIRECTORY% rmdir /s /q %ALLURE_REPORT_DIRECTORY% >> %LOG_FILE% 2>&1
+:: echo %date% %time% - Removing old results... >> %LOG_FILE%
+:: echo Removing old results...
+:: if exist %ALLURE_RESULTS_DIRECTORY% rmdir /s /q %ALLURE_RESULTS_DIRECTORY% >> %LOG_FILE% 2>&1
+:: if exist %ALLURE_REPORT_DIRECTORY% rmdir /s /q %ALLURE_REPORT_DIRECTORY% >> %LOG_FILE% 2>&1
 
 REM Запуск pytest с плагином allure и выводом в файл и консоль
 echo %date% %time% - Running pytest... >> %LOG_FILE%

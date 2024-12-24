@@ -8,6 +8,7 @@ locator_project_delete = (By.ID, 'delete')
 locator_confirm_delete = (By.CLASS_NAME, 'btn-delete')
 locator_projects = (By.CLASS_NAME, 'project')
 locator_project_name_list = (By.CLASS_NAME, 'project-name')
+locator_new_project_button = (By.CLASS_NAME, 'new_project_text')
 
 class DashboardPage(BasePage):
     def __init__(self, driver):
@@ -56,15 +57,27 @@ class DashboardPage(BasePage):
 
     
     def is_project_named(self, name_project: str) -> bool:
-        self.wait(locator_project_name_list)
-        project_names = list(self.finds(locator_project_name_list))
+        try:
+            self.wait(locator_project_name_list)
+            project_names = list(self.finds(locator_project_name_list))
 
-        for project in project_names:
-            if project.text == name_project:
-                return True
-        
-        return False
+            for project in project_names:
+                if project.text == name_project:
+                    return True
+        except:
+            return False
 
+
+    def get_count_project(self) -> int:
+        try:
+            self.wait(locator_project_list)
+            return len(self.finds(locator_project_list))
+        except:
+            return 0
+
+    def click_new_project(self) -> None:
+        self.wait(locator_new_project_button)
+        self.find(locator_new_project_button).click()
 
 
 
