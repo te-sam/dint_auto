@@ -5,7 +5,7 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from tests.fixtures.auth_fixtures import auth_base, auth_standart
+from tests.fixtures.auth_fixtures import auth_base, auth_standart, auth_premium
 from tests.fixtures.project_fixtures import drop_project, drop_all_project, paste_project
 
 from config import settings

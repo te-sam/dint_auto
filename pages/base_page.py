@@ -54,6 +54,8 @@ class BasePage:
 
 
     def true_url(self, true_url):
+        print(true_url)
+        print(self.driver.current_url)
         parts_url = self.driver.current_url.split('//')
         # удаление логина и пароля из url
         current_url = "".join([parts_url[0], "//", parts_url[1].split('@')[1]])

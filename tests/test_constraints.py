@@ -327,6 +327,72 @@ class TestsStandartConstraints(BaseConstraints):
         super().constraint_change_column(block=False)
 
 
+@pytest.mark.usefixtures("auth_premium",  "drop_all_project", "paste_project")
+class TestsPremiumConstraints(BaseConstraints):
+    @allure.feature('Ограничения Премиум тариф')
+    @allure.title('Переименование проекта')
+    def test_rename_project(self):
+        super().rename_project(block=False)  # Переименование
+
+    @allure.feature('Ограничения Премиум тариф')
+    @allure.title('Поделиться проектом')
+    def test_share_project(self):  # Поделиться проектом
+        super().share_project(block=False)
+
+    @allure.feature('Ограничения Премиум тариф')
+    @allure.title('Ниши')
+    @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
+    def test_constraint_alcove(self, close_dialog_upgrade):  # Ниши
+        super().constraint_alcove(block=False)
+
+    @allure.feature('Ограничения Премиум тариф')
+    @allure.title('Экспорт 3D')
+    def test_constraint_save_3d(self, close_dialog_upgrade):  # Сохранение в 3D
+        super().constraint_save_3d(block=True)
+
+    @allure.feature('Ограничения Премиум тариф')
+    @allure.title('Экспорт PDF')
+    @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
+    def test_constraint_save_to_pdf(self, close_dialog_upgrade):  # Сохранение в PDF
+        super().constraint_save_to_pdf(block=False)
+
+    @allure.feature('Ограничения Премиум тариф')
+    @allure.title('Проемы')
+    @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
+    def test_constraint_apperture(self, close_dialog_upgrade):  # Проемы
+        super().constraint_apperture(block=False)
+
+    @allure.feature('Ограничения Премиум тариф')
+    @allure.title('Прогулка')
+    @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
+    def test_constraint_walk(self, close_dialog_upgrade): # Прогулка
+        super().constraint_walk(block=False)
+
+    @allure.feature('Ограничения Премиум тариф')
+    @allure.title('Изменение высоты мебели')
+    @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
+    def test_constraint_change_hight(self, close_dialog_upgrade):  # Изменение высоты мебели
+        super().constraint_change_hight(block=False)
+
+    @allure.feature('Ограничения Премиум тариф')
+    @allure.title('Изменение текстуры мебели')
+    @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
+    def test_constraint_change_texture(self, close_dialog_upgrade):  # Изменение текстуры мебели
+        super().constraint_change_texture(block=False)
+
+    @allure.feature('Ограничения Премиум тариф')
+    @allure.title('Изменение подконника')
+    @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
+    def test_constraint_change_windowsill(self, close_dialog_upgrade):  # Изменение подконника
+        super().constraint_change_windowsill(block=False)
+
+    @allure.feature('Ограничения Премиум тариф')
+    @allure.title('Настройки колонны, поворот на 90')
+    @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
+    def test_constraint_change_column(self, close_dialog_upgrade):  # Настройки колонны, поворот на 90
+        super().constraint_change_column(block=False)
+
+
 
 
     
