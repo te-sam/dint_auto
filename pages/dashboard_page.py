@@ -2,6 +2,7 @@ from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from pages.base_page import BasePage
+from config import settings
 
 locator_project_list = (By.CLASS_NAME, 'project-actions')
 locator_project_delete = (By.ID, 'delete')
@@ -16,8 +17,15 @@ class DashboardPage(BasePage):
 
 
     def get_dashboard(self) -> None:
-        self.driver.get('https://online-dint.ulapr.ru/app/projects.php')
-        self.wait(locator_project_list)
+        mode = settings.MODE
+        
+        if mode == 'TEST':
+           url = f'https://{settings.USER}:{settings.PASSWORD}@online-dint.ulapr.ru/app/projects.php'
+        if mode == 'PROD':
+            url = f'https://roomplan.ru/app/projects.php'
+
+        sleep(2)
+        self.driver.get(url)
 
 
     def drop_first_project(self) -> None:
@@ -43,17 +51,21 @@ class DashboardPage(BasePage):
 
     
     def drop_all_projects(self) -> None:
-        self.wait(locator_project_list)
+        self.await_visibility(locator_new_project_button)
+        try:
+            self.wait(locator_project_list)
 
-        count_projects = len(self.finds(locator_project_list))
-        confirm_delete_button = self.find(locator_confirm_delete)
+            count_projects = len(self.finds(locator_project_list))
+            confirm_delete_button = self.find(locator_confirm_delete)
 
-        for i in range(count_projects):
-            project = self.find(locator_project_list)
-            delete_button = self.find(locator_project_delete)
-            ActionChains(self.driver).move_to_element(project).move_to_element(delete_button).click().perform()
-            confirm_delete_button.click()
-            sleep(1)
+            for i in range(count_projects):
+                project = self.find(locator_project_list)
+                delete_button = self.find(locator_project_delete)
+                ActionChains(self.driver).move_to_element(project).move_to_element(delete_button).click().perform()
+                confirm_delete_button.click()
+                sleep(1)
+        except:
+            print("Нет созданных проектов")
 
     
     def is_project_named(self, name_project: str) -> bool:
@@ -62,6 +74,7 @@ class DashboardPage(BasePage):
             project_names = list(self.finds(locator_project_name_list))
 
             for project in project_names:
+                print(project.text)
                 if project.text == name_project:
                     return True
         except:

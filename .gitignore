@@ -1,10 +1,7 @@
 .pytest_cache/
 __pycache__/
-allure-report/
-allure-results/
+allure*
 venv/
-pages/__pycache__/
-tests/__pycache__/
 results/*
 img/current*
 .env
@@ -12,3 +9,5 @@ run_test.bat
 execution_log.txt
 useful_code.py
 pages/login_page.py
+tests/test_no_release.py
+old_tests/

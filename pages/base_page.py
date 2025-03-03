@@ -1,5 +1,4 @@
-import os
-from dotenv import load_dotenv
+from config import settings
 
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
@@ -13,10 +12,13 @@ class BasePage:
 
 
     def open_main(self):
-        load_dotenv()
-        username = os.getenv("USER")
-        password = os.getenv("PASSWORD")
-        self.driver.get(f'https://{username}:{password}@online-dint.ulapr.ru/app/')
+        mode = settings.MODE
+        print(mode)
+
+        if mode == 'TEST':
+            self.driver.get(f'https://{settings.USER}:{settings.PASSWORD}@online-dint.ulapr.ru/app/')
+        if mode == 'PROD':
+            self.driver.get(f'https://roomplan.ru/app/')
 
 
     def find(self, args):
@@ -40,6 +42,16 @@ class BasePage:
         wait = WebDriverWait(self.driver, 5, poll_frequency=.8)
         wait.until(EC.presence_of_element_located(locator))
 
+    
+    def await_clickable(self, element: tuple):
+        wait = WebDriverWait(self.driver, 5)
+        wait.until(EC.element_to_be_clickable(element))
+
+    
+    def await_visibility(self, element: tuple):
+        wait = WebDriverWait(self.driver, 10)
+        wait.until(EC.visibility_of_element_located(element))
+
 
     def true_url(self, true_url):
         parts_url = self.driver.current_url.split('//')
@@ -51,3 +63,17 @@ class BasePage:
     def create_screenshot(self, path: str) -> None:
         sleep(1)
         self.driver.save_screenshot(path)
+
+    
+    def create_screenshot_element(self, locator: tuple, saving_path: str) -> None:
+        element = self.find(locator)
+        element.screenshot(saving_path)
+
+
+    def get_element_by_locator(self, locator: str):
+        return self.find(locator)
+
+
+    def switch_to_tab(self, number: int):
+        handles = self.driver.window_handles
+        self.driver.switch_to.window(handles[number-1])
