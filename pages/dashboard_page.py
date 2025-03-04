@@ -1,8 +1,10 @@
 from time import sleep
-from selenium.webdriver.common.by import By
+
 from selenium.webdriver.common.action_chains import ActionChains
-from pages.base_page import BasePage
+from selenium.webdriver.common.by import By
+
 from config import settings
+from pages.base_page import BasePage
 
 locator_project_list = (By.CLASS_NAME, 'project-actions')
 locator_project_delete = (By.ID, 'delete')

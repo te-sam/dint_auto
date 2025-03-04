@@ -1,8 +1,8 @@
 import pytest
 
+from config import settings
 from pages.dashboard_page import DashboardPage
 from pages.work_page import WorkPage
-from config import settings
 
 
 @pytest.fixture(scope="function")

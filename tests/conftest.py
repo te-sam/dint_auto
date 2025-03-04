@@ -3,19 +3,21 @@ from time import sleep
 import pytest
 import requests
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from tests.fixtures.auth_fixtures import auth_base, auth_standart, auth_premium
-from tests.fixtures.project_fixtures import drop_project, drop_all_project, paste_project
+from selenium.webdriver.chrome.service import Service
 
 from config import settings
 from pages.dashboard_page import DashboardPage
 from pages.login_page import LoginPage
-from pages.work_page import (WorkPage, locator_new_project_button, locator_3d,
+from pages.work_page import (WorkPage, locator_3d,
                              locator_close_dialog_constraint,
                              locator_dialog_guest_constraint,
-                             locator_dialog_upgrade, locator_wall)
-
+                             locator_dialog_upgrade,
+                             locator_new_project_button)
+from tests.fixtures.auth_fixtures import (auth_base, auth_premium, auth_profi,
+                                          auth_standart)
+from tests.fixtures.project_fixtures import (drop_all_project, drop_project,
+                                             paste_project)
 
 # Настройка опций Chrome
 chrome_options = Options()

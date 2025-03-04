@@ -1,12 +1,12 @@
-from typing import Literal
-import pytest_check as check
-
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.keys import Keys
-from PIL import ImageChops, Image
-from pages.base_page import BasePage
 from time import sleep
+from typing import Literal
+
+from PIL import Image, ImageChops
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+
+from pages.base_page import BasePage
 
 locator_wall = (By.CSS_SELECTOR, '.item[data-tool="wall"]')
 locator_canvas = (By.ID, 'canvas')
