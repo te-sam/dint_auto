@@ -20,6 +20,7 @@ from tests.fixtures.project_fixtures import (
     drop_all_project, 
     drop_project,                          
     paste_project,
+    paste_project_for_guest
 )
 
 # Настройка опций Chrome
@@ -95,5 +96,3 @@ def close_dialog_upgrade(driver_class, request):
             else:
                 driver_class.refresh()
                 sleep(2)
-        else:  # Если диалог не должен показываться
-            pass

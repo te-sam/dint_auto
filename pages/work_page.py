@@ -32,6 +32,7 @@ locator_save_screen_button = (By.ID, 'screenshot')
 locator_save_to_pdf_button = (By.ID, 'print')
 locator_save_3d_button = (By.ID, 'export')
 locator_share_button = (By.ID, 'share_project')
+locator_close_share_button = (By.CSS_SELECTOR, "div.modal-header > button")
 locator_dialog_share = (By.ID, 'modal_share_project')
 locator_dialog_upgrade = (By.ID, 'upgrade_tarif')
 locator_alcove_button = (By.CSS_SELECTOR, '[data-tool="alcove"]')  # Ниши
@@ -105,6 +106,7 @@ class WorkPage(BasePage):
         input_element.send_keys(Keys.CONTROL, 'a')
         input_element.send_keys(Keys.DELETE)
         input_element.send_keys(new_name)
+        input_element.send_keys(Keys.ENTER)
 
 
     def open_dashboard(self) -> None:
@@ -177,7 +179,7 @@ class WorkPage(BasePage):
         self.find(locator_name).send_keys(Keys.ENTER)
 
     
-    def check_dialog_constraint(self, block: bool, tarif = 'no guest'):
+    def check_dialog_constraint(self, block: bool, tarif = 'paid'):
         if tarif == 'guest':
             self.wait(locator_dialog_guest_constraint)
             dialog_constraint = self.find(locator_dialog_guest_constraint)
@@ -194,6 +196,7 @@ class WorkPage(BasePage):
     def check_dialog_share(self):
         dialog_share = self.find(locator_dialog_share)
         assert dialog_share.is_displayed(), "Окно Поделиться проектом не появилось"
+        self.find(locator_close_share_button).click()
 
 
     def click_save(self, locator_button: str):
@@ -256,15 +259,23 @@ class WorkPage(BasePage):
 
 
     def expand_settings_windowsill(self):
-        self.find(locator_button_expand_settings_windowsill).click()
+        locator_windowsill_ranges = (By.CLASS_NAME, "windowsill-ranges")
+        if self.find(locator_windowsill_ranges).get_attribute("style") != "display: block;":
+            self.find(locator_button_expand_settings_windowsill).click()
 
     
-    def change_hight_windowsill(self, height: int):
-        trackbar = self.find(locator_trackbar_height_windowsill)
+    def change_windowsill(self, id_trackbar: str):
+        trackbar = self.find((By.ID, id_trackbar))
         actions = ActionChains(self.driver)
-        actions.click_and_hold(trackbar).move_by_offset(height, 0).release().perform()
+        actions.click_and_hold(trackbar).move_by_offset(55, 0).release().perform()
 
     
     def turn_column_90_left(self):
         self.await_clickable(locator_button_turn_column_90_left)
         self.find(locator_button_turn_column_90_left).click()
+
+    
+    def click_animation_door(self, id_animation: str):
+        locator_animation = (By.ID, id_animation)
+        # self.await_clickable(locator_animation)
+        self.find(locator_animation).click()

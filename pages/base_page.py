@@ -18,9 +18,12 @@ class BasePage:
         print(mode)
 
         if mode == 'TEST':
-            self.driver.get(f'https://{settings.USER}:{settings.PASSWORD}@online-dint.ulapr.ru/app/')
+            if not self.true_url(f'https://online-dint.ulapr.ru/app/'):
+                self.driver.get(f'https://{settings.USER}:{settings.PASSWORD}@online-dint.ulapr.ru/app/')
         if mode == 'PROD':
-            self.driver.get(f'https://roomplan.ru/app/')
+            url = 'https://roomplan.ru/app/'
+            if not self.true_url(url):
+                self.driver.get(url)
 
 
     def find(self, args):
@@ -56,11 +59,15 @@ class BasePage:
 
 
     def true_url(self, true_url):
-        print(true_url)
-        print(self.driver.current_url)
-        parts_url = self.driver.current_url.split('//')
-        # удаление логина и пароля из url
-        current_url = "".join([parts_url[0], "//", parts_url[1].split('@')[1]])
+        # print(f"{true_url=}")
+        # print(f"Текущий url = {self.driver.current_url}")
+        current_url =  self.driver.current_url
+        
+        if settings.MODE == "TEST":
+            if "@" in current_url:
+                parts_url = current_url.split('//')
+                # удаление логина и пароля из url
+                current_url = "".join([parts_url[0], "//", parts_url[1].split('@')[1]])
         return current_url == true_url
     
     
