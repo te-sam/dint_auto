@@ -64,12 +64,27 @@ def driver_class(request):
 
 
 @pytest.fixture(scope="function")
-def close_dialog_constraint_for_guest(driver_class):
+def close_dialog_constraint_for_guest(driver_class, request):
     yield
+    work = WorkPage(driver_class)
     dialog_constraint = driver_class.find_element(*locator_dialog_guest_constraint)
     button_close_dialog_constraint = driver_class.find_element(*locator_close_dialog_constraint)
+    
+    # Получаем параметр из request.param
+    param_value = request.param if hasattr(request, "param") else None
+
     if dialog_constraint.is_displayed() and button_close_dialog_constraint.is_displayed():
         button_close_dialog_constraint.click()
+    else:
+        if param_value:  # Если дилалог должен был появиться, но не появился
+            if "active" in element_3d.get_attribute("class"):
+                driver_class.refresh()
+                element_3d = work.find(locator_3d)
+                sleep(2)
+                work.click_3d()
+            else:
+                driver_class.refresh()
+                sleep(2)
 
 
 @pytest.fixture(scope="function")

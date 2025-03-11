@@ -12,7 +12,6 @@ from config import settings
 
 
 class BaseConstraints:
-    @allure.title('Поделиться проектом проектом')
     def rename_project(self, block=False, tarif="paid"):  # Переименовать проект
         name_project = "test"
         work = WorkPage(self.driver_class)
@@ -38,7 +37,6 @@ class BaseConstraints:
                         assert dash.is_project_named(name_project), 'Проект не переименовался'
     
 
-    @allure.title('Поделиться проектом')
     def share_project(self, block=False, tarif="paid"):  # Поделиться проектом
         work = WorkPage(self.driver_class)
 
@@ -58,7 +56,6 @@ class BaseConstraints:
                 work.check_dialog_constraint(block, tarif)
 
 
-    @allure.title('Ниши ограничение')
     def constraint_alcove(self, block=False, tarif="paid"):  # Ниши
         work = WorkPage(self.driver_class)
 
@@ -73,7 +70,6 @@ class BaseConstraints:
             work.check_dialog_constraint(block, tarif)
 
 
-    allure.title('Сохранить в 3D ограничние')
     def constraint_save_3d(self, block=False, tarif="paid"):  # Сохранение в 3D
         work = WorkPage(self.driver_class)
 
@@ -186,8 +182,20 @@ class BaseConstraints:
             work.click_animation_door(id_animation)
         with allure.step('Проверить появление диалога ограничений'):
             work.check_dialog_constraint(block, tarif)
-            
 
+
+    def constraint_favorites(self, block=False, tarif="paid"):
+        work = WorkPage(self.driver_class)
+        with allure.step('Перейти в катлог мебели'):
+            work.click_button_models()
+        with allure.step('Выбрать первую категорию'):
+            work.click_category_menu_models(3)
+        with allure.step('Выбрать первую подкатегорию'):
+            work.click_subcategory(1)
+        with allure.step('Добавить мебель в избранное'):
+            work.add_in_favorite_from_catalog()
+        with allure.step('Проверить появление диалога ограничений'):
+            work.check_dialog_constraint(block, tarif)
 
 
 @pytest.mark.usefixtures("paste_project_for_guest")
@@ -262,6 +270,11 @@ class TestsGuestConstraints(BaseConstraints):
     @pytest.mark.parametrize("id_animation", ["mirror-width", "mirror-depth", "open-inside"])
     def test_constraint_animation_door(self, id_animation, close_dialog_constraint_for_guest):  # Настройки колонны, поворот на 90
         super().constraint_animation_door(id_animation, block=True, tarif="guest")
+
+    @allure.feature('Ограничения Гость')
+    @allure.title('Добавление в избранное')
+    def test_add_to_favorites(self, close_dialog_constraint_for_guest):
+        super().constraint_favorites(block=True, tarif="guest")
 
 
 @allure.title('Проверка ограничений функционала на Бесплатном')
