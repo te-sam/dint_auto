@@ -39,6 +39,7 @@ locator_alcove_button = (By.CSS_SELECTOR, '[data-tool="alcove"]')  # Ниши
 locator_apperture_button = (By.CSS_SELECTOR, '[data-tool="apperture"]')  # Проемы
 locator_buttons_catalog_textures = (By.CLASS_NAME, 'img-block')  # Каталог текстур
 locator_catalog_models = (By.ID, 'models')
+locator_button_video_close = (By.CLASS_NAME, 'video-close') # Закрыть видео в начале
 
 locator_edit_height = (By.ID, 'model_height')
 locator_trackbar_height_windowsill = (By.ID, 'sill-height')
@@ -291,7 +292,6 @@ class WorkPage(BasePage):
         locator_category = (By.CSS_SELECTOR,f"#main_menu_block > button:nth-child({category})")
         self.await_clickable(locator_category)
         self.find(locator_category).click()
-
     
     def click_subcategory(self, subcategory: int):
         locator_subcategory = (By.CSS_SELECTOR, f"#ui > div.left-menu-block > div:nth-child(2) > div:nth-child(5) > div:nth-child({subcategory})")
@@ -304,3 +304,18 @@ class WorkPage(BasePage):
         self.await_clickable(locator)
         self.find(locator).click()
 
+
+    def click_button_video_close(self):
+        self.await_clickable(locator_button_video_close)
+        self.find(locator_button_video_close).click()
+
+
+    def check_stimulate_panel(self):
+        locator = (By.CLASS_NAME, "stimulate-panel")
+        self.find(locator)
+
+
+    def click_stimulate_panel_order_button(self):
+        locator = (By.CLASS_NAME, "order-button")
+        self.await_clickable(locator)
+        self.find(locator).click()
