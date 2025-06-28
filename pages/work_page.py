@@ -312,8 +312,8 @@ class WorkPage(BasePage):
 
     def check_stimulate_panel(self):
         locator = (By.CLASS_NAME, "stimulate-panel")
-        self.find(locator)
-
+        stimulate_panel = self.find(locator)
+        return not stimulate_panel.is_displayed()
 
     def click_stimulate_panel_order_button(self):
         locator = (By.CLASS_NAME, "order-button")

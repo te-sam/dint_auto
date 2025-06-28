@@ -22,7 +22,7 @@ class TestsCheckButtonBoxAdaptive:
         work.click_category_menu_models(4)
 
         with allure.step("Проверка появления плашки в каталоге"):
-            work.check_stimulate_panel()
+            assert work.check_stimulate_panel() == True
 
     def test_check_work_down_block_in_category(self):
         work = WorkPage(self.driver_class)
