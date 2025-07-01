@@ -298,16 +298,19 @@ class WorkPage(BasePage):
         self.await_clickable(locator_subcategory)
         self.find(locator_subcategory).click()
 
-    
+
     def add_in_favorite_from_catalog(self):
         locator = (By.ID, "set_like")
         self.await_clickable(locator)
         self.find(locator).click()
 
 
-    def click_button_video_close(self):
-        self.await_clickable(locator_button_video_close)
-        self.find(locator_button_video_close).click()
+    def click_button_video_close(self, is_authorized: bool):
+        if not is_authorized:
+            self.await_clickable(locator_button_video_close)
+            self.find(locator_button_video_close).click()
+        else:
+            pass
 
 
     def check_stimulate_panel(self):
@@ -315,7 +318,26 @@ class WorkPage(BasePage):
         stimulate_panel = self.find(locator)
         return not stimulate_panel.is_displayed()
 
-    def click_stimulate_panel_order_button(self):
+    def check_door_info_panel(self):
+        locator = (By.CLASS_NAME, "door-info")
+        door_info_panel = self.find(locator)
+        return not door_info_panel.is_displayed()
+
+    def click_category_build_selector(self, category: int, subcategory: int):
+        locator_category = (By.CSS_SELECTOR, f"#ui > div.left-menu-block > div:nth-child(3) > div:nth-child(2) > div:nth-child({category}) > button:nth-child({subcategory})")
+        self.await_clickable(locator_category)
+        self.find(locator_category).click()
+
+    def click_subcategory_build_selector(self, category: int):
+        locator_category = (By.CSS_SELECTOR, f"#ui > div.left-menu-block > div:nth-child(3) > div:nth-child(6) > div:nth-child({category})")
+        self.await_clickable(locator_category)
+        self.find(locator_category).click()
+
+    def click_stimulate_panel_order_button(self,  tarif: str):
         locator = (By.CLASS_NAME, "order-button")
-        self.await_clickable(locator)
-        self.find(locator).click()
+        if tarif == "guest" or tarif == "free":
+            self.await_clickable(locator)
+            self.find(locator).click()
+        else:
+            stimulate_panel = self.find(locator)
+            return not stimulate_panel.is_displayed()
