@@ -53,7 +53,8 @@ class HitmanBaseConstraints:
 
         work.click_category_build_selector(4, 1)
         work.click_subcategory_build_selector(1)
-        work.click_by_canvas(100, 100)
+        work.click_by_canvas(400, 100)
+        # work.click_subcategory_build_selector(1)
 
         with allure.step("Проверка появления панели информации о двери"):
             assert work.check_door_info_panel() == True
