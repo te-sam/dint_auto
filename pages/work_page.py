@@ -483,3 +483,6 @@ class WorkPage(BasePage):
         if str(object_name_value) == str(name):
             print(f"Checking item: {object_name_value}, passed")
             return True
+
+    def delete(self):
+        pass
