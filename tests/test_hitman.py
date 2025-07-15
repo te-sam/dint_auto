@@ -170,15 +170,91 @@ class HitmanSaveProjectsPage:
         # work.find_and_set_model_item(name="модуль", num_item=3, x=645, y=40)
 
     def check_save_3d_2d_mode_switch(self, is_authorized = False):
-
         work = WorkPage(self.driver_class)
         work.open_main()
 
         wait(2)
-        if is_authorized:
-            work.click_3d()
 
-            work.click_2d()
+        work.click_3d()
+
+        work.click_2d()
+
+        with allure.step("Проверка стены"):
+            assert work.check_alive_building_item("Стена", "wall-info", 5, 200) == True
+
+        with allure.step("Проверка стены"):
+            assert work.check_alive_building_item("Стена", "wall-info", 655, 20) == True
+
+        with allure.step("Проверка стены"):
+            assert work.check_alive_building_item("Стена", "wall-info", 550, 305) == True
+
+        with allure.step("Проверка стены"):
+            assert work.check_alive_building_item("Стена", "wall-info", 285, 305) == True
+
+        with allure.step("Проверка стены"):
+            assert work.check_alive_building_item("Стена", "wall-info", 305, 400) == True
+
+        with allure.step("Проверка стены"):
+            assert work.check_alive_building_item("Стена", "wall-info", 5, 400) == True
+
+        with allure.step("Проверка стены"):
+            assert work.check_alive_building_item("Стена", "wall-info", 20, 705) == True
+
+        with allure.step("Проверка Дверь входная №6"):
+            assert work.check_alive_building_item("Дверь входная №6", "door-info", 0, 150) == True
+
+        with allure.step("Проверка Дверь распашная с аркой"):
+            assert work.check_alive_building_item("Дверь распашная с аркой", "door-info", 155, 305) == True
+
+        with allure.step("Проверка Окно трехстворчатое с фрамугой №5"):
+            assert work.check_alive_building_item("Окно трехстворчатое с фрамугой №5", "window-info", 655,
+                                                  155) == True
+
+        with allure.step("Проверка Арочное окно"):
+            assert work.check_alive_building_item("Арочное окно", "window-info", 5, 650) == True
+
+        with allure.step("Проверка Вешалка напольная Hook"):
+            assert work.check_alive_model_item("Вешалка напольная Hook", 40, 40) == True
+
+        with allure.step("Проверка Шкаф 1 дверный Оскар с стеклом"):
+            assert work.check_alive_model_item("Шкаф 1 дверный Оскар с стеклом", 100, 40) == True
+
+        with allure.step("Проверка Зеркало (лофт)"):
+            assert work.check_alive_model_item("Зеркало (лофт)", 10, 250) == True
+
+        with allure.step("Проверка Вешалка настенная Торонто"):
+            assert work.check_alive_model_item("Вешалка настенная Торонто", 40, 288, offset=180) == True
+
+        with allure.step("Проверка Кухня модульная"):
+            assert work.check_alive_model_item("Кухня модульная", 470, 285) == True
+
+        with allure.step("Проверка Модуль напольный 3 дверцы"):
+            assert work.check_alive_model_item("Модуль напольный 3 дверцы", 585, 40) == True
+
+        with allure.step("Проверка Диван BOSS.XO"):
+            assert work.check_alive_model_item("Диван BOSS.XO", 20, 500) == True
+
+        with allure.step("Проверка Столик круглый (арт деко)"):
+            assert work.check_alive_model_item("Столик круглый (арт деко)", 180, 500) == True
+
+        with allure.step("Проверка Монитор"):
+            assert work.check_alive_model_item("Монитор", 288, 420, offset=80) == True
+
+        with allure.step("Проверка Столик консольный (классика)"):
+            assert work.check_alive_model_item("Столик консольный (классика)", 288, 500) == True
+
+        work.create_screenshot_canvas()
+
+        wait(2)
+    
+    def check_auto_save(self, is_authorized = False):
+        work = WorkPage(self.driver_class)
+        work.open_main()
+
+        wait(2)
+
+        if is_authorized:
+
 
             with allure.step("Проверка стены"):
                 assert work.check_alive_building_item("Стена", "wall-info", 5, 200) == True
@@ -244,15 +320,7 @@ class HitmanSaveProjectsPage:
             with allure.step("Проверка Столик консольный (классика)"):
                 assert work.check_alive_model_item("Столик консольный (классика)", 288, 500) == True
 
-            work.click_save_screen()
-            work.switch_to_tab(1)
-
-            wait(2)
-
         else:
-            work.click_3d()
-
-            work.click_2d()
 
             with allure.step("Проверка стены"):
                 assert work.check_alive_building_item("Стена", "wall-info", 5, 200) == True
@@ -282,11 +350,11 @@ class HitmanSaveProjectsPage:
                 assert work.check_alive_building_item("Дверь распашная с аркой", "door-info", 155, 305) == True
 
             with allure.step("Проверка Окно трехстворчатое с фрамугой №5"):
-                assert work.check_alive_building_item("Окно трехстворчатое с фрамугой №5", "window-info", 655, 155) == True
+                assert work.check_alive_building_item("Окно трехстворчатое с фрамугой №5", "window-info", 655,
+                                                      155) == True
 
             with allure.step("Проверка Арочное окно"):
                 assert work.check_alive_building_item("Арочное окно", "window-info", 5, 650) == True
-
 
             with allure.step("Проверка Вешалка напольная Hook"):
                 assert work.check_alive_model_item("Вешалка напольная Hook", 40, 40) == True
@@ -317,10 +385,6 @@ class HitmanSaveProjectsPage:
 
             with allure.step("Проверка Столик консольный (классика)"):
                 assert work.check_alive_model_item("Столик консольный (классика)", 288, 500) == True
-
-        # work.refresh_tab()
-
-        # wait(120)
 
 @pytest.mark.usefixtures("paste_project_for_guest")
 class TestsGuestHitmanModelsConstraints(HitmanModelsPage):
