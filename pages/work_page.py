@@ -39,6 +39,7 @@ locator_alcove_button = (By.CSS_SELECTOR, '[data-tool="alcove"]')  # Ниши
 locator_apperture_button = (By.CSS_SELECTOR, '[data-tool="apperture"]')  # Проемы
 locator_buttons_catalog_textures = (By.CLASS_NAME, 'img-block')  # Каталог текстур
 locator_catalog_models = (By.ID, 'models')
+locator_catalog_base = (By.ID, 'base')
 locator_button_video_close = (By.CLASS_NAME, 'video-close') # Закрыть видео в начале
 
 locator_edit_height = (By.ID, 'model_height')
@@ -287,6 +288,10 @@ class WorkPage(BasePage):
         self.await_clickable(locator_catalog_models)
         self.find(locator_catalog_models).click()
 
+    def click_button_base(self):
+        self.await_clickable(locator_catalog_base)
+        self.find(locator_catalog_base).click()
+
 
     def click_category_menu_models(self, category: int):
         locator_category = (By.CSS_SELECTOR,f"#main_menu_block > button:nth-child({category})")
@@ -341,3 +346,91 @@ class WorkPage(BasePage):
         else:
             stimulate_panel = self.find(locator)
             return not stimulate_panel.is_displayed()
+
+
+    def paint_room(self, height, width):
+        for i in range(1, -2, -2):
+            ActionChains(self.driver).move_by_offset(0, 0).perform()
+            ActionChains(self.driver).move_by_offset(height * i, 0).click().perform()
+
+            ActionChains(self.driver).move_by_offset(0, 0).perform()
+            ActionChains(self.driver).move_by_offset(0, width * i).click().perform()
+
+    def set_new_building_item(self, category, subcategory, num_item, x, y):
+        locator_category = (By.CSS_SELECTOR, f"#ui > div.left-menu-block > div:nth-child(3) > div:nth-child(2) > div:nth-child({category}) > button:nth-child({subcategory})")
+        locator_item = (By.CSS_SELECTOR, f"#ui > div.left-menu-block > div:nth-child(3) > div:nth-child(5) > div:nth-child({num_item})")
+
+        self.await_clickable(locator_catalog_base)
+        self.find(locator_catalog_base).click()
+        self.await_clickable(locator_catalog_base)
+        self.find(locator_catalog_base).click()
+
+        self.await_clickable(locator_category)
+        self.find(locator_category).click()
+
+        self.await_clickable(locator_item)
+        self.find(locator_item).click()
+
+        ActionChains(self.driver).move_by_offset(0, 0).perform()
+        ActionChains(self.driver).move_by_offset(x, y).click().perform()
+
+        ActionChains(self.driver).move_by_offset(0, 0).perform()
+        ActionChains(self.driver).move_by_offset(-x, -y).click().perform()
+
+    def set_new_model_item(self, category, subcategory, num_item, x, y):
+        locator_category = (By.CSS_SELECTOR, f"#ui > div.left-menu-block > div:nth-child(2) > div:nth-child(3) > button:nth-child({category})")
+        locator_subcategory = (By.CSS_SELECTOR, f"#ui > div.left-menu-block > div:nth-child(2) > div:nth-child(5) > div:nth-child({subcategory})")
+        locator_item = (By.CSS_SELECTOR, f"#ui > div.left-menu-block > div:nth-child(2) > div:nth-child(6) > div:nth-child({num_item})")
+
+        self.await_clickable(locator_catalog_models)
+        self.find(locator_catalog_models).click()
+        self.await_clickable(locator_catalog_models)
+        self.find(locator_catalog_models).click()
+
+        self.await_clickable(locator_category)
+        self.find(locator_category).click()
+
+        self.await_clickable(locator_subcategory)
+        self.find(locator_subcategory).click()
+
+        self.await_clickable(locator_item)
+        self.find(locator_item).click()
+
+        ActionChains(self.driver).move_by_offset(0, 0).perform()
+        ActionChains(self.driver).move_by_offset(x, y).click().perform()
+
+        ActionChains(self.driver).move_by_offset(0, 0).perform()
+        ActionChains(self.driver).move_by_offset(-x, -y).click().perform()
+
+    def give_offset_floor(self, value):
+        try:
+            locator_input_offset = (By.CSS_SELECTOR, f"#ui > div.edge-info > div:nth-child(1) > div:nth-child(4) > div:nth-child(2) > input:nth-child(1)")
+            self.await_clickable(locator_input_offset)
+            self.find(locator_input_offset).send_keys("")
+            self.find(locator_input_offset).send_keys(str(value))
+        except:
+            locator_input_offset = (By.CSS_SELECTOR, f"#ui > div.model-info > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)")
+            self.await_clickable(locator_input_offset)
+            self.find(locator_input_offset).send_keys("")
+            self.find(locator_input_offset).send_keys(str(value))
+
+    def find_and_set_model_item(self, name, num_item, x, y):
+        locator_input_search = (By.CSS_SELECTOR, f"#ui > div.left-menu-block > div:nth-child(2) > div:nth-child(2) > input:nth-child(1)")
+        locator_item = (By.CSS_SELECTOR, f"#ui > div.left-menu-block > div:nth-child(2) > div:nth-child(6) > div:nth-child({num_item})")
+
+        self.await_clickable(locator_catalog_models)
+        self.find(locator_catalog_models).click()
+        self.await_clickable(locator_catalog_models)
+        self.find(locator_catalog_models).click()
+
+        self.await_clickable(locator_input_search)
+        self.find(locator_input_search).send_keys(str(name))
+
+        self.await_clickable(locator_item)
+        self.find(locator_item).click()
+
+        ActionChains(self.driver).move_by_offset(0, 0).perform()
+        ActionChains(self.driver).move_by_offset(x, y).click().perform()
+
+        ActionChains(self.driver).move_by_offset(0, 0).perform()
+        ActionChains(self.driver).move_by_offset(-x, -y).click().perform()

@@ -32,7 +32,11 @@ class BasePage:
 
     def finds(self, args):
         return self.driver.find_elements(*args)
-    
+
+
+    def refresh_tab(self):
+        self.driver.refresh()
+
 
     def switch_new_tab(self):
         tabs = self.driver.window_handles
