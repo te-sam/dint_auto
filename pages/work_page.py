@@ -434,3 +434,52 @@ class WorkPage(BasePage):
 
         ActionChains(self.driver).move_by_offset(0, 0).perform()
         ActionChains(self.driver).move_by_offset(-x, -y).click().perform()
+
+    def check_alive_model_item(self, name, x, y, offset = 0):
+        ActionChains(self.driver).move_by_offset(0, 0).perform()
+        ActionChains(self.driver).move_by_offset(x, y).click().perform()
+
+        try:
+            locator_offset = (By.CSS_SELECTOR, f"#ui > div.model-info > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)")
+            locator_name = (By.CSS_SELECTOR, f"#ui > div.model-info > div:nth-child(1) > div:nth-child(1) > div:nth-child(3)")
+            self.await_clickable(locator_offset)
+            object_offset_value = self.find(locator_offset).get_attribute("value")
+
+            self.await_clickable(locator_name)
+            object_name_value = self.find(locator_name).get_attribute("title")
+
+        except:
+            locator_offset = (By.CSS_SELECTOR, f"#ui > div.edge-info > div:nth-child(1) > div:nth-child(4) > div:nth-child(2) > input:nth-child(1)")
+            locator_name = (By.CSS_SELECTOR, f"#ui > div.edge-info > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)")
+            self.await_clickable(locator_offset)
+            object_offset_value = self.find(locator_offset).get_attribute("value")
+
+            self.await_clickable(locator_name)
+            object_name_value = self.find(locator_name).get_attribute("title")
+
+        ActionChains(self.driver).move_by_offset(0, 0).perform()
+        ActionChains(self.driver).move_by_offset(-x, -y).click().perform()
+
+        if str(object_name_value) == str(name) and str(object_offset_value) == str(offset):
+            print(f"Checking item: {object_name_value}, passed")
+            return True
+
+    def check_alive_building_item(self, name, type_building_item, x, y):
+        ActionChains(self.driver).move_by_offset(0, 0).perform()
+        ActionChains(self.driver).move_by_offset(x, y).click().perform()
+
+        try:
+            locator_name = (By.CSS_SELECTOR, f"#ui > div.{type_building_item} > div:nth-child(1) > div:nth-child(1)")
+            self.await_clickable(locator_name)
+            object_name_value = self.find(locator_name).text
+        except:
+            locator_name = (By.CSS_SELECTOR, f"#ui > div.{type_building_item} > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)")
+            self.await_clickable(locator_name)
+            object_name_value = self.find(locator_name).text
+
+        ActionChains(self.driver).move_by_offset(0, 0).perform()
+        ActionChains(self.driver).move_by_offset(-x, -y).click().perform()
+
+        if str(object_name_value) == str(name):
+            print(f"Checking item: {object_name_value}, passed")
+            return True
