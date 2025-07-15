@@ -71,51 +71,101 @@ class HitmanSaveProjectsPage:
 
         work.click_button_video_close(is_authorized)
 
-        work.click_category_build_selector(2, 1)
-        work.click_by_canvas(600, 150)
-        work.paint_room(650, 300)
+        if is_authorized:
+            work.add_new_project("test save project")
 
-        work.click_category_build_selector(2, 1)
-        work.click_by_canvas(0, 300)
-        work.paint_room(300, 400)
+            work.click_category_build_selector(2, 1)
+            work.click_by_canvas(250, 100)
+            work.paint_room(650, 300)
 
-        work.click_by_canvas(0, -300)
+            work.click_category_build_selector(2, 1)
+            work.click_by_canvas(0, 300)
+            work.paint_room(300, 400)
 
-        work.set_new_building_item(category=4, subcategory=1, num_item=2, x=0, y=150)
+            work.click_by_canvas(0, -300)
 
-        work.set_new_building_item(category=4, subcategory=1, num_item=7, x=150, y=300)
+            work.set_new_building_item(category=4, subcategory=1, num_item=2, x=0, y=150)
 
-        work.set_new_building_item(category=4, subcategory=2, num_item=6, x=650, y=150)
+            work.set_new_building_item(category=4, subcategory=1, num_item=7, x=150, y=300)
 
-        work.set_new_building_item(category=4, subcategory=2, num_item=10, x=0, y=600)
+            work.set_new_building_item(category=4, subcategory=2, num_item=6, x=650, y=150)
 
-        work.click_button_models()
+            work.set_new_building_item(category=4, subcategory=2, num_item=10, x=0, y=600)
 
-        work.set_new_model_item(category=5, subcategory=4, num_item=3, x=40, y=40)
+            work.click_button_models()
 
-        work.set_new_model_item(category=5, subcategory=2, num_item=6, x=100, y=40)
+            work.set_new_model_item(category=5, subcategory=4, num_item=3, x=40, y=40)
 
-        work.set_new_model_item(category=5, subcategory=3, num_item=6, x=40, y=250)
+            work.set_new_model_item(category=5, subcategory=2, num_item=6, x=100, y=40)
 
-        work.set_new_model_item(category=5, subcategory=4, num_item=2, x=40, y=295)
-        work.click_by_canvas(40, 288)
-        work.give_offset_floor("180")
-        work.click_by_canvas(-40, -288)
+            work.set_new_model_item(category=5, subcategory=3, num_item=6, x=40, y=250)
 
-        work.set_new_model_item(category=3, subcategory=3, num_item=1, x=470, y=295)
+            work.set_new_model_item(category=5, subcategory=4, num_item=2, x=40, y=295)
+            work.click_by_canvas(40, 288)
+            work.give_offset_floor("180")
+            work.click_by_canvas(-40, -288)
 
-        work.set_new_model_item(category=3, subcategory=1, num_item=5, x=585, y=40)
+            work.set_new_model_item(category=3, subcategory=3, num_item=1, x=470, y=295)
 
-        work.set_new_model_item(category=2, subcategory=1, num_item=2, x=15, y=500)
+            work.set_new_model_item(category=3, subcategory=1, num_item=5, x=585, y=40)
 
-        work.set_new_model_item(category=2, subcategory=4, num_item=2, x=180, y=500)
+            work.set_new_model_item(category=2, subcategory=1, num_item=2, x=15, y=500)
 
-        work.set_new_model_item(category=8, subcategory=4, num_item=1, x=295, y=420)
-        work.click_by_canvas(288, 420)
-        work.give_offset_floor("080")
-        work.click_by_canvas(-288, -420)
+            work.set_new_model_item(category=2, subcategory=4, num_item=2, x=180, y=500)
 
-        work.set_new_model_item(category=4, subcategory=2, num_item=2, x=295, y=500)
+            work.set_new_model_item(category=8, subcategory=4, num_item=1, x=295, y=420)
+            work.click_by_canvas(288, 420)
+            work.give_offset_floor("080")
+            work.click_by_canvas(-288, -420)
+
+            work.set_new_model_item(category=4, subcategory=2, num_item=2, x=295, y=500)
+
+        else:
+            work.click_category_build_selector(2, 1)
+            work.click_by_canvas(600, 150)
+            work.paint_room(650, 300)
+
+            work.click_category_build_selector(2, 1)
+            work.click_by_canvas(0, 300)
+            work.paint_room(300, 400)
+
+            work.click_by_canvas(0, -300)
+
+            work.set_new_building_item(category=4, subcategory=1, num_item=2, x=0, y=150)
+
+            work.set_new_building_item(category=4, subcategory=1, num_item=7, x=150, y=300)
+
+            work.set_new_building_item(category=4, subcategory=2, num_item=6, x=650, y=150)
+
+            work.set_new_building_item(category=4, subcategory=2, num_item=10, x=0, y=600)
+
+            work.click_button_models()
+
+            work.set_new_model_item(category=5, subcategory=4, num_item=3, x=40, y=40)
+
+            work.set_new_model_item(category=5, subcategory=2, num_item=6, x=100, y=40)
+
+            work.set_new_model_item(category=5, subcategory=3, num_item=6, x=40, y=250)
+
+            work.set_new_model_item(category=5, subcategory=4, num_item=2, x=40, y=295)
+            work.click_by_canvas(40, 288)
+            work.give_offset_floor("180")
+            work.click_by_canvas(-40, -288)
+
+            work.set_new_model_item(category=3, subcategory=3, num_item=1, x=470, y=295)
+
+            work.set_new_model_item(category=3, subcategory=1, num_item=5, x=585, y=40)
+
+            work.set_new_model_item(category=2, subcategory=1, num_item=2, x=15, y=500)
+
+            work.set_new_model_item(category=2, subcategory=4, num_item=2, x=180, y=500)
+
+            work.set_new_model_item(category=8, subcategory=4, num_item=1, x=295, y=420)
+            work.click_by_canvas(288, 420)
+            work.give_offset_floor("080")
+            work.click_by_canvas(-288, -420)
+
+            work.set_new_model_item(category=4, subcategory=2, num_item=2, x=295, y=500)
 
         # work.find_and_set_model_item(name="модуль", num_item=3, x=645, y=40)
 
@@ -125,80 +175,152 @@ class HitmanSaveProjectsPage:
         work.open_main()
 
         wait(2)
+        if is_authorized:
+            work.click_3d()
 
-        work.click_3d()
+            work.click_2d()
 
-        work.click_2d()
+            with allure.step("Проверка стены"):
+                assert work.check_alive_building_item("Стена", "wall-info", 5, 200) == True
 
-        with allure.step("Проверка стены"):
-            assert work.check_alive_building_item("Стена", "wall-info", 5, 200) == True
+            with allure.step("Проверка стены"):
+                assert work.check_alive_building_item("Стена", "wall-info", 655, 20) == True
 
-        with allure.step("Проверка стены"):
-            assert work.check_alive_building_item("Стена", "wall-info", 655, 20) == True
+            with allure.step("Проверка стены"):
+                assert work.check_alive_building_item("Стена", "wall-info", 550, 305) == True
 
-        with allure.step("Проверка стены"):
-            assert work.check_alive_building_item("Стена", "wall-info", 550, 305) == True
+            with allure.step("Проверка стены"):
+                assert work.check_alive_building_item("Стена", "wall-info", 285, 305) == True
 
-        with allure.step("Проверка стены"):
-            assert work.check_alive_building_item("Стена", "wall-info", 285, 305) == True
+            with allure.step("Проверка стены"):
+                assert work.check_alive_building_item("Стена", "wall-info", 305, 400) == True
 
-        with allure.step("Проверка стены"):
-            assert work.check_alive_building_item("Стена", "wall-info", 305, 400) == True
+            with allure.step("Проверка стены"):
+                assert work.check_alive_building_item("Стена", "wall-info", 5, 400) == True
 
-        with allure.step("Проверка стены"):
-            assert work.check_alive_building_item("Стена", "wall-info", 5, 400) == True
+            with allure.step("Проверка стены"):
+                assert work.check_alive_building_item("Стена", "wall-info", 20, 705) == True
 
-        with allure.step("Проверка стены"):
-            assert work.check_alive_building_item("Стена", "wall-info", 20, 705) == True
+            with allure.step("Проверка Дверь входная №6"):
+                assert work.check_alive_building_item("Дверь входная №6", "door-info", 0, 150) == True
 
-        with allure.step("Проверка Дверь входная №6"):
-            assert work.check_alive_building_item("Дверь входная №6", "door-info", 0, 150) == True
+            with allure.step("Проверка Дверь распашная с аркой"):
+                assert work.check_alive_building_item("Дверь распашная с аркой", "door-info", 155, 305) == True
 
-        with allure.step("Проверка Дверь распашная с аркой"):
-            assert work.check_alive_building_item("Дверь распашная с аркой", "door-info", 155, 305) == True
+            with allure.step("Проверка Окно трехстворчатое с фрамугой №5"):
+                assert work.check_alive_building_item("Окно трехстворчатое с фрамугой №5", "window-info", 655,
+                                                      155) == True
 
-        with allure.step("Проверка Окно трехстворчатое с фрамугой №5"):
-            assert work.check_alive_building_item("Окно трехстворчатое с фрамугой №5", "window-info", 655, 155) == True
+            with allure.step("Проверка Арочное окно"):
+                assert work.check_alive_building_item("Арочное окно", "window-info", 5, 650) == True
 
-        with allure.step("Проверка Арочное окно"):
-            assert work.check_alive_building_item("Арочное окно", "window-info", 5, 650) == True
+            with allure.step("Проверка Вешалка напольная Hook"):
+                assert work.check_alive_model_item("Вешалка напольная Hook", 40, 40) == True
+
+            with allure.step("Проверка Шкаф 1 дверный Оскар с стеклом"):
+                assert work.check_alive_model_item("Шкаф 1 дверный Оскар с стеклом", 100, 40) == True
+
+            with allure.step("Проверка Зеркало (лофт)"):
+                assert work.check_alive_model_item("Зеркало (лофт)", 10, 250) == True
+
+            with allure.step("Проверка Вешалка настенная Торонто"):
+                assert work.check_alive_model_item("Вешалка настенная Торонто", 40, 288, offset=180) == True
+
+            with allure.step("Проверка Кухня модульная"):
+                assert work.check_alive_model_item("Кухня модульная", 470, 285) == True
+
+            with allure.step("Проверка Модуль напольный 3 дверцы"):
+                assert work.check_alive_model_item("Модуль напольный 3 дверцы", 585, 40) == True
+
+            with allure.step("Проверка Диван BOSS.XO"):
+                assert work.check_alive_model_item("Диван BOSS.XO", 20, 500) == True
+
+            with allure.step("Проверка Столик круглый (арт деко)"):
+                assert work.check_alive_model_item("Столик круглый (арт деко)", 180, 500) == True
+
+            with allure.step("Проверка Монитор"):
+                assert work.check_alive_model_item("Монитор", 288, 420, offset=80) == True
+
+            with allure.step("Проверка Столик консольный (классика)"):
+                assert work.check_alive_model_item("Столик консольный (классика)", 288, 500) == True
+
+            work.click_save_screen()
+            work.switch_to_tab(1)
+
+            wait(2)
+
+        else:
+            work.click_3d()
+
+            work.click_2d()
+
+            with allure.step("Проверка стены"):
+                assert work.check_alive_building_item("Стена", "wall-info", 5, 200) == True
+
+            with allure.step("Проверка стены"):
+                assert work.check_alive_building_item("Стена", "wall-info", 655, 20) == True
+
+            with allure.step("Проверка стены"):
+                assert work.check_alive_building_item("Стена", "wall-info", 550, 305) == True
+
+            with allure.step("Проверка стены"):
+                assert work.check_alive_building_item("Стена", "wall-info", 285, 305) == True
+
+            with allure.step("Проверка стены"):
+                assert work.check_alive_building_item("Стена", "wall-info", 305, 400) == True
+
+            with allure.step("Проверка стены"):
+                assert work.check_alive_building_item("Стена", "wall-info", 5, 400) == True
+
+            with allure.step("Проверка стены"):
+                assert work.check_alive_building_item("Стена", "wall-info", 20, 705) == True
+
+            with allure.step("Проверка Дверь входная №6"):
+                assert work.check_alive_building_item("Дверь входная №6", "door-info", 0, 150) == True
+
+            with allure.step("Проверка Дверь распашная с аркой"):
+                assert work.check_alive_building_item("Дверь распашная с аркой", "door-info", 155, 305) == True
+
+            with allure.step("Проверка Окно трехстворчатое с фрамугой №5"):
+                assert work.check_alive_building_item("Окно трехстворчатое с фрамугой №5", "window-info", 655, 155) == True
+
+            with allure.step("Проверка Арочное окно"):
+                assert work.check_alive_building_item("Арочное окно", "window-info", 5, 650) == True
 
 
-        with allure.step("Проверка Вешалка напольная Hook"):
-            assert work.check_alive_model_item("Вешалка напольная Hook", 40, 40) == True
+            with allure.step("Проверка Вешалка напольная Hook"):
+                assert work.check_alive_model_item("Вешалка напольная Hook", 40, 40) == True
 
-        with allure.step("Проверка Шкаф 1 дверный Оскар с стеклом"):
-            assert work.check_alive_model_item("Шкаф 1 дверный Оскар с стеклом", 100, 40) == True
+            with allure.step("Проверка Шкаф 1 дверный Оскар с стеклом"):
+                assert work.check_alive_model_item("Шкаф 1 дверный Оскар с стеклом", 100, 40) == True
 
-        with allure.step("Проверка Зеркало (лофт)"):
-            assert work.check_alive_model_item("Зеркало (лофт)", 10, 250) == True
+            with allure.step("Проверка Зеркало (лофт)"):
+                assert work.check_alive_model_item("Зеркало (лофт)", 10, 250) == True
 
-        with allure.step("Проверка Вешалка настенная Торонто"):
-            assert work.check_alive_model_item("Вешалка настенная Торонто", 40, 288, offset=180) == True
+            with allure.step("Проверка Вешалка настенная Торонто"):
+                assert work.check_alive_model_item("Вешалка настенная Торонто", 40, 288, offset=180) == True
 
-        with allure.step("Проверка Кухня модульная"):
-            assert work.check_alive_model_item("Кухня модульная", 470, 285) == True
+            with allure.step("Проверка Кухня модульная"):
+                assert work.check_alive_model_item("Кухня модульная", 470, 285) == True
 
-        with allure.step("Проверка Модуль напольный 3 дверцы"):
-            assert work.check_alive_model_item("Модуль напольный 3 дверцы", 585, 40) == True
+            with allure.step("Проверка Модуль напольный 3 дверцы"):
+                assert work.check_alive_model_item("Модуль напольный 3 дверцы", 585, 40) == True
 
-        with allure.step("Проверка Диван BOSS.XO"):
-            assert work.check_alive_model_item("Диван BOSS.XO", 20, 500) == True
+            with allure.step("Проверка Диван BOSS.XO"):
+                assert work.check_alive_model_item("Диван BOSS.XO", 20, 500) == True
 
-        with allure.step("Проверка Столик круглый (арт деко)"):
-            assert work.check_alive_model_item("Столик круглый (арт деко)", 180, 500) == True
+            with allure.step("Проверка Столик круглый (арт деко)"):
+                assert work.check_alive_model_item("Столик круглый (арт деко)", 180, 500) == True
 
-        with allure.step("Проверка Монитор"):
-            assert work.check_alive_model_item("Монитор", 288, 420, offset=80) == True
+            with allure.step("Проверка Монитор"):
+                assert work.check_alive_model_item("Монитор", 288, 420, offset=80) == True
 
-        with allure.step("Проверка Столик консольный (классика)"):
-            assert work.check_alive_model_item("Столик консольный (классика)", 288, 500) == True
+            with allure.step("Проверка Столик консольный (классика)"):
+                assert work.check_alive_model_item("Столик консольный (классика)", 288, 500) == True
 
         # work.refresh_tab()
 
         # wait(120)
-
-        input('Press Enter to continue...')
 
 @pytest.mark.usefixtures("paste_project_for_guest")
 class TestsGuestHitmanModelsConstraints(HitmanModelsPage):
@@ -244,7 +366,6 @@ class TestsHitmanBaseConstraints(HitmanBasesPage):
     def test_check_door_internals(self):
         super().check_door_internals(is_authorized=False)
 
-
 class TestsHitmanSaveProjectsPage(HitmanSaveProjectsPage):
     @allure.feature('Сохранения Гость')
     @allure.title('Создание проеката на тарифе Гость')
@@ -255,3 +376,16 @@ class TestsHitmanSaveProjectsPage(HitmanSaveProjectsPage):
     @allure.title('Сохранение предметов после изменений пространства на тарифе Гость')
     def test_check_save_3d_2d_mode_switch(self):
         super().check_save_3d_2d_mode_switch(is_authorized=False)
+
+@allure.title('Проверка работы функционала на Бесплатном')
+@pytest.mark.usefixtures("auth_base",  "drop_all_project", "paste_project")
+class TestsFreeHitmanSaveProjectsPage(HitmanSaveProjectsPage):
+    @allure.feature('Сохранения Бесплатный тариф')
+    @allure.title('Создание проеката на Бесплатном тарифе')
+    def test_create_test_project(self):
+        super().create_test_project(is_authorized=True)
+
+    @allure.feature('Сохранения Бесплатный тариф')
+    @allure.title('Сохранение предметов после изменений пространства на Бесплатном тарифе')
+    def test_check_save_3d_2d_mode_switch(self):
+        super().check_save_3d_2d_mode_switch(is_authorized=True)
