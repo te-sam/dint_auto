@@ -8,6 +8,7 @@ from pages.base_page import BasePage
 
 locator_project_list = (By.CLASS_NAME, 'project-actions')
 locator_project_delete = (By.ID, 'delete')
+locator_project_open = (By.ID, 'open')
 locator_confirm_delete = (By.CLASS_NAME, 'btn-delete')
 locator_projects = (By.CLASS_NAME, 'project')
 locator_project_name_list = (By.CLASS_NAME, 'project-name')
@@ -89,6 +90,22 @@ class DashboardPage(BasePage):
             return len(self.finds(locator_project_list))
         except:
             return 0
+
+
+    def open_first_project(self):
+        # project_list = self.find(locator_project_list)
+        # open_button = self.find(locator_project_open)
+
+        # ActionChains(self.driver).move_to_element(project_list).move_to_element(open_button).click().perform()
+
+        self.await_clickable(locator_project_list)
+        self.find(locator_project_list).click()
+
+        sleep(2)
+
+        self.await_clickable(locator_project_open)
+        self.find(locator_project_open).click()
+
 
     def click_new_project(self) -> None:
         self.wait(locator_new_project_button)

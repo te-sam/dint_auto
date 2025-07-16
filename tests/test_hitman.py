@@ -247,14 +247,17 @@ class HitmanSaveProjectsPage:
 
         wait(2)
     
-    def check_auto_save(self, is_authorized = False):
+    def check_autosave(self, is_authorized = False):
         work = WorkPage(self.driver_class)
         work.open_main()
 
-        wait(2)
-
         if is_authorized:
+            work.open_dashboard()
+            wait(8)
 
+            dash = DashboardPage(self.driver_class)
+            dash.open_first_project()
+            wait(8)
 
             with allure.step("Проверка стены"):
                 assert work.check_alive_building_item("Стена", "wall-info", 5, 200) == True
@@ -284,8 +287,7 @@ class HitmanSaveProjectsPage:
                 assert work.check_alive_building_item("Дверь распашная с аркой", "door-info", 155, 305) == True
 
             with allure.step("Проверка Окно трехстворчатое с фрамугой №5"):
-                assert work.check_alive_building_item("Окно трехстворчатое с фрамугой №5", "window-info", 655,
-                                                      155) == True
+                assert work.check_alive_building_item("Окно трехстворчатое с фрамугой №5", "window-info", 655, 155) == True
 
             with allure.step("Проверка Арочное окно"):
                 assert work.check_alive_building_item("Арочное окно", "window-info", 5, 650) == True
@@ -321,6 +323,9 @@ class HitmanSaveProjectsPage:
                 assert work.check_alive_model_item("Столик консольный (классика)", 288, 500) == True
 
         else:
+            wait(100)
+            work.refresh_tab()
+            wait(8)
 
             with allure.step("Проверка стены"):
                 assert work.check_alive_building_item("Стена", "wall-info", 5, 200) == True
@@ -350,8 +355,7 @@ class HitmanSaveProjectsPage:
                 assert work.check_alive_building_item("Дверь распашная с аркой", "door-info", 155, 305) == True
 
             with allure.step("Проверка Окно трехстворчатое с фрамугой №5"):
-                assert work.check_alive_building_item("Окно трехстворчатое с фрамугой №5", "window-info", 655,
-                                                      155) == True
+                assert work.check_alive_building_item("Окно трехстворчатое с фрамугой №5", "window-info", 655, 155) == True
 
             with allure.step("Проверка Арочное окно"):
                 assert work.check_alive_building_item("Арочное окно", "window-info", 5, 650) == True
@@ -441,6 +445,11 @@ class TestsHitmanSaveProjectsPage(HitmanSaveProjectsPage):
     def test_check_save_3d_2d_mode_switch(self):
         super().check_save_3d_2d_mode_switch(is_authorized=False)
 
+    @allure.feature("Сохранения Гость")
+    @allure.title('Автосохранение предметов на тарифе Гость')
+    def test_check_autosave(self):
+        super().check_autosave(is_authorized=False)
+
 @allure.title('Проверка работы функционала на Бесплатном')
 @pytest.mark.usefixtures("auth_base",  "drop_all_project", "paste_project")
 class TestsFreeHitmanSaveProjectsPage(HitmanSaveProjectsPage):
@@ -453,3 +462,8 @@ class TestsFreeHitmanSaveProjectsPage(HitmanSaveProjectsPage):
     @allure.title('Сохранение предметов после изменений пространства на Бесплатном тарифе')
     def test_check_save_3d_2d_mode_switch(self):
         super().check_save_3d_2d_mode_switch(is_authorized=True)
+
+    @allure.feature('Сохранения Бесплатный тариф')
+    @allure.title('Автосохранение предметов на Бесплатном тарифе')
+    def test_check_autosave(self):
+        super().check_autosave(is_authorized=True)

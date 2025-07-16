@@ -92,3 +92,9 @@ class BasePage:
     def switch_to_tab(self, number: int):
         handles = self.driver.window_handles
         self.driver.switch_to.window(handles[number-1])
+
+    def create_new_tab(self, url):
+        self.driver.execute_script(f"window.open('{url}');")
+        self.switch_to_tab(1)
+        self.driver.close()
+        sleep(8)

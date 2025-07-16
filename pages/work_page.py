@@ -409,7 +409,7 @@ class WorkPage(BasePage):
             self.find(locator_input_offset).send_keys("")
             self.find(locator_input_offset).send_keys(str(value))
         except:
-            locator_input_offset = (By.CSS_SELECTOR, f"#ui > div.model-info > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)")
+            locator_input_offset = (By.CSS_SELECTOR, f"#ui > div.model-info > div:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)")
             self.await_clickable(locator_input_offset)
             self.find(locator_input_offset).send_keys("")
             self.find(locator_input_offset).send_keys(str(value))
@@ -440,8 +440,8 @@ class WorkPage(BasePage):
         ActionChains(self.driver).move_by_offset(x, y).click().perform()
 
         try:
-            locator_offset = (By.CSS_SELECTOR, f"#ui > div.model-info > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)")
-            locator_name = (By.CSS_SELECTOR, f"#ui > div.model-info > div:nth-child(1) > div:nth-child(1) > div:nth-child(3)")
+            locator_offset = (By.CSS_SELECTOR, f"#ui > div.model-info > div:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)")
+            locator_name = (By.CSS_SELECTOR, f"#ui > div.model-info > div:nth-child(1) > div:nth-child(1)")
             self.await_clickable(locator_offset)
             object_offset_value = self.find(locator_offset).get_attribute("value")
 
@@ -483,6 +483,3 @@ class WorkPage(BasePage):
         if str(object_name_value) == str(name):
             print(f"Checking item: {object_name_value}, passed")
             return True
-
-    def delete(self):
-        pass
