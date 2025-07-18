@@ -7,9 +7,6 @@ from pages.dashboard_page import DashboardPage
 from pages.work_page import WorkPage
 from config import settings
 
-@allure.title('Проверка ограничений функционала у Гостя')
-@pytest.mark.usefixtures("driver_class")
-
 
 class BaseConstraints:
     def rename_project(self, block=False, tarif="paid"):  # Переименовать проект
@@ -36,7 +33,6 @@ class BaseConstraints:
                     if not block:
                         assert dash.is_project_named(name_project), 'Проект не переименовался'
     
-
     def share_project(self, block=False, tarif="paid"):  # Поделиться проектом
         work = WorkPage(self.driver_class)
 
@@ -55,7 +51,6 @@ class BaseConstraints:
             if tarif == "guest":
                 work.check_dialog_constraint(block, tarif)
 
-
     def constraint_alcove(self, block=False, tarif="paid"):  # Ниши
         work = WorkPage(self.driver_class)
 
@@ -69,7 +64,6 @@ class BaseConstraints:
         with allure.step('Проверить появление диалога ограничений'):
             work.check_dialog_constraint(block, tarif)
 
-
     def constraint_save_3d(self, block=False, tarif="paid"):  # Сохранение в 3D
         work = WorkPage(self.driver_class)
 
@@ -79,7 +73,6 @@ class BaseConstraints:
         with allure.step('Проверить появление диалога ограничений'):
             work.check_dialog_constraint(block, tarif)
 
-
     def constraint_save_to_pdf(self, block=False, tarif="paid"):  # Сохранение в PDF
         work = WorkPage(self.driver_class)
 
@@ -88,7 +81,9 @@ class BaseConstraints:
 
         with allure.step('Проверить появление диалога ограничений'):
             work.check_dialog_constraint(block, tarif)
-
+        
+        if not block:
+            self.driver_class.refresh()
 
     def constraint_apperture(self, block=False, tarif="paid"):  # Проемы
         work = WorkPage(self.driver_class)
@@ -98,7 +93,6 @@ class BaseConstraints:
 
         with allure.step('Проверить появление диалога ограничений'):
             work.check_dialog_constraint(block, tarif)
-
     
     def constraint_walk(self, block=False, tarif="paid"):  # Прогулка
         work = WorkPage(self.driver_class)
@@ -109,7 +103,6 @@ class BaseConstraints:
         with allure.step('Проверить появление диалога ограничений'):
             work.check_dialog_constraint(block, tarif)
 
-    
     def constraint_change_hight(self, block=False, tarif="paid"):  # Изменение высоты мебели
         work = WorkPage(self.driver_class)
 
@@ -124,7 +117,6 @@ class BaseConstraints:
 
         with allure.step('Проверить появление диалога ограничений'):
             work.check_dialog_constraint(block, tarif)
-
     
     def constraint_change_texture(self, block=False, tarif="paid"): # Изменение текстуры мебели
         work = WorkPage(self.driver_class)
@@ -143,7 +135,6 @@ class BaseConstraints:
         with allure.step('Проверить появление диалога ограничений'):
             work.check_dialog_constraint(block, tarif)
 
-    
     def constraint_change_windowsill(self, id_trackbar, block=False, tarif="paid"):  # Изменение подконника
         work = WorkPage(self.driver_class)
         with allure.step('Кликнуть по окну'):
@@ -158,31 +149,27 @@ class BaseConstraints:
         with allure.step('Проверить появление диалога ограничений'):
             work.check_dialog_constraint(block=block, tarif=tarif)
 
-
     def constraint_change_column(self, block=False, tarif="paid"):  # Настройки колонны, поворот на 90
         work = WorkPage(self.driver_class)
         with allure.step('Кликнуть по колонне'):
-            # X = -14, Y = -96.5
-            work.first_click_by_canvas('3d', -14, -96.5)
+            # X = 0, Y = -79.5
+            work.first_click_by_canvas('3d', 0, -79.5)
         
         with allure.step('Повернуть колонную на 90 влево'):
             work.turn_column_90_left()
 
-
         with allure.step('Проверить появление диалога ограничений'):
             work.check_dialog_constraint(block, tarif)
-
     
     def constraint_animation_door(self, id_animation, block=False, tarif="paid"):
         work = WorkPage(self.driver_class)
         with allure.step('Кликнуть по двери'):
-            # X = -145, Y = -177.5
-            work.first_click_by_canvas('3d',  -145, -177.5)
+            # X = -145, Y = -190.5
+            work.first_click_by_canvas('3d', -145, -190.5)
         with allure.step(f'Изменить анимацию {id_animation}'):
             work.click_animation_door(id_animation)
         with allure.step('Проверить появление диалога ограничений'):
             work.check_dialog_constraint(block, tarif)
-
 
     def constraint_favorites(self, block=False, tarif="paid"):
         work = WorkPage(self.driver_class)

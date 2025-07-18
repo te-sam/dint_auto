@@ -25,6 +25,9 @@ class BasePage:
             if not self.true_url(url):
                 self.driver.get(url)
 
+        script = 'window.localStorage.setItem("videoShow", true);'
+        self.driver.execute_script(script)
+
 
     def find(self, args):
         return self.driver.find_element(*args)
