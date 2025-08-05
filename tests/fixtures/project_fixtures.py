@@ -74,3 +74,6 @@ def paste_project_for_guest(driver_class):
     script = f"window.localStorage.setItem(\"{key}\", '{value}');"
     driver_class.execute_script(script)
     driver_class.refresh()
+
+
+    # script = f"core.Import(json);"

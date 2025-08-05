@@ -85,7 +85,7 @@ def get_activation_link() -> str:
         mail = imaplib.IMAP4_SSL('imap.yandex.ru', 993)
         mail.login(settings.EMAIL_ICMP, settings.PASSWORD_ICMP)
 
-        for _ in range(10):
+        for _ in range(5):
             mail.select('inbox')
             status, messages = mail.search(None, '(UNSEEN FROM "RoomPlan")')
             if status != 'OK':
@@ -136,5 +136,3 @@ def get_activation_link() -> str:
     finally:
         if 'mail' in locals():
             mail.logout()
-
-# print(get_activation_link())

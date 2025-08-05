@@ -142,6 +142,14 @@ def delete_account(driver):
         ),
         None,
     )
+    auth = next(
+        (
+            cookie["value"]
+            for cookie in cookies
+            if cookie["name"] == "auth"
+        ),
+        None,
+    )
 
     if settings.MODE == "TEST":
         host = "https://online-dint.ulapr.ru"
@@ -151,7 +159,7 @@ def delete_account(driver):
     if phpsessid:
         response = requests.post(
             f"{host}/app/lk/client/index.php?r=clientSettings/deleteAccount",
-            cookies={"PHPSESSID": phpsessid},
+            cookies={"PHPSESSID": phpsessid, "auth": auth},
         )
         if not response.json()["success"]:
             print(" Не удалось удалить аккаунт")

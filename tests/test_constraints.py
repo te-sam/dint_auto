@@ -919,7 +919,8 @@ class TestsPremiumConstraints(BaseConstraints):
         Args:
             id_animation: id трекбара свойств анимации дверей
             close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
-            """
+
+        """
         super().constraint_animation_door(id_animation)
 
 
