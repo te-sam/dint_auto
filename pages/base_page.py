@@ -15,7 +15,6 @@ class BasePage:
         self.driver = driver
 
     def open_main(self):
-        logger.info(f"Mode: {settings.MODE}")
         host = get_host(add_credentials=True)
 
         if not self.true_url(

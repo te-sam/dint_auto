@@ -72,12 +72,13 @@ def ensure_internet_connection():
         pytest.exit("Нет подключения к интернету. Проверьте соединение.")
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def driver():
-    """Фикстура для создания драйвера модуля."""
+    """Фикстура для создания драйвера."""
     chrome_driver = webdriver.Chrome()
     chrome_driver.maximize_window()
     chrome_driver.implicitly_wait(2)
+    logger.info(f"Тестовая среда: {settings.MODE}")
     return chrome_driver
 
 
@@ -87,6 +88,7 @@ def driver_class(request):
     chrome_driver = webdriver.Chrome(options=chrome_options)
     chrome_driver.maximize_window()
     request.cls.driver_class = chrome_driver
+    logger.info(f"Тестовая среда: {settings.MODE}")
     yield chrome_driver
     chrome_driver.quit()
 

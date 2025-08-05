@@ -4,11 +4,13 @@ import time
 from email import policy
 
 from bs4 import BeautifulSoup
+from loguru import logger
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
 from core.config import settings
 from pages.base_page import BasePage
+from utils import get_host
 
 locator_auth_btn = (By.CSS_SELECTOR, '.auth-btn')
 locator_register_btn = (By.ID, 'registerLink')
@@ -59,13 +61,8 @@ class LoginPage(BasePage):
 
     def open_login(self):
         """Открытие страницы входа"""
-        mode = settings.MODE
-        print(mode)
-
-        if mode == 'TEST':
-            self.driver.get(f'https://{settings.USER}:{settings.PASSWORD}@online-dint.ulapr.ru/app/lk/client/index.php?r=loginClient')
-        if mode == 'PROD':
-            self.driver.get(f'https://roomplan.ru/app/lk/client/index.php?r=loginClient')
+        host = get_host(add_credentials=True)
+        self.driver.get(f'{host}/app/lk/client/index.php?r=loginClient')
     
     def click_register_login_btn(self):
         """Клик по кнопке "Зарегистрироваться" сверху на странице входа"""
@@ -92,7 +89,7 @@ def get_activation_link() -> str:
                 raise Exception("Ошибка поиска письма")
 
             if not messages[0]:
-                print("Нет непрочитанных писем от RoomPlan")
+                logger.info("Нет непрочитанных писем от RoomPlan")
                 time.sleep(2)
                 continue
             else:
@@ -132,7 +129,7 @@ def get_activation_link() -> str:
         else:
             raise Exception("HTML-часть письма не найдена")
     except Exception as e:
-        print(f"Ошибка: {str(e)}")
+        logger.error(f"Ошибка извлечения ссылки для активации: {str(e)}")
     finally:
         if 'mail' in locals():
             mail.logout()

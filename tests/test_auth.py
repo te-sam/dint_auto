@@ -1,5 +1,6 @@
 from core.config import settings
 from pages.login_page import LoginPage, get_activation_link
+from utils import get_host
 
 
 def test_registration(driver, delete_account):
@@ -16,15 +17,11 @@ def test_registration(driver, delete_account):
     assert activation_link
     auth.driver.get(activation_link)
 
-    if settings.MODE == "TEST":
-        link_account = f"https://{settings.USER}:{settings.PASSWORD}@online-dint.ulapr.ru/app/lk/client/index.php?r=clientSettings"
-    else:
-        link_account = (
-            "https://roomplan.ru/app/lk/client/index.php?r=clientSettings"
-        )
+    host = get_host(add_credentials=True)
+    link_account = f"{host}/app/lk/client/index.php?r=clientSettings"
     auth.driver.get(link_account)
     assert auth.true_url(link_account)
 
 
-def test_1(driver, auth_base_function, drop_all_projects_function):
+def test_1(driver, auth_premium_function, drop_all_projects_function):
     pass
