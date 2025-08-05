@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    MODE: Literal['DEV', 'TEST', 'PROD']
+    MODE: Literal["DEV", "TEST", "PROD"]
 
     USER: str
     PASSWORD: str
@@ -15,6 +15,10 @@ class Settings(BaseSettings):
     PREMIUM: str
     PROFI: str
 
+    EMAIL_ICMP: str
+    PASSWORD_ICMP: str
+
     model_config = ConfigDict(env_file=".env")
+
 
 settings = Settings()

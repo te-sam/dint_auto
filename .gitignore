@@ -11,3 +11,5 @@ useful_code.py
 pages/login_page.py
 tests/test_no_release.py
 old_tests/
+email_content.html
+ruff.toml

@@ -5,30 +5,37 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+from config import settings
 from pages.work_page import (
-    WorkPage, locator_3d,
+    WorkPage,
+    locator_3d,
     locator_close_dialog_constraint,
     locator_dialog_guest_constraint,
-    locator_dialog_upgrade)
+    locator_dialog_upgrade,
+)
 from tests.fixtures.auth_fixtures import (
-    auth_base, 
-    auth_premium, 
+    auth_base,
+    auth_premium,
     auth_profi,
     auth_standart,
 )
 from tests.fixtures.project_fixtures import (
-    drop_all_project, 
-    drop_project,                          
+    drop_all_project,
+    drop_project,
     paste_project,
-    paste_project_for_guest
+    paste_project_for_guest,
 )
 
 # Настройка опций Chrome
 chrome_options = Options()
 chrome_options.add_argument("--disable-infobars")  # Отключаем инфобары
-chrome_options.add_argument("--start-maximized")   # Запуск в maximized режиме
-chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])  # Отключаем автоматизацию
-chrome_options.add_experimental_option("useAutomationExtension", False)  # Отключаем расширения автоматизации
+chrome_options.add_argument("--start-maximized")  # Запуск в maximized режиме
+chrome_options.add_experimental_option(
+    "excludeSwitches", ["enable-automation"]
+)  # Отключаем автоматизацию
+chrome_options.add_experimental_option(
+    "useAutomationExtension", False
+)  # Отключаем расширения автоматизации
 
 
 def check_internet_with_requests(url="https://ya.ru/", timeout=3) -> bool:
@@ -46,7 +53,7 @@ def ensure_internet_connection():
         pytest.exit("Нет подключения к интернету. Проверьте соединение.")
 
 
-@pytest.fixture(scope="module")  # autouse=True
+@pytest.fixture(scope="module")
 def driver():
     chrome_driver = webdriver.Chrome()
     chrome_driver.maximize_window()
@@ -67,13 +74,20 @@ def driver_class(request):
 def close_dialog_constraint_for_guest(driver_class, request):
     yield
     work = WorkPage(driver_class)
-    dialog_constraint = driver_class.find_element(*locator_dialog_guest_constraint)
-    button_close_dialog_constraint = driver_class.find_element(*locator_close_dialog_constraint)
-    
+    dialog_constraint = driver_class.find_element(
+        *locator_dialog_guest_constraint
+    )
+    button_close_dialog_constraint = driver_class.find_element(
+        *locator_close_dialog_constraint
+    )
+
     # Получаем параметр из request.param
     param_value = request.param if hasattr(request, "param") else None
 
-    if dialog_constraint.is_displayed() and button_close_dialog_constraint.is_displayed():
+    if (
+        dialog_constraint.is_displayed()
+        and button_close_dialog_constraint.is_displayed()
+    ):
         button_close_dialog_constraint.click()
     else:
         if param_value:  # Если дилалог должен был появиться, но не появился
@@ -99,7 +113,10 @@ def close_dialog_upgrade(driver_class, request):
     # Получаем параметр из request.param
     param_value = request.param if hasattr(request, "param") else None
 
-    if dialog_upgrade.is_displayed() and button_close_dialog_upgrade.is_displayed():
+    if (
+        dialog_upgrade.is_displayed()
+        and button_close_dialog_upgrade.is_displayed()
+    ):
         button_close_dialog_upgrade.click()
     else:
         if param_value:  # Если дилалог должен был появиться, но не появился
@@ -111,3 +128,34 @@ def close_dialog_upgrade(driver_class, request):
             else:
                 driver_class.refresh()
                 sleep(2)
+
+
+@pytest.fixture(scope="function")
+def delete_account(driver):
+    yield
+    cookies = driver.get_cookies()
+    phpsessid = next(
+        (
+            cookie["value"]
+            for cookie in cookies
+            if cookie["name"] == "PHPSESSID"
+        ),
+        None,
+    )
+
+    if settings.MODE == "TEST":
+        host = "https://online-dint.ulapr.ru"
+    else:
+        host = "https://roomplan.ru"
+
+    if phpsessid:
+        response = requests.post(
+            f"{host}/app/lk/client/index.php?r=clientSettings/deleteAccount",
+            cookies={"PHPSESSID": phpsessid},
+        )
+        if not response.json()["success"]:
+            print("Не удалось удалить аккаунт")
+        else:
+            print("Аккаунт удален")
+    else:
+        print("Не найдены cookie")

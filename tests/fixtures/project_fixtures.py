@@ -28,25 +28,27 @@ def paste_project(driver_class):
     work.open_main()
 
     # Вставить проект
-    key = 'autoSave'
+    key = "autoSave"
 
     if settings.MODE == "TEST":
-        project = 'projects/project_test.txt'
+        project = "projects/project_test.txt"
     if settings.MODE == "PROD":
-        project = 'projects/project_prod.txt'
+        project = "projects/project_prod.txt"
 
     project_number = None
-    while project_number is None or project_number == 'None':
-        project_number = driver_class.execute_script('return window.localStorage.getItem("openProject");')
+    while project_number is None or project_number == "None":
+        project_number = driver_class.execute_script(
+            'return window.localStorage.getItem("openProject");'
+        )
         print(type(project_number))
     key += str(project_number)
-    
+
     print(key)
 
-    with open(project, 'r', encoding='utf-8') as file:
+    with open(project, "r", encoding="utf-8") as file:
         value = file.read()
-    
-    script = f'window.localStorage.setItem("{key}", \'{value}\');'
+
+    script = f"window.localStorage.setItem(\"{key}\", '{value}');"
     driver_class.execute_script(script)
     driver_class.refresh()
 
@@ -57,19 +59,18 @@ def paste_project_for_guest(driver_class):
     work.open_main()
 
     # Вставить проект
-    key = 'autoSaveNew'
+    key = "autoSaveNew"
 
     if settings.MODE == "TEST":
-        project = 'projects/project_test.txt'
+        project = "projects/project_test.txt"
     if settings.MODE == "PROD":
-        project = 'projects/project_prod.txt'
-    
+        project = "projects/project_prod.txt"
+
     print(key)
 
-    with open(project, 'r', encoding='utf-8') as file:
+    with open(project, "r", encoding="utf-8") as file:
         value = file.read()
-    
-    script = f'window.localStorage.setItem("{key}", \'{value}\');'
+
+    script = f"window.localStorage.setItem(\"{key}\", '{value}');"
     driver_class.execute_script(script)
     driver_class.refresh()
-
