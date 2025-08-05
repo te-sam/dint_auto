@@ -52,8 +52,13 @@ locator_trackbar_height_windowsill = (By.ID, "sill-height")
 locator_button_expand_settings_windowsill = (By.CSS_SELECTOR, "#open")
 locator_button_turn_column_90_left = (
     By.CSS_SELECTOR,
-    "div.column-info > div > div.info-progress-bar > div.rotate-bnts > button:nth-child(1)",
+    "div.column-info > div.content > div.model-shortcut-panel > div.right-model-shortcut-panel > button:nth-child(2)",
 )
+locator_button_turn_column_90_right = (
+    By.CSS_SELECTOR,
+    "div.column-info > div.content > div.model-shortcut-panel > div.right-model-shortcut-panel > button:nth-child(3)",
+)
+locator_start_paint_btn = (By.CLASS_NAME, "empty_btn")
 
 
 class WorkPage(BasePage):
@@ -257,15 +262,21 @@ class WorkPage(BasePage):
             self.find(locator_button_expand_settings_windowsill).click()
 
     def change_windowsill(self, id_trackbar: str):
+        """Кликнуть по трекбару с id_trackbar"""
         trackbar = self.find((By.ID, id_trackbar))
+        self.await_visibility((By.ID, id_trackbar))
         actions = ActionChains(self.driver)
         actions.click_and_hold(trackbar).move_by_offset(
-            55, 0
+            0.07, 0
         ).release().perform()
 
     def turn_column_90_left(self):
         self.await_clickable(locator_button_turn_column_90_left)
         self.find(locator_button_turn_column_90_left).click()
+
+    def turn_column_90_left(self):
+        self.await_clickable(locator_button_turn_column_90_right)
+        self.find(locator_button_turn_column_90_right).click()
 
     def click_animation_door(self, id_animation: str):
         locator_animation = (By.ID, id_animation)
@@ -296,3 +307,8 @@ class WorkPage(BasePage):
         locator = (By.ID, "set_like")
         self.await_clickable(locator)
         self.find(locator).click()
+
+    def click_start_button(self):
+        """Кликнуть по кнокпке 'Нарисуйте стены'"""
+        self.await_clickable(locator_start_paint_btn)
+        self.find(locator_start_paint_btn).click()

@@ -198,7 +198,7 @@ class BaseConstraints:
     def constraint_change_windowsill(
         self, id_trackbar, block=False, tarif="paid"
     ):
-        """Проверка ограничений для изменений подоконника
+        """Проверка ограничений для изменений подоконника.
 
         Args:
             id_trackbar (int): ID трекбара для изменения подоконника
@@ -210,10 +210,10 @@ class BaseConstraints:
         with allure.step("Кликнуть по окну"):
             work.first_click_by_canvas("3d", 140, -158.5)
 
-        with allure.step("Развернуть настройки подоконника"):
-            work.expand_settings_windowsill()
+        # with allure.step("Развернуть настройки подоконника"):
+        #     work.expand_settings_windowsill()
 
-        with allure.step("Изменить высоту подоконника"):
+        with allure.step("Изменить характеристику подоконника"):
             work.change_windowsill(id_trackbar)
 
         with allure.step("Проверить появление диалога ограничений"):
@@ -279,7 +279,7 @@ class BaseConstraints:
             work.check_dialog_constraint(block, tarif)
 
 
-@pytest.mark.usefixtures("paste_project_for_guest")
+@pytest.mark.usefixtures("paste_project_class")
 class TestsGuestConstraints(BaseConstraints):
     """Тесты ограничений для Гостя"""
 
@@ -462,7 +462,7 @@ class TestsGuestConstraints(BaseConstraints):
 
 @allure.title("Проверка ограничений функционала на Бесплатном")
 @pytest.mark.usefixtures(
-    "auth_base_class", "drop_all_project_class", "paste_project"
+    "auth_base_class", "drop_all_project_class", "paste_project_class"
 )
 class TestsFreeConstraints(BaseConstraints):
     """Проверка ограничений функционала на Бесплатном тарифе"""
@@ -603,7 +603,7 @@ class TestsFreeConstraints(BaseConstraints):
 
 
 @pytest.mark.usefixtures(
-    "auth_standart_class", "drop_all_project_class", "paste_project"
+    "auth_standart_class", "drop_all_project_class", "paste_project_class"
 )
 class TestsStandartConstraints(BaseConstraints):
     @allure.feature("Ограничения Стандартный тариф")
@@ -746,7 +746,7 @@ class TestsStandartConstraints(BaseConstraints):
 
 
 @pytest.mark.usefixtures(
-    "auth_premium_class", "drop_all_project_class", "paste_project"
+    "auth_premium_class", "drop_all_project_class", "paste_project_class"
 )
 class TestsPremiumConstraints(BaseConstraints):
     @allure.feature("Ограничения Премиум тариф")
@@ -893,7 +893,7 @@ class TestsPremiumConstraints(BaseConstraints):
 
 
 @pytest.mark.usefixtures(
-    "auth_profi_class", "drop_all_project_class", "paste_project"
+    "auth_profi_class", "drop_all_project_class", "paste_project_class"
 )
 class TestsProfiConstraints(BaseConstraints):
     """Класс тестов для ограничений Профи тарифа"""

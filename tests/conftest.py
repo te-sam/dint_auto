@@ -15,21 +15,22 @@ from pages.work_page import (
     locator_dialog_upgrade,
 )
 from tests.fixtures.auth_fixtures import (
-    auth_base_function,
     auth_base_class,
-    auth_standart_function,
     auth_standart_class,
-    auth_premium_function,
     auth_premium_class,
-    auth_profi_function,
     auth_profi_class,
+    auth_base_function,
+    auth_standart_function,
+    auth_premium_function,
+    auth_profi_function,
 )
 from tests.fixtures.project_fixtures import (
     drop_all_project_class,
+    paste_project_class,
+    drop_all_projects_function,
+    paste_project_function,
     drop_project,
     paste_project,
-    paste_project_for_guest,
-    drop_all_projects_function,
 )
 from utils import get_auth, get_host, get_phpsessid
 

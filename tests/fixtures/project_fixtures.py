@@ -1,3 +1,4 @@
+import time
 import pytest
 import requests
 
@@ -91,25 +92,32 @@ def paste_project(driver_class):
 
 
 @pytest.fixture(scope="class")
-def paste_project_for_guest(driver_class):
-    work = WorkPage(driver_class)
+def paste_project_class(driver_class):
+    """Фикстура для вставки проекта для гостя."""
+    paste_project(driver_class)
+
+
+@pytest.fixture(scope="function")
+def paste_project_function(driver):
+    """Фикстура для вставки проекта для гостя."""
+    yield
+    paste_project(driver)
+    
+
+def paste_project(driver):
+    work = WorkPage(driver)
     work.open_main()
-
-    # Вставить проект
-    key = "autoSaveNew"
-
+    work.click_start_button()
+    
     if settings.MODE == "TEST":
-        project = "projects/project_test.txt"
-    if settings.MODE == "PROD":
-        project = "projects/project_prod.txt"
+        project = "projects/test.json"
+    else:
+        project = "projects/prod.json"
 
-    logger.info(key)
+    with open(project, "r") as file:
+        json = file.read(
+    )
+    script = f"core.Import({json});"
+    driver.execute_script(script)
 
-    with open(project, "r", encoding="utf-8") as file:
-        value = file.read()
 
-    script = f"window.localStorage.setItem(\"{key}\", '{value}');"
-    driver_class.execute_script(script)
-    driver_class.refresh()
-
-    # script = f"core.Import(json);"

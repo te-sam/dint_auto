@@ -23,5 +23,5 @@ def test_registration(driver, delete_account):
     assert auth.true_url(link_account)
 
 
-def test_1(driver, auth_premium_function, drop_all_projects_function):
+def test_1(driver, paste_project_for_guest_function, drop_all_projects_function):
     pass
