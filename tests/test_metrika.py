@@ -2,7 +2,7 @@ import allure
 import pytest
 import requests
 
-from config import settings
+from core.config import settings
 
 
 @pytest.mark.parametrize(

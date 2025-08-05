@@ -1,11 +1,13 @@
 from time import sleep
 
+from loguru import logger
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from config import settings
+from core.config import settings
+from utils import get_host
 
 
 class BasePage:
@@ -13,18 +15,13 @@ class BasePage:
         self.driver = driver
 
     def open_main(self):
-        mode = settings.MODE
-        print(mode)
+        logger.info(f"Mode: {settings.MODE}")
+        host = get_host(add_credentials=True)
 
-        if mode == "TEST":
-            if not self.true_url(f"https://online-dint.ulapr.ru/app/"):
-                self.driver.get(
-                    f"https://{settings.USER}:{settings.PASSWORD}@online-dint.ulapr.ru/app/"
-                )
-        if mode == "PROD":
-            url = "https://roomplan.ru/app/"
-            if not self.true_url(url):
-                self.driver.get(url)
+        if not self.true_url(
+            f"{host}/app/".replace(f"{settings.USER}:{settings.PASSWORD}@", "")
+        ):
+            self.driver.get(f"{host}/app/")
 
         script = 'window.localStorage.setItem("videoShow", true);'
         self.driver.execute_script(script)

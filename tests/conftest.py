@@ -1,11 +1,12 @@
 from time import sleep
 
+from loguru import logger
 import pytest
 import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-from config import settings
+from core.config import settings
 from pages.work_page import (
     WorkPage,
     locator_3d,
@@ -14,17 +15,23 @@ from pages.work_page import (
     locator_dialog_upgrade,
 )
 from tests.fixtures.auth_fixtures import (
-    auth_base,
-    auth_premium,
-    auth_profi,
-    auth_standart,
+    auth_base_function,
+    auth_base_class,
+    auth_standart_function,
+    auth_standart_class,
+    auth_premium_function,
+    auth_premium_class,
+    auth_profi_function,
+    auth_profi_class,
 )
 from tests.fixtures.project_fixtures import (
-    drop_all_project,
+    drop_all_project_class,
     drop_project,
     paste_project,
     paste_project_for_guest,
+    drop_all_projects_function,
 )
+from utils import get_auth, get_host, get_phpsessid
 
 
 chrome_options = Options()
@@ -32,10 +39,8 @@ chrome_options.add_argument("--disable-infobars")
 chrome_options.add_argument("--start-maximized")
 chrome_options.add_experimental_option(
     "excludeSwitches", ["enable-automation"]
-) 
-chrome_options.add_experimental_option(
-    "useAutomationExtension", False
 )
+chrome_options.add_experimental_option("useAutomationExtension", False)
 
 
 def check_internet_with_requests(url="https://ya.ru/", timeout=3) -> bool:
@@ -50,9 +55,13 @@ def check_internet_with_requests(url="https://ya.ru/", timeout=3) -> bool:
     """
     try:
         response = requests.get(url, timeout=timeout)
-        print(response)
+        if response.status_code == 200:
+            logger.info("Подключение к интернету есть")
+        else:
+            logger.error("Нет подключения к интернету")
         return response.status_code == 200
     except requests.RequestException:
+        logger.error("Ошибка проверки интернет соединения")
         return False
 
 
@@ -148,28 +157,9 @@ def close_dialog_upgrade(driver_class, request):
 def delete_account(driver):
     """Фикстура для удаления аккаунта."""
     yield
-    cookies = driver.get_cookies()
-    phpsessid = next(
-        (
-            cookie["value"]
-            for cookie in cookies
-            if cookie["name"] == "PHPSESSID"
-        ),
-        None,
-    )
-    auth = next(
-        (
-            cookie["value"]
-            for cookie in cookies
-            if cookie["name"] == "auth"
-        ),
-        None,
-    )
-
-    if settings.MODE == "TEST":
-        host = "https://online-dint.ulapr.ru"
-    else:
-        host = "https://roomplan.ru"
+    phpsessid = get_phpsessid(driver)
+    auth = get_auth(driver)
+    host = get_host()
 
     if phpsessid:
         response = requests.post(
@@ -177,8 +167,10 @@ def delete_account(driver):
             cookies={"PHPSESSID": phpsessid, "auth": auth},
         )
         if not response.json()["success"]:
-            print(" Не удалось удалить аккаунт")
+            logger.error(
+                f"Не удалось удалить аккаунт. Ответ сервера -  {response.json()}"
+            )
         else:
-            print(" Аккаунт удален")
+            logger.success("Аккаунт удален")
     else:
-        print(" Не найдены cookie")
+        logger.warning("Не найдены cookie")

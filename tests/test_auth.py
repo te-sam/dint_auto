@@ -1,4 +1,4 @@
-from config import settings
+from core.config import settings
 from pages.login_page import LoginPage, get_activation_link
 
 
@@ -24,3 +24,7 @@ def test_registration(driver, delete_account):
         )
     auth.driver.get(link_account)
     assert auth.true_url(link_account)
+
+
+def test_1(driver, auth_base_function, drop_all_projects_function):
+    pass

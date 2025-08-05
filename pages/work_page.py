@@ -2,6 +2,7 @@ from time import sleep
 from typing import Literal
 
 from PIL import Image, ImageChops
+from loguru import logger
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -101,10 +102,10 @@ class WorkPage(BasePage):
         diff = ImageChops.difference(base_image, actual_image)
 
         if diff.getbbox() is None:
-            print("Изображения совпадают")
+            logger.info("Изображения совпадают")
             return True
         else:
-            print("Изображения различаются")
+            logger.info("Изображения различаются")
             return False
 
     def rename_project(self, new_name: str) -> None:
@@ -162,7 +163,7 @@ class WorkPage(BasePage):
 
             file.write(base64.b64decode(base64_data))
 
-        print("Содержимое canvas сохранено в файл canvas_image.png.")
+        logger.info("Содержимое canvas сохранено в файл canvas_image.png.")
 
     def add_new_project(self, name: str) -> None:
         self.wait(locator_project_dots)
@@ -185,12 +186,13 @@ class WorkPage(BasePage):
             self.wait(locator_dialog_upgrade)
             dialog_constraint = self.find(locator_dialog_upgrade)
         sleep(0.5)
+
         if block:
             assert dialog_constraint.is_displayed(), (
                 "Диалог ограничений не появился"
             )
         else:
-            print("Не блок")
+            logger.info("Диалог ограничений не должен появляться")
             assert not dialog_constraint.is_displayed(), (
                 "Диалог ограничений появился"
             )
@@ -242,15 +244,6 @@ class WorkPage(BasePage):
         self.find(locator).click()
 
     def click_texture_from_catalog(self):
-        # buttons = self.finds(locator_buttons_catalog_textures)
-        # print(f"Количество текстур: {len(buttons)}")
-
-        # # Клик по первой видимой кнопке
-        # for button in buttons:
-        #     print(button)
-        #     if button.is_displayed():
-        #         button.click()
-        #         return True
         locator = (By.CSS_SELECTOR, ".img-block.active")
         self.await_clickable(locator)
         self.find(locator).click()

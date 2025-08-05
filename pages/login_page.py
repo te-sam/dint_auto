@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
-from config import settings
+from core.config import settings
 from pages.base_page import BasePage
 
 locator_auth_btn = (By.CSS_SELECTOR, '.auth-btn')

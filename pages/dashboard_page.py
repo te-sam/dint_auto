@@ -1,9 +1,10 @@
 from time import sleep
 
+from loguru import logger
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 
-from config import settings
+from core.config import settings
 from pages.base_page import BasePage
 
 locator_project_list = (By.CLASS_NAME, "project-actions")
@@ -70,7 +71,7 @@ class DashboardPage(BasePage):
                 confirm_delete_button.click()
                 sleep(1)
         except:
-            print("Нет созданных проектов")
+            logger.info("Нет созданных проектов")
 
     def is_project_named(self, name_project: str) -> bool:
         try:
@@ -78,7 +79,7 @@ class DashboardPage(BasePage):
             project_names = list(self.finds(locator_project_name_list))
 
             for project in project_names:
-                print(project.text)
+                logger.info(f"Название проект - {project.text}")
                 if project.text == name_project:
                     return True
         except:
