@@ -26,19 +26,28 @@ from tests.fixtures.project_fixtures import (
     paste_project_for_guest,
 )
 
-# Настройка опций Chrome
+
 chrome_options = Options()
-chrome_options.add_argument("--disable-infobars")  # Отключаем инфобары
-chrome_options.add_argument("--start-maximized")  # Запуск в maximized режиме
+chrome_options.add_argument("--disable-infobars")
+chrome_options.add_argument("--start-maximized")
 chrome_options.add_experimental_option(
     "excludeSwitches", ["enable-automation"]
-)  # Отключаем автоматизацию
+) 
 chrome_options.add_experimental_option(
     "useAutomationExtension", False
-)  # Отключаем расширения автоматизации
+)
 
 
 def check_internet_with_requests(url="https://ya.ru/", timeout=3) -> bool:
+    """Проверка подключения к интернету.
+
+    Args:
+        url (str, optional): URL для проверки.
+        timeout (int, optional): таймаут проверки подключения.
+
+    Returns:
+        bool: True - подключение есть, False - нет.
+    """
     try:
         response = requests.get(url, timeout=timeout)
         print(response)
@@ -49,12 +58,14 @@ def check_internet_with_requests(url="https://ya.ru/", timeout=3) -> bool:
 
 @pytest.fixture(scope="session", autouse=True)
 def ensure_internet_connection():
+    """Фикстура для проверки подключения к интернету."""
     if not check_internet_with_requests():
         pytest.exit("Нет подключения к интернету. Проверьте соединение.")
 
 
 @pytest.fixture(scope="module")
 def driver():
+    """Фикстура для создания драйвера модуля."""
     chrome_driver = webdriver.Chrome()
     chrome_driver.maximize_window()
     chrome_driver.implicitly_wait(2)
@@ -63,6 +74,7 @@ def driver():
 
 @pytest.fixture(scope="class")
 def driver_class(request):
+    """Фикстура для создания драйвера класса."""
     chrome_driver = webdriver.Chrome(options=chrome_options)
     chrome_driver.maximize_window()
     request.cls.driver_class = chrome_driver
@@ -72,6 +84,7 @@ def driver_class(request):
 
 @pytest.fixture(scope="function")
 def close_dialog_constraint_for_guest(driver_class, request):
+    """Фикстура для закрытия диалога ограничений для гостя."""
     yield
     work = WorkPage(driver_class)
     dialog_constraint = driver_class.find_element(
@@ -103,6 +116,7 @@ def close_dialog_constraint_for_guest(driver_class, request):
 
 @pytest.fixture(scope="function")
 def close_dialog_upgrade(driver_class, request):
+    """Фикстура для закрытия диалога ограничений для платного тарифа."""
     yield
     work = WorkPage(driver_class)
     work.await_clickable(locator_3d)
@@ -132,6 +146,7 @@ def close_dialog_upgrade(driver_class, request):
 
 @pytest.fixture(scope="function")
 def delete_account(driver):
+    """Фикстура для удаления аккаунта."""
     yield
     cookies = driver.get_cookies()
     phpsessid = next(
