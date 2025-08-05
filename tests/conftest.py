@@ -154,8 +154,8 @@ def delete_account(driver):
             cookies={"PHPSESSID": phpsessid},
         )
         if not response.json()["success"]:
-            print("Не удалось удалить аккаунт")
+            print(" Не удалось удалить аккаунт")
         else:
-            print("Аккаунт удален")
+            print(" Аккаунт удален")
     else:
-        print("Не найдены cookie")
+        print(" Не найдены cookie")

@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    MODE: Literal["DEV", "TEST", "PROD"]
+    MODE: Literal["TEST", "PROD"]
 
     USER: str
     PASSWORD: str

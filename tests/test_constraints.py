@@ -3,15 +3,21 @@ from time import sleep
 import allure
 import pytest
 
-from config import settings
 from pages.dashboard_page import DashboardPage
 from pages.work_page import WorkPage
 
 
 class BaseConstraints:
-    def rename_project(
-        self, block=False, tarif="paid"
-    ):  # Переименовать проект
+    """Базовый класс для тестов ограничений"""
+
+    def rename_project(self, block=False, tarif="paid"):
+        """Проверка ограничений для переименования проекта
+
+        Args:
+            block (bool, optional): Должен ли появиться диалог ограничений.
+            tarif (str, optional): Тариф (платный или бесплатный)
+
+        """
         name_project = "test"
         work = WorkPage(self.driver_class)
         dash = DashboardPage(self.driver_class)
@@ -37,7 +43,14 @@ class BaseConstraints:
                             "Проект не переименовался"
                         )
 
-    def share_project(self, block=False, tarif="paid"):  # Поделиться проектом
+    def share_project(self, block=False, tarif="paid"):
+        """Проверка ограничений для функции "Поделиться проектом"
+
+        Args:
+            block (bool, optional): Должен ли появиться диалог ограничений.
+            tarif (str, optional): Тариф (платный или бесплатный)
+
+        """
         work = WorkPage(self.driver_class)
 
         with allure.step("Открыть главную страницу"):
@@ -55,7 +68,14 @@ class BaseConstraints:
             if tarif == "guest":
                 work.check_dialog_constraint(block, tarif)
 
-    def constraint_alcove(self, block=False, tarif="paid"):  # Ниши
+    def constraint_alcove(self, block=False, tarif="paid"):
+        """Проверка ограничений для ниш
+
+        Args:
+            block (bool, optional): Должен ли появиться диалог ограничений.
+            tarif (str, optional): Тариф (платный или бесплатный)
+
+        """
         work = WorkPage(self.driver_class)
 
         with allure.step("Открыть главную страницу"):
@@ -68,7 +88,8 @@ class BaseConstraints:
         with allure.step("Проверить появление диалога ограничений"):
             work.check_dialog_constraint(block, tarif)
 
-    def constraint_save_3d(self, block=False, tarif="paid"):  # Сохранение в 3D
+    def constraint_save_3d(self, block=False, tarif="paid"):
+        """Проверка ограничений для экспорта в 3D"""
         work = WorkPage(self.driver_class)
 
         with allure.step('Кликнуть "3D экспорт"'):
@@ -77,9 +98,14 @@ class BaseConstraints:
         with allure.step("Проверить появление диалога ограничений"):
             work.check_dialog_constraint(block, tarif)
 
-    def constraint_save_to_pdf(
-        self, block=False, tarif="paid"
-    ):  # Сохранение в PDF
+    def constraint_save_to_pdf(self, block=False, tarif="paid"):
+        """Проверка ограничений для экспорта в PDF
+
+        Args:
+            block (bool, optional): Должен ли появиться диалог ограничений.
+            tarif (str, optional): Тариф (платный или бесплатный)
+
+        """
         work = WorkPage(self.driver_class)
 
         with allure.step('Кликнуть "Экспорт в PDF"'):
@@ -91,7 +117,14 @@ class BaseConstraints:
         if not block:
             self.driver_class.refresh()
 
-    def constraint_apperture(self, block=False, tarif="paid"):  # Проемы
+    def constraint_apperture(self, block=False, tarif="paid"):
+        """Проверка ограничений для проемов
+
+        Args:
+            block (bool, optional): Должен ли появиться диалог ограничений.
+            tarif (str, optional): Тариф (платный или бесплатный)
+
+        """
         work = WorkPage(self.driver_class)
 
         with allure.step('Кликнуть "Проемы"'):
@@ -100,7 +133,14 @@ class BaseConstraints:
         with allure.step("Проверить появление диалога ограничений"):
             work.check_dialog_constraint(block, tarif)
 
-    def constraint_walk(self, block=False, tarif="paid"):  # Прогулка
+    def constraint_walk(self, block=False, tarif="paid"):
+        """Проверка ограничений для режима прогулки
+
+        Args:
+            block (bool, optional): Должен ли появиться диалог ограничений.
+            tarif (str, optional): Тариф (платный или бесплатный)
+
+        """
         work = WorkPage(self.driver_class)
 
         with allure.step('Кликнуть "Прогулка"'):
@@ -109,9 +149,14 @@ class BaseConstraints:
         with allure.step("Проверить появление диалога ограничений"):
             work.check_dialog_constraint(block, tarif)
 
-    def constraint_change_hight(
-        self, block=False, tarif="paid"
-    ):  # Изменение высоты мебели
+    def constraint_change_hight(self, block=False, tarif="paid"):
+        """Проверка ограничений для изменения высоты объекта
+
+        Args:
+            block (bool, optional): Должен ли появиться диалог ограничений.
+            tarif (str, optional): Тариф (платный или бесплатный)
+
+        """
         work = WorkPage(self.driver_class)
 
         with allure.step("Перейти в 3D"):
@@ -126,9 +171,14 @@ class BaseConstraints:
         with allure.step("Проверить появление диалога ограничений"):
             work.check_dialog_constraint(block, tarif)
 
-    def constraint_change_texture(
-        self, block=False, tarif="paid"
-    ):  # Изменение текстуры мебели
+    def constraint_change_texture(self, block=False, tarif="paid"):
+        """Проверка ограничений для изменения текстуры
+
+        Args:
+            block (bool, optional): Должен ли появиться диалог ограничений.
+            tarif (str, optional): Тариф (платный или бесплатный)
+
+        """
         work = WorkPage(self.driver_class)
         with allure.step("Перейти в 3D"):
             work.click_3d()
@@ -147,7 +197,15 @@ class BaseConstraints:
 
     def constraint_change_windowsill(
         self, id_trackbar, block=False, tarif="paid"
-    ):  # Изменение подконника
+    ):
+        """Проверка ограничений для изменений подоконника
+
+        Args:
+            id_trackbar (int): ID трекбара для изменения подоконника
+            block (bool, optional): Должен ли появиться диалог ограничений.
+            tarif (str, optional): Тариф (платный или бесплатный)
+
+        """
         work = WorkPage(self.driver_class)
         with allure.step("Кликнуть по окну"):
             work.first_click_by_canvas("3d", 140, -158.5)
@@ -161,9 +219,14 @@ class BaseConstraints:
         with allure.step("Проверить появление диалога ограничений"):
             work.check_dialog_constraint(block=block, tarif=tarif)
 
-    def constraint_change_column(
-        self, block=False, tarif="paid"
-    ):  # Настройки колонны, поворот на 90
+    def constraint_change_column(self, block=False, tarif="paid"):
+        """Проверка ограничений для изменений колонны
+
+        Args:
+            block (bool, optional): Должен ли появиться диалог ограничений.
+            tarif (str, optional): Тариф (платный или бесплатный)
+
+        """
         work = WorkPage(self.driver_class)
         with allure.step("Кликнуть по колонне"):
             # X = 0, Y = -79.5
@@ -178,6 +241,14 @@ class BaseConstraints:
     def constraint_animation_door(
         self, id_animation, block=False, tarif="paid"
     ):
+        """Проверка ограничений для анимации двери
+
+        Args:
+            id_animation (int): ID анимации двери
+            block (bool, optional): Должен ли появиться диалог ограничений.
+            tarif (str, optional): Тариф (платный или бесплатный)
+
+        """
         work = WorkPage(self.driver_class)
         with allure.step("Кликнуть по двери"):
             # X = -145, Y = -190.5
@@ -188,6 +259,13 @@ class BaseConstraints:
             work.check_dialog_constraint(block, tarif)
 
     def constraint_favorites(self, block=False, tarif="paid"):
+        """Проверка ограничений для избранного
+
+        Args:
+            block (bool, optional): Должен ли появиться диалог ограничений.
+            tarif (str, optional): Тариф (платный или бесплатный)
+
+        """
         work = WorkPage(self.driver_class)
         with allure.step("Перейти в катлог мебели"):
             work.click_button_models()
@@ -203,42 +281,78 @@ class BaseConstraints:
 
 @pytest.mark.usefixtures("paste_project_for_guest")
 class TestsGuestConstraints(BaseConstraints):
+    """Тесты ограничений для Гостя"""
+
     @allure.feature("Ограничения Гость")
     @allure.title("Переименование проекта")
     def test_rename_project(self, close_dialog_constraint_for_guest):
+        """Переименование проекта
+
+        Args:
+            close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
+
+        """
         super().rename_project(block=True, tarif="guest")  # Переименование
 
     @allure.feature("Ограничения Гость")
     @allure.title("Поделиться проектом")
-    def test_share_project(
-        self, close_dialog_constraint_for_guest
-    ):  # Поделиться проектом
+    def test_share_project(self, close_dialog_constraint_for_guest):
+        """Проверка ограничений для функции "Поделиться проектом"
+
+        Args:
+            close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
+
+        """
         super().share_project(block=True, tarif="guest")
 
     @allure.feature("Ограничения Гость")
     @allure.title("Ниши")
     def test_constraint_alcove(
         self, close_dialog_constraint_for_guest
-    ):  # Ниши
+    ):
+        """Проверка ограничений для добавления Ниш
+
+        Args:
+            close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
+
+        """
         super().constraint_alcove(block=True, tarif="guest")
 
     @allure.feature("Ограничения Гость")
     @allure.title("Экспорт 3D")
     def test_constraint_save_3d(
         self, close_dialog_constraint_for_guest
-    ):  # Сохранение в 3D
+    ):
+        """Проверка ограничений для экспорта в 3D
+
+        Args:
+            close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
+
+        """
         super().constraint_save_3d(block=True, tarif="guest")
 
     @allure.feature("Ограничения Гость")
     @allure.title("Экспорт PDF")
     def test_constraint_save_to_pdf(
         self, close_dialog_constraint_for_guest
-    ):  # Сохранение в PDF
+    ):
+        """Проверка ограничений для экспорта в PDF
+
+        Args:
+            close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
+            
+        """
         super().constraint_save_to_pdf(block=True, tarif="guest")
 
     @allure.feature("Ограничения Гость")
     @allure.title("Сохранить скриншот")
     def test_constraint_save_screen(self, close_dialog_constraint_for_guest):
+        """Проверка ограничений для сохранения скриншота
+
+        Args:
+            close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
+            
+        """
         work = WorkPage(self.driver_class)
         with allure.step("Сохранить скриншот"):
             work.click_save_screen()
@@ -249,28 +363,52 @@ class TestsGuestConstraints(BaseConstraints):
     @allure.title("Проемы")
     def test_constraint_apperture(
         self, close_dialog_constraint_for_guest
-    ):  # Проемы
+    ):
+        """Проверка ограничений для добавления Проемов
+
+        Args:
+            close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
+            
+        """
         super().constraint_apperture(block=True, tarif="guest")
 
     @allure.feature("Ограничения Гость")
     @allure.title("Прогулка")
     def test_constraint_walk(
         self, close_dialog_constraint_for_guest
-    ):  # Прогулка
+    ):
+        """Проверка ограничений для режима прогулки
+        
+        Args:
+            close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
+            
+        """
         super().constraint_walk(block=True, tarif="guest")
 
     @allure.feature("Ограничения Гость")
     @allure.title("Изменение высоты мебели")
     def test_constraint_change_hight(
         self, close_dialog_constraint_for_guest
-    ):  # Изменение высоты мебели
+    ):
+        """Проверка ограничений для изменения высоты мебели
+        
+        Args:
+            close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
+            
+        """
         super().constraint_change_hight(block=True, tarif="guest")
 
     @allure.feature("Ограничения Гость")
     @allure.title("Изменение текстуры мебели")
     def test_constraint_change_texture(
         self, close_dialog_constraint_for_guest
-    ):  # Изменение текстуры мебели
+    ):
+        """Проверка ограничений для изменения текстуры мебели
+        
+        Args:
+            close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
+            
+        """
         super().constraint_change_texture(block=True, tarif="guest")
 
     @allure.feature("Ограничения Гость")
@@ -280,7 +418,14 @@ class TestsGuestConstraints(BaseConstraints):
     )
     def test_constraint_change_windowsill(
         self, id_trackbar, close_dialog_constraint_for_guest
-    ):  # Изменение подконника
+    ):
+        """Проверка ограничений для изменения подконника
+        
+        Args:
+            id_trackbar: ID трекбара свойств подоконника
+            close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
+            
+        """
         super().constraint_change_windowsill(
             id_trackbar, block=True, tarif="guest"
         )
@@ -289,7 +434,13 @@ class TestsGuestConstraints(BaseConstraints):
     @allure.title("Настройки колонны, поворот на 90")
     def test_constraint_change_column(
         self, close_dialog_constraint_for_guest
-    ):  # Настройки колонны, поворот на 90
+    ):
+        """Проверка ограничений для настройки колонны, поворот на 90
+        
+        Args:
+            close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
+            
+        """
         super().constraint_change_column(block=True, tarif="guest")
 
     @allure.feature("Ограничения Гость")
@@ -299,7 +450,14 @@ class TestsGuestConstraints(BaseConstraints):
     )
     def test_constraint_animation_door(
         self, id_animation, close_dialog_constraint_for_guest
-    ):  # Настройки колонны, поворот на 90
+    ):
+        """Проверка ограничений для анимации дверей
+        
+        Args:
+            id_animation: идентификатор анимации
+            close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
+            
+        """
         super().constraint_animation_door(
             id_animation, block=True, tarif="guest"
         )
@@ -307,61 +465,113 @@ class TestsGuestConstraints(BaseConstraints):
     @allure.feature("Ограничения Гость")
     @allure.title("Добавление в избранное")
     def test_add_to_favorites(self, close_dialog_constraint_for_guest):
+        """Проверка ограничений для добавления в избранное
+        
+        Args:
+            close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
+            
+        """
         super().constraint_favorites(block=True, tarif="guest")
 
 
 @allure.title("Проверка ограничений функционала на Бесплатном")
 @pytest.mark.usefixtures("auth_base", "drop_all_project", "paste_project")
 class TestsFreeConstraints(BaseConstraints):
+    """Проверка ограничений функционала на Бесплатном тарифе"""
+
     @allure.feature("Ограничения Бесплатный тариф")
     @allure.title("Переименование проекта")
     def test_rename_project(self):
-        super().rename_project(block=False)  # Переименование
+        """Проверка ограничения переименования проекта"""
+        super().rename_project(block=False)
 
     @allure.feature("Ограничения Бесплатный тариф")
     @allure.title("Поделиться проектом")
-    def test_share_project(self):  # Поделиться проектом
+    def test_share_project(self):
+        """Проверка ограничения поделиться проектом"""
         super().share_project(block=False)
 
     @allure.feature("Ограничения Бесплатный тариф")
     @allure.title("Ниши")
-    def test_constraint_alcove(self, close_dialog_upgrade):  # Ниши
+    def test_constraint_alcove(self, close_dialog_upgrade):
+        """Проверка ограничений для добавления Ниши
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_alcove(block=True)
 
     @allure.feature("Ограничения Бесплатный тариф")
     @allure.title("Экспорт 3D")
-    def test_constraint_save_3d(self, close_dialog_upgrade):  # Сохранение в 3D
+    def test_constraint_save_3d(self, close_dialog_upgrade):
+        """Проверка ограничений для экспорта в 3D
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_save_3d(block=True)
 
     @allure.feature("Ограничения Бесплатный тариф")
     @allure.title("Экспорт PDF")
     def test_constraint_save_to_pdf(
         self, close_dialog_upgrade
-    ):  # Сохранение в PDF
+    ):
+        """Проверка ограничений для экспорта в PDF
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_save_to_pdf(block=True)
 
     @allure.feature("Ограничения Бесплатный тариф")
     @allure.title("Проемы")
-    def test_constraint_apperture(self, close_dialog_upgrade):  # Проемы
+    def test_constraint_apperture(self, close_dialog_upgrade):
+        """Проверка ограничений для добавления Проемов
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_apperture(block=True)
 
     @allure.feature("Ограничения Бесплатный тариф")
     @allure.title("Прогулка")
-    def test_constraint_walk(self, close_dialog_upgrade):  # Прогулка
+    def test_constraint_walk(self, close_dialog_upgrade):
+        """Проверка ограничений для перехода в режим прогулки
+
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+        
+        """
         super().constraint_walk(block=True)
 
     @allure.feature("Ограничения Бесплатный тариф")
     @allure.title("Изменение высоты мебели")
     def test_constraint_change_hight(
         self, close_dialog_upgrade
-    ):  # Изменение высоты мебели
+    ):
+        """Проверка ограничений для изменения высоты мебели
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_change_hight(block=True)
 
     @allure.feature("Ограничения Бесплатный тариф")
     @allure.title("Изменение текстуры мебели")
     def test_constraint_change_texture(
         self, close_dialog_upgrade
-    ):  # Изменение текстуры мебели
+    ):
+        """Проверка ограничений для изменения текстуры мебели
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_change_texture(block=True)
 
     @allure.feature("Ограничения Бесплатный тариф")
@@ -371,14 +581,27 @@ class TestsFreeConstraints(BaseConstraints):
     )
     def test_constraint_change_windowsill(
         self, id_trackbar, close_dialog_upgrade
-    ):  # Изменение подконника
+    ):
+        """Проверка ограничений для изменения подконника
+        
+        Args:
+            id_trackbar: id трекбара свойств подоконника
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_change_windowsill(id_trackbar, block=True)
 
     @allure.feature("Ограничения Бесплатный тариф")
     @allure.title("Настройки колонны, поворот на 90")
     def test_constraint_change_column(
         self, close_dialog_upgrade
-    ):  # Настройки колонны, поворот на 90
+    ):
+        """Проверка ограничений для изменения колонны
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_change_column(block=True)
 
     @allure.feature("Ограничения Бесплатный тариф")
@@ -388,7 +611,14 @@ class TestsFreeConstraints(BaseConstraints):
     )
     def test_constraint_animation_door(
         self, id_animation, close_dialog_upgrade
-    ):  # Анимация дверей
+    ):
+        """Проверка ограничений для анимации дверей
+        
+        Args:
+            id_animation: идентификатор анимации
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_animation_door(id_animation)
 
 
@@ -397,21 +627,35 @@ class TestsStandartConstraints(BaseConstraints):
     @allure.feature("Ограничения Стандартный тариф")
     @allure.title("Переименование проекта")
     def test_rename_project(self):
-        super().rename_project(block=False)  # Переименование
+        """Проверка ограничений для переименования проекта"""
+        super().rename_project(block=False)
 
     @allure.feature("Ограничения Стандартный тариф")
     @allure.title("Поделиться проектом")
-    def test_share_project(self):  # Поделиться проектом
+    def test_share_project(self):
+        """Проверка ограничений для функции 'Поделиться проектом'"""
         super().share_project(block=False)
 
     @allure.feature("Ограничения Стандартный тариф")
     @allure.title("Ниши")
-    def test_constraint_alcove(self, close_dialog_upgrade):  # Ниши
+    def test_constraint_alcove(self, close_dialog_upgrade):
+        """Проверка ограничений для добавления Ниши
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_alcove(block=True)
 
     @allure.feature("Ограничения Стандартный тариф")
     @allure.title("Экспорт 3D")
-    def test_constraint_save_3d(self, close_dialog_upgrade):  # Сохранение в 3D
+    def test_constraint_save_3d(self, close_dialog_upgrade):
+        """Проверка ограничений для экспорта в 3D
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_save_3d(block=True)
 
     @allure.feature("Ограничения Стандартный тариф")
@@ -419,17 +663,35 @@ class TestsStandartConstraints(BaseConstraints):
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
     def test_constraint_save_to_pdf(
         self, close_dialog_upgrade
-    ):  # Сохранение в PDF
+    ):
+        """Проверка ограничений для экспорта в PDF
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_save_to_pdf(block=False)
 
     @allure.feature("Ограничения Стандартный тариф")
     @allure.title("Проемы")
-    def test_constraint_apperture(self, close_dialog_upgrade):  # Проемы
+    def test_constraint_apperture(self, close_dialog_upgrade):
+        """Проверка ограничений для добавления Проемов
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_apperture(block=True)
 
     @allure.feature("Ограничения Стандартный тариф")
     @allure.title("Прогулка")
-    def test_constraint_walk(self, close_dialog_upgrade):  # Прогулка
+    def test_constraint_walk(self, close_dialog_upgrade):
+        """Проверка ограничений для перехода в режим прогулки
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_walk(block=True)
 
     @allure.feature("Ограничения Стандартный тариф")
@@ -437,7 +699,13 @@ class TestsStandartConstraints(BaseConstraints):
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
     def test_constraint_change_hight(
         self, close_dialog_upgrade
-    ):  # Изменение высоты мебели
+    ):
+        """Проверка ограничений для изменения высоты мебели
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_change_hight(block=False)
 
     @allure.feature("Ограничения Стандартный тариф")
@@ -445,7 +713,13 @@ class TestsStandartConstraints(BaseConstraints):
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
     def test_constraint_change_texture(
         self, close_dialog_upgrade
-    ):  # Изменение текстуры мебели
+    ):
+        """Проверка ограничений для изменения текстуры мебели
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_change_texture(block=False)
 
     @allure.feature("Ограничения Стандартный тариф")
@@ -455,7 +729,14 @@ class TestsStandartConstraints(BaseConstraints):
     )
     def test_constraint_change_windowsill(
         self, id_trackbar, close_dialog_upgrade
-    ):  # Изменение подконника
+    ):
+        """Проверка ограничений для изменения подконника
+        
+        Args:
+            id_trackbar: id трекбара свойств подоконника
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_change_windowsill(id_trackbar, block=True)
 
     @allure.feature("Ограничения Стандартный тариф")
@@ -463,7 +744,13 @@ class TestsStandartConstraints(BaseConstraints):
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
     def test_constraint_change_column(
         self, close_dialog_upgrade
-    ):  # Настройки колонны, поворот на 90
+    ):
+        """Проверка ограничений для изменения колонны
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_change_column(block=False)
 
     @allure.feature("Ограничения Стандартный тариф")
@@ -473,7 +760,14 @@ class TestsStandartConstraints(BaseConstraints):
     )
     def test_constraint_animation_door(
         self, id_animation, close_dialog_upgrade
-    ):  # Анимация дверей
+    ):
+        """Проверка ограничений для анимации дверей
+        
+        Args:
+            id_animation: идентификатор анимации
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_animation_door(id_animation)
 
 
@@ -482,22 +776,36 @@ class TestsPremiumConstraints(BaseConstraints):
     @allure.feature("Ограничения Премиум тариф")
     @allure.title("Переименование проекта")
     def test_rename_project(self):
-        super().rename_project(block=False)  # Переименование
+        """Проверка ограничений для переименования проекта"""
+        super().rename_project(block=False)
 
     @allure.feature("Ограничения Премиум тариф")
     @allure.title("Поделиться проектом")
-    def test_share_project(self):  # Поделиться проектом
+    def test_share_project(self):
+        """Проверка ограничений для функции 'Поделиться проектом'"""
         super().share_project(block=False)
 
     @allure.feature("Ограничения Премиум тариф")
     @allure.title("Ниши")
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
-    def test_constraint_alcove(self, close_dialog_upgrade):  # Ниши
+    def test_constraint_alcove(self, close_dialog_upgrade):
+        """Проверка ограничений для добавения Ниши
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_alcove(block=False)
 
     @allure.feature("Ограничения Премиум тариф")
     @allure.title("Экспорт 3D")
-    def test_constraint_save_3d(self, close_dialog_upgrade):  # Сохранение в 3D
+    def test_constraint_save_3d(self, close_dialog_upgrade):
+        """Проверка ограничений для экспорта в 3D
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_save_3d(block=True)
 
     @allure.feature("Ограничения Премиум тариф")
@@ -505,19 +813,37 @@ class TestsPremiumConstraints(BaseConstraints):
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
     def test_constraint_save_to_pdf(
         self, close_dialog_upgrade
-    ):  # Сохранение в PDF
+    ):
+        """Проверка ограничений для экспорта в PDF
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_save_to_pdf(block=False)
 
     @allure.feature("Ограничения Премиум тариф")
     @allure.title("Проемы")
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
-    def test_constraint_apperture(self, close_dialog_upgrade):  # Проемы
+    def test_constraint_apperture(self, close_dialog_upgrade):
+        """Проверка ограничений для добавлеия проемов
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_apperture(block=False)
 
     @allure.feature("Ограничения Премиум тариф")
     @allure.title("Прогулка")
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
-    def test_constraint_walk(self, close_dialog_upgrade):  # Прогулка
+    def test_constraint_walk(self, close_dialog_upgrade):
+        """Проверка ограничений для функции 'Прогулка'
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_walk(block=False)
 
     @allure.feature("Ограничения Премиум тариф")
@@ -525,7 +851,13 @@ class TestsPremiumConstraints(BaseConstraints):
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
     def test_constraint_change_hight(
         self, close_dialog_upgrade
-    ):  # Изменение высоты мебели
+    ): 
+        """Проверка ограничений для изменения высоты мебели
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+        
+        """
         super().constraint_change_hight(block=False)
 
     @allure.feature("Ограничения Премиум тариф")
@@ -533,7 +865,13 @@ class TestsPremiumConstraints(BaseConstraints):
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
     def test_constraint_change_texture(
         self, close_dialog_upgrade
-    ):  # Изменение текстуры мебели
+    ):
+        """Проверка ограничений для изменения текстуры мебели
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+        
+        """
         super().constraint_change_texture(block=False)
 
     @allure.feature("Ограничения Премиум тариф")
@@ -544,7 +882,14 @@ class TestsPremiumConstraints(BaseConstraints):
     )
     def test_constraint_change_windowsill(
         self, id_trackbar, close_dialog_upgrade
-    ):  # Изменение подконника
+    ):
+        """Проверка ограничений для изменения подконника
+        
+        Args:
+            id_trackbar: id трекбара свойств подоконника
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+        
+        """
         super().constraint_change_windowsill(id_trackbar, block=False)
 
     @allure.feature("Ограничения Премиум тариф")
@@ -552,7 +897,13 @@ class TestsPremiumConstraints(BaseConstraints):
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
     def test_constraint_change_column(
         self, close_dialog_upgrade
-    ):  # Настройки колонны, поворот на 90
+    ):
+        """Проверка ограничений для изменения колонны
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_change_column(block=False)
 
     @allure.feature("Ограничения Премиум тариф")
@@ -562,32 +913,54 @@ class TestsPremiumConstraints(BaseConstraints):
     )
     def test_constraint_animation_door(
         self, id_animation, close_dialog_upgrade
-    ):  # Анимация дверей
+    ):
+        """Проверка ограничений для анимации дверей
+        
+        Args:
+            id_animation: id трекбара свойств анимации дверей
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            """
         super().constraint_animation_door(id_animation)
 
 
 @pytest.mark.usefixtures("auth_profi", "drop_all_project", "paste_project")
 class TestsProfiConstraints(BaseConstraints):
+    """Класс тестов для ограничений Профи тарифа"""
+
     @allure.feature("Ограничения Профи тариф")
     @allure.title("Переименование проекта")
     def test_rename_project(self):
-        super().rename_project(block=False)  # Переименование
+        """Проверка ограничений для переименования проекта"""
+        super().rename_project(block=False)
 
     @allure.feature("Ограничения Профи тариф")
     @allure.title("Поделиться проектом")
-    def test_share_project(self):  # Поделиться проектом
+    def test_share_project(self):
+        """Проверка ограничений для функции 'Поделиться проектом'"""
         super().share_project(block=False)
 
     @allure.feature("Ограничения Профи тариф")
     @allure.title("Ниши")
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
-    def test_constraint_alcove(self, close_dialog_upgrade):  # Ниши
+    def test_constraint_alcove(self, close_dialog_upgrade):
+        """Проверка ограничений для добавления Ниши
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_alcove(block=False)
 
     @allure.feature("Ограничения Профи тариф")
     @allure.title("Экспорт 3D")
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
-    def test_constraint_save_3d(self, close_dialog_upgrade):  # Сохранение в 3D
+    def test_constraint_save_3d(self, close_dialog_upgrade):
+        """Проверка ограничений для экспорта в 3D
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_save_3d(block=False)
 
     @allure.feature("Ограничения Профи тариф")
@@ -595,19 +968,37 @@ class TestsProfiConstraints(BaseConstraints):
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
     def test_constraint_save_to_pdf(
         self, close_dialog_upgrade
-    ):  # Сохранение в PDF
+    ):
+        """Проверка ограничений для экспорта в PDF
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_save_to_pdf(block=False)
 
     @allure.feature("Ограничения Профи тариф")
     @allure.title("Проемы")
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
-    def test_constraint_apperture(self, close_dialog_upgrade):  # Проемы
+    def test_constraint_apperture(self, close_dialog_upgrade):
+        """Проверка ограничений для добавлеия проема
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_apperture(block=False)
 
     @allure.feature("Ограничения Профи тариф")
     @allure.title("Прогулка")
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
-    def test_constraint_walk(self, close_dialog_upgrade):  # Прогулка
+    def test_constraint_walk(self, close_dialog_upgrade):
+        """Проверка ограничений для режима прогулки
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_walk(block=False)
 
     @allure.feature("Ограничения Профи тариф")
@@ -615,7 +1006,13 @@ class TestsProfiConstraints(BaseConstraints):
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
     def test_constraint_change_hight(
         self, close_dialog_upgrade
-    ):  # Изменение высоты мебели
+    ):
+        """Проверка ограничений для изменения высоты мебели
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_change_hight(block=False)
 
     @allure.feature("Ограничения Профи тариф")
@@ -623,7 +1020,13 @@ class TestsProfiConstraints(BaseConstraints):
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
     def test_constraint_change_texture(
         self, close_dialog_upgrade
-    ):  # Изменение текстуры мебели
+    ):
+        """Проверка ограничений для изменения текстуры мебели
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_change_texture(block=False)
 
     @allure.feature("Ограничения Профи тариф")
@@ -634,7 +1037,14 @@ class TestsProfiConstraints(BaseConstraints):
     )
     def test_constraint_change_windowsill(
         self, id_trackbar, close_dialog_upgrade
-    ):  # Изменение подконника
+    ):
+        """Проверка ограничений для изменения подконника
+        
+        Args:
+            id_trackbar: id трекбара свойств подоконника
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_change_windowsill(id_trackbar, block=False)
 
     @allure.feature("Ограничения Профи тариф")
@@ -642,7 +1052,13 @@ class TestsProfiConstraints(BaseConstraints):
     @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
     def test_constraint_change_column(
         self, close_dialog_upgrade
-    ):  # Настройки колонны, поворот на 90
+    ):
+        """Проверка ограничений для изменения колонны
+        
+        Args:
+            close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
+            
+        """
         super().constraint_change_column(block=False)
 
     @allure.feature("Ограничения Профи тариф")
@@ -651,6 +1067,13 @@ class TestsProfiConstraints(BaseConstraints):
         "id_animation", ["mirror-width", "mirror-depth", "open-inside"]
     )
     def test_constraint_animation_door(
-        self, id_animation, close_dialog_upgrade
-    ):  # Анимация дверей
+        self, id_animation: str, close_dialog_upgrade
+    ):
+        """Проверка ограничений для анимации дверей
+        
+        Args:
+            id_animation (str): ID анимации двери
+            close_dialog_upgrade: Фикстура для закрытия диалога ограничений платного тарифа
+
+        """
         super().constraint_animation_door(id_animation)
