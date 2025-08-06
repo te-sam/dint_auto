@@ -1,6 +1,6 @@
+from loguru import logger
 from core.config import settings
 from pages.login_page import LoginPage, get_activation_link
-from pages.work_page import WorkPage
 from utils import get_host
 
 
@@ -22,7 +22,4 @@ def test_registration(driver, delete_account):
     link_account = f"{host}/app/lk/client/index.php?r=clientSettings"
     auth.driver.get(link_account)
     assert auth.true_url(link_account)
-
-
-def test_1(driver, paste_project_function, drop_all_projects_function):
-    pass
+    logger.success("Аккаунт зарегистрирован")

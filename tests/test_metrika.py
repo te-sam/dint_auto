@@ -36,7 +36,5 @@ def test_metrika(url):
     metrika = "(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};"
     response = requests.get(url)
     html = response.text
-    if "https://roomplan.ru/" in url:
-        assert metrika in html
-    else:
-        assert metrika not in html
+    html = html.replace("\n", "").replace("\r", "").replace(" ", "")
+    assert metrika in html
