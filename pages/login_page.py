@@ -63,6 +63,8 @@ class LoginPage(BasePage):
         """Открытие страницы входа"""
         host = get_host(add_credentials=True)
         self.driver.get(f'{host}/app/lk/client/index.php?r=loginClient')
+        script = 'window.localStorage.setItem("videoShow", true);'
+        self.driver.execute_script(script)
     
     def click_register_login_btn(self):
         """Клик по кнопке "Зарегистрироваться" сверху на странице входа"""

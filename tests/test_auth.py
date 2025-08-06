@@ -1,5 +1,6 @@
 from core.config import settings
 from pages.login_page import LoginPage, get_activation_link
+from pages.work_page import WorkPage
 from utils import get_host
 
 
@@ -23,5 +24,5 @@ def test_registration(driver, delete_account):
     assert auth.true_url(link_account)
 
 
-def test_1(driver, paste_project_for_guest_function, drop_all_projects_function):
+def test_1(driver, paste_project_function, drop_all_projects_function):
     pass

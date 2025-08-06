@@ -27,7 +27,9 @@ locator_error_password = (By.XPATH, '//*[@id="passwordGroup"]/div/label[2]')
 locator_project_dots = (By.CLASS_NAME, "project_dots")
 locator_new_project_button = (By.ID, "new_project")
 locator_dialog_guest_constraint = (By.ID, "reg_modal")
-locator_close_dialog_constraint = (By.ID, "close")
+# locator_close_dialog_constraint = (By.ID, "close")
+locator_dialog_upgrade_walk = (By.ID, "fp_upgrade_tarif")
+locator_close_dialog_constraint = (By.CSS_SELECTOR, '[title="Close (Esc)"]')
 locator_save_button = (By.ID, "save_project")
 locator_save_screen_button = (By.ID, "screenshot")
 locator_save_to_pdf_button = (By.ID, "print")
@@ -64,6 +66,22 @@ locator_start_paint_btn = (By.CLASS_NAME, "empty_btn")
 class WorkPage(BasePage):
     def __init__(self, driver):
         self.driver = driver
+
+    @staticmethod
+    def check_dialog_constraint(self, block: bool, locator_dialog: tuple):
+        self.wait(locator_dialog)
+        dialog_constraint = self.find(locator_dialog)
+        sleep(0.5)
+        
+        if block:
+            assert dialog_constraint.is_displayed(), (
+                "Диалог ограничений не появился"
+            )
+        else:
+            logger.info("Диалог ограничений не должен появляться")
+            assert not dialog_constraint.is_displayed(), (
+                "Диалог ограничений появился"
+            )
 
     def click_wall(self) -> None:
         self.await_clickable(locator_wall)
@@ -183,24 +201,16 @@ class WorkPage(BasePage):
     def send_enter(self):
         self.find(locator_name).send_keys(Keys.ENTER)
 
-    def check_dialog_constraint(self, block: bool, tarif="paid"):
+    def check_dialog_constraint_upgrade(self, block: bool, tarif: str):
         if tarif == "guest":
-            self.wait(locator_dialog_guest_constraint)
-            dialog_constraint = self.find(locator_dialog_guest_constraint)
+            locator_dialog=locator_dialog_guest_constraint
         else:
-            self.wait(locator_dialog_upgrade)
-            dialog_constraint = self.find(locator_dialog_upgrade)
-        sleep(0.5)
+            locator_dialog=locator_dialog_upgrade
 
-        if block:
-            assert dialog_constraint.is_displayed(), (
-                "Диалог ограничений не появился"
-            )
-        else:
-            logger.info("Диалог ограничений не должен появляться")
-            assert not dialog_constraint.is_displayed(), (
-                "Диалог ограничений появился"
-            )
+        self.check_dialog_constraint(self, block=block, locator_dialog=locator_dialog)
+
+    def check_dialog_constraint_walk(self, block: bool = True):
+        self.check_dialog_constraint(self, block=block, locator_dialog=locator_dialog_upgrade_walk)
 
     def check_dialog_share(self):
         dialog_share = self.find(locator_dialog_share)
@@ -280,7 +290,7 @@ class WorkPage(BasePage):
 
     def click_animation_door(self, id_animation: str):
         locator_animation = (By.ID, id_animation)
-        # self.await_clickable(locator_animation)
+        # self.await_visibility(locator_animation)
         self.find(locator_animation).click()
 
     def click_button_models(self):
@@ -310,5 +320,7 @@ class WorkPage(BasePage):
 
     def click_start_button(self):
         """Кликнуть по кнокпке 'Нарисуйте стены'"""
-        self.await_clickable(locator_start_paint_btn)
-        self.find(locator_start_paint_btn).click()
+        start_paint_btn = self.find(locator_start_paint_btn)
+        if start_paint_btn.is_displayed():
+            self.await_clickable(locator_start_paint_btn)
+            start_paint_btn.click()
