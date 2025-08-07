@@ -351,15 +351,20 @@ class WorkPage(BasePage):
             0.07, 0
         ).release().perform()
 
-    def turn_column_90_left(self) -> None:
-        """Кликнуть по кнопке 'Повернуть колонну на 90 градусов влево'."""
-        self.await_clickable(locator_button_turn_column_90_left)
-        self.find(locator_button_turn_column_90_left).click()
+    def turn_column(self, direction: Literal["left", "right"]) -> None:
+        """Кликнуть по кнопке 'Повернуть колонну'.
+        
+        Args:
+            direction (Literal["left", "right"]): Направление поворота.
 
-    def turn_column_90_right(self) -> None:
-        """Кликнуть по кнопке 'Повернуть колонну на 90 градусов вправо'."""
-        self.await_clickable(locator_button_turn_column_90_right)
-        self.find(locator_button_turn_column_90_right).click()
+        """
+        if direction == "left":
+            locator = locator_button_turn_column_90_left
+        else:
+            locator = locator_button_turn_column_90_right
+
+        self.await_clickable(locator)
+        self.find(locator).click()
 
     def click_animation_door(self, id_animation: str):
         """Кликнуть по настройке анимации двери с id_animation.

@@ -1,4 +1,5 @@
 from time import sleep
+from typing import Literal
 
 import allure
 from loguru import logger
@@ -18,7 +19,7 @@ class BaseConstraints:
             block (bool, optional): Должен ли появиться диалог ограничений.
 
         """
-        logger.info(f"Переименование проект. Тариф = {self.tarif}")
+        logger.info(f"Тариф = {self.tarif}")
         name_project = "test"
         work = WorkPage(self.driver_class)
         dash = DashboardPage(self.driver_class)
@@ -83,11 +84,11 @@ class BaseConstraints:
         with allure.step('Кликнуть "Ниши"'):
             work.click_alcove()
         with allure.step("Проверить появление диалога ограничений"):
-            work.check_dialog_constraint_upgrade(block, self.tarif)
+            work.check_dialog_constraint_upgrade(block, self.tarif) 
 
     def constraint_save_3d(self, block=False):
         """Проверка ограничений для экспорта в 3D
-
+        
         Args:
             block (bool, optional): Должен ли появиться диалог ограничений.
 
@@ -118,10 +119,7 @@ class BaseConstraints:
         if not block:
             self.driver_class.refresh()
 
-    def constraint_apperture(
-        self,
-        block=False,
-    ):
+    def constraint_apperture(self, block=False,):
         """Проверка ограничений для проемов.
 
         Args:
@@ -198,7 +196,9 @@ class BaseConstraints:
         with allure.step("Проверить появление диалога ограничений"):
             work.check_dialog_constraint_upgrade(block, self.tarif)
 
-    def constraint_change_windowsill(self, id_trackbar, block=False):
+    def constraint_change_windowsill(
+        self, id_trackbar, block=False
+    ):
         """Проверка ограничений для изменений подоконника.
 
         Args:
@@ -219,7 +219,7 @@ class BaseConstraints:
         with allure.step("Проверить появление диалога ограничений"):
             work.check_dialog_constraint_upgrade(block=block, tarif=self.tarif)
 
-    def constraint_change_column(self, block: bool = False):
+    def constraint_turn_column(self, direction: Literal["left", "right"],  block: bool = False):
         """Проверка ограничений для изменений колонны.
 
         Args:
@@ -237,12 +237,14 @@ class BaseConstraints:
             logger.info(f"Тариф = {self.tarif}")
             work.first_click_by_canvas("3d", x, y)
         with allure.step("Повернуть колонную на 90 влево"):
-            work.turn_column_90_left()
+            work.turn_column(direction=direction)
 
         with allure.step("Проверить появление диалога ограничений"):
             work.check_dialog_constraint_upgrade(block, self.tarif)
 
-    def constraint_animation_door(self, id_animation, block=False):
+    def constraint_animation_door(
+        self, id_animation, block=False
+    ):
         """Проверка ограничений для анимации двери.
 
         Args:
@@ -287,7 +289,6 @@ class BaseConstraints:
 @pytest.mark.usefixtures("paste_project_class")
 class TestsGuestConstraints(BaseConstraints):
     """Тесты ограничений для Гостя"""
-
     tarif = "guest"
 
     @allure.feature("Ограничения Гость")
@@ -421,18 +422,21 @@ class TestsGuestConstraints(BaseConstraints):
             close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
 
         """
-        super().constraint_change_windowsill(id_trackbar, block=True)
+        super().constraint_change_windowsill(
+            id_trackbar, block=True
+        )
 
     @allure.feature("Ограничения Гость")
     @allure.title("Настройки колонны, поворот на 90")
-    def test_constraint_change_column(self, close_dialog_constraint_for_guest):
+    @pytest.mark.parametrize("direction", ["left", "right"])
+    def test_constraint_change_column(self, direction, close_dialog_constraint_for_guest):
         """Проверка ограничений для настройки колонны, поворот на 90
 
         Args:
             close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
 
         """
-        super().constraint_change_column(block=True)
+        super().constraint_turn_column(block=True, direction=direction)
 
     @allure.feature("Ограничения Гость")
     @allure.title("Анимация двери")
@@ -449,7 +453,9 @@ class TestsGuestConstraints(BaseConstraints):
             close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
 
         """
-        super().constraint_animation_door(id_animation, block=True)
+        super().constraint_animation_door(
+            id_animation, block=True
+        )
 
     @allure.feature("Ограничения Гость")
     @allure.title("Добавление в избранное")
@@ -469,8 +475,8 @@ class TestsGuestConstraints(BaseConstraints):
 )
 class TestsFreeConstraints(BaseConstraints):
     """Проверка ограничений функционала на Бесплатном тарифе"""
-
     tarif = "free"
+
 
     @allure.feature("Ограничения Бесплатный тариф")
     @allure.title("Переименование проекта")
@@ -580,14 +586,15 @@ class TestsFreeConstraints(BaseConstraints):
 
     @allure.feature("Ограничения Бесплатный тариф")
     @allure.title("Настройки колонны, поворот на 90")
-    def test_constraint_change_column(self, close_dialog_upgrade):
+    @pytest.mark.parametrize("direction", ["left", "right"])
+    def test_constraint_change_column(self, direction, close_dialog_upgrade):
         """Проверка ограничений для изменения колонны
 
         Args:
             close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
 
         """
-        super().constraint_change_column(block=True)
+        super().constraint_turn_column(block=True, direction=direction)
 
     @allure.feature("Ограничения Бесплатный тариф")
     @allure.title("Анимация двери")
@@ -724,15 +731,15 @@ class TestsStandartConstraints(BaseConstraints):
 
     @allure.feature("Ограничения Стандартный тариф")
     @allure.title("Настройки колонны, поворот на 90")
-    @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
-    def test_constraint_change_column(self, close_dialog_upgrade):
+    @pytest.mark.parametrize("direction, close_dialog_upgrade", [("left", False), ("right", False)], indirect=["close_dialog_upgrade"])
+    def test_constraint_change_column(self, direction, close_dialog_upgrade):
         """Проверка ограничений для изменения колонны
 
         Args:
             close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
 
         """
-        super().constraint_change_column(block=False)
+        super().constraint_turn_column(block=False, direction=direction)
 
     @allure.feature("Ограничения Стандартный тариф")
     @allure.title("Анимация двери")
@@ -757,7 +764,6 @@ class TestsStandartConstraints(BaseConstraints):
 )
 class TestsPremiumConstraints(BaseConstraints):
     """Тесты ограничений Премиум тарифа."""
-
     tarif = "premium"
 
     @allure.feature("Ограничения Премиум тариф")
@@ -875,15 +881,15 @@ class TestsPremiumConstraints(BaseConstraints):
 
     @allure.feature("Ограничения Премиум тариф")
     @allure.title("Настройки колонны, поворот на 90")
-    @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
-    def test_constraint_change_column(self, close_dialog_upgrade):
+    @pytest.mark.parametrize("direction, close_dialog_upgrade", [("left", False), ("right", False)], indirect=["close_dialog_upgrade"])
+    def test_constraint_change_column(self, direction, close_dialog_upgrade):
         """Проверка ограничений для изменения колонны
 
         Args:
             close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
 
         """
-        super().constraint_change_column(block=False)
+        super().constraint_turn_column(block=False, direction=direction)
 
     @allure.feature("Ограничения Премиум тариф")
     @allure.title("Анимация двери")
@@ -908,7 +914,6 @@ class TestsPremiumConstraints(BaseConstraints):
 )
 class TestsProfiConstraints(BaseConstraints):
     """Класс тестов для ограничений Профи тарифа"""
-
     tarif = "profi"
 
     @allure.feature("Ограничения Профи тариф")
@@ -1027,15 +1032,15 @@ class TestsProfiConstraints(BaseConstraints):
 
     @allure.feature("Ограничения Профи тариф")
     @allure.title("Настройки колонны, поворот на 90")
-    @pytest.mark.parametrize("close_dialog_upgrade", [False], indirect=True)
-    def test_constraint_change_column(self, close_dialog_upgrade):
+    @pytest.mark.parametrize("direction, close_dialog_upgrade", [("left", False), ("right", False)], indirect=["close_dialog_upgrade"])
+    def test_constraint_change_column(self, direction, close_dialog_upgrade):
         """Проверка ограничений для изменения колонны
 
         Args:
             close_dialog_upgrade: фикстура для закрытия диалога ограничений платного тарифа
 
         """
-        super().constraint_change_column(block=False)
+        super().constraint_turn_column(block=False, direction=direction)
 
     @allure.feature("Ограничения Профи тариф")
     @allure.title("Анимация двери")
