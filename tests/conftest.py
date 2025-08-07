@@ -51,6 +51,7 @@ def check_internet_with_requests(url="https://ya.ru/", timeout=3) -> bool:
 
     Returns:
         bool: True - подключение есть, False - нет.
+
     """
     try:
         response = requests.get(url, timeout=timeout)

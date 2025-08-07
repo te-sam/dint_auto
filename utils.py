@@ -5,10 +5,10 @@ from core.config import settings
 
 def get_phpsessid(driver) -> str | None:
     """Получение phpsessid из cookies.
-    
+
     Args:
         driver (WebDriver): Драйвер браузера.
-        
+
     Returns:
         str: phpsessid cookie.
 
@@ -27,12 +27,13 @@ def get_phpsessid(driver) -> str | None:
 
 def get_auth(driver) -> str | None:
     """Получение auth из cookies.
-    
+
     Args:
         driver (WebDriver): Драйвер браузера.
-        
+
     Returns:
         str: auth cookie.
+
     """
     cookies = driver.get_cookies()
     auth = next(
@@ -50,6 +51,7 @@ def get_host(add_credentials: bool = False) -> str:
 
     Returns:
         str: тестовый или релизный хост.
+
     """
     if settings.MODE == "TEST":
         if add_credentials:

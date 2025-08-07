@@ -1,3 +1,5 @@
+"""Базовый класс для работы со страницами."""
+
 from time import sleep
 
 from selenium.webdriver.common.action_chains import ActionChains
@@ -11,10 +13,14 @@ from utils import get_host
 
 
 class BasePage:
+    """Базовый класс для работы со страницами."""
+
     def __init__(self, driver):
+        """Инициализация драйвера."""
         self.driver = driver
 
-    def open_main(self):
+    def open_main(self) -> None:
+        """Открытие главной страницы."""
         host = get_host(add_credentials=True)
 
         if not self.true_url(
@@ -26,31 +32,64 @@ class BasePage:
         self.driver.execute_script(script)
 
     def find(self, args):
+        """Поиск элемента."""
         return self.driver.find_element(*args)
 
-    def finds(self, args):
+    def finds(self, args) -> None:
+        """Поиск нескольких элементов."""
         return self.driver.find_elements(*args)
 
-    def switch_new_tab(self):
+    def switch_new_tab(self) -> None:
+        """Переключение на новую вкладку."""
         tabs = self.driver.window_handles
         self.driver.switch_to.window(tabs[1])
 
     def scroll_to_element(self, element):
+        """Прокрутка до элемента.
+
+        Args:
+            element: искомый элемент.
+
+        """
         ActionChains(self.driver).scroll_to_element(element).perform()
 
-    def wait(self, locator):
+    def wait(self, locator: tuple) -> None:
+        """Ожидание появления элемента.
+
+        Args:
+            locator: локатор искомого элемента.
+
+        """
         wait = WebDriverWait(self.driver, 5, poll_frequency=0.8)
         wait.until(EC.presence_of_element_located(locator))
 
-    def await_clickable(self, element: tuple):
+    def await_clickable(self, element) -> None:
+        """Ожидание кликабельности элемента.
+
+        Args:
+            element: искомый элемент.
+
+        """
         wait = WebDriverWait(self.driver, 5)
         wait.until(EC.element_to_be_clickable(element))
 
-    def await_visibility(self, element: tuple):
+    def await_visibility(self, element) -> None:
+        """Ожидание видимости элемента.
+
+        Args:
+            element: искомый элемент.
+
+        """
         wait = WebDriverWait(self.driver, 10)
         wait.until(EC.visibility_of_element_located(element))
 
-    def true_url(self, true_url):
+    def true_url(self, true_url: str) -> bool:
+        """Проверка на корректность URL-адреса.
+
+        Args:
+            true_url: правильный URL-адрес.
+
+        """
         current_url = self.driver.current_url
 
         if settings.MODE == "TEST":
@@ -69,18 +108,29 @@ class BasePage:
         return current_url == true_url
 
     def create_screenshot(self, path: str) -> None:
+        """Создание скриншота страницы."""
         sleep(1)
         self.driver.save_screenshot(path)
 
     def create_screenshot_element(
         self, locator: tuple, saving_path: str
     ) -> None:
+        """Создание скриншота элемента.
+
+        Args:
+            locator (tuple): локатор элемента для скриншота
+            saving_path(str): путь сохранения скриншота
+
+        """
         element = self.find(locator)
         element.screenshot(saving_path)
 
-    def get_element_by_locator(self, locator: str):
-        return self.find(locator)
+    def switch_to_tab(self, number: int) -> None:
+        """Переключение на вкладку.
 
-    def switch_to_tab(self, number: int):
+        Args:
+            number (int): номер вкладки, начиная с 1.
+
+        """
         handles = self.driver.window_handles
         self.driver.switch_to.window(handles[number - 1])

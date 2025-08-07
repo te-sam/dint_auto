@@ -83,11 +83,11 @@ class BaseConstraints:
         with allure.step('Кликнуть "Ниши"'):
             work.click_alcove()
         with allure.step("Проверить появление диалога ограничений"):
-            work.check_dialog_constraint_upgrade(block, self.tarif) 
+            work.check_dialog_constraint_upgrade(block, self.tarif)
 
     def constraint_save_3d(self, block=False):
         """Проверка ограничений для экспорта в 3D
-        
+
         Args:
             block (bool, optional): Должен ли появиться диалог ограничений.
 
@@ -118,7 +118,10 @@ class BaseConstraints:
         if not block:
             self.driver_class.refresh()
 
-    def constraint_apperture(self, block=False,):
+    def constraint_apperture(
+        self,
+        block=False,
+    ):
         """Проверка ограничений для проемов.
 
         Args:
@@ -195,9 +198,7 @@ class BaseConstraints:
         with allure.step("Проверить появление диалога ограничений"):
             work.check_dialog_constraint_upgrade(block, self.tarif)
 
-    def constraint_change_windowsill(
-        self, id_trackbar, block=False
-    ):
+    def constraint_change_windowsill(self, id_trackbar, block=False):
         """Проверка ограничений для изменений подоконника.
 
         Args:
@@ -241,9 +242,7 @@ class BaseConstraints:
         with allure.step("Проверить появление диалога ограничений"):
             work.check_dialog_constraint_upgrade(block, self.tarif)
 
-    def constraint_animation_door(
-        self, id_animation, block=False
-    ):
+    def constraint_animation_door(self, id_animation, block=False):
         """Проверка ограничений для анимации двери.
 
         Args:
@@ -288,6 +287,7 @@ class BaseConstraints:
 @pytest.mark.usefixtures("paste_project_class")
 class TestsGuestConstraints(BaseConstraints):
     """Тесты ограничений для Гостя"""
+
     tarif = "guest"
 
     @allure.feature("Ограничения Гость")
@@ -421,9 +421,7 @@ class TestsGuestConstraints(BaseConstraints):
             close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
 
         """
-        super().constraint_change_windowsill(
-            id_trackbar, block=True
-        )
+        super().constraint_change_windowsill(id_trackbar, block=True)
 
     @allure.feature("Ограничения Гость")
     @allure.title("Настройки колонны, поворот на 90")
@@ -451,9 +449,7 @@ class TestsGuestConstraints(BaseConstraints):
             close_dialog_constraint_for_guest: фикстура для закрытия диалога ограничений Гостя
 
         """
-        super().constraint_animation_door(
-            id_animation, block=True
-        )
+        super().constraint_animation_door(id_animation, block=True)
 
     @allure.feature("Ограничения Гость")
     @allure.title("Добавление в избранное")
@@ -473,8 +469,8 @@ class TestsGuestConstraints(BaseConstraints):
 )
 class TestsFreeConstraints(BaseConstraints):
     """Проверка ограничений функционала на Бесплатном тарифе"""
-    tarif = "free"
 
+    tarif = "free"
 
     @allure.feature("Ограничения Бесплатный тариф")
     @allure.title("Переименование проекта")
@@ -761,6 +757,7 @@ class TestsStandartConstraints(BaseConstraints):
 )
 class TestsPremiumConstraints(BaseConstraints):
     """Тесты ограничений Премиум тарифа."""
+
     tarif = "premium"
 
     @allure.feature("Ограничения Премиум тариф")
@@ -911,6 +908,7 @@ class TestsPremiumConstraints(BaseConstraints):
 )
 class TestsProfiConstraints(BaseConstraints):
     """Класс тестов для ограничений Профи тарифа"""
+
     tarif = "profi"
 
     @allure.feature("Ограничения Профи тариф")

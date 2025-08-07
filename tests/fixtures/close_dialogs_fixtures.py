@@ -53,15 +53,14 @@ def close_dialog_upgrade(driver_class, request):
     work.await_clickable(locator_3d)
     element_3d = work.find(locator_3d)
     dialog_upgrade = work.find(locator_dialog_upgrade)
-    
 
     # Получаем параметр из request.param
     param_value = request.param if hasattr(request, "param") else None
 
-    if (
-        dialog_upgrade.is_displayed()
-    ):
-        button_close_dialog_upgrade = work.find(locator_close_dialog_constraint)
+    if dialog_upgrade.is_displayed():
+        button_close_dialog_upgrade = work.find(
+            locator_close_dialog_constraint
+        )
         button_close_dialog_upgrade.click()
     else:
         if param_value:  # Если дилалог должен был появиться, но не появился
@@ -95,5 +94,5 @@ def close_dialog_upgrade_walk(driver_class, request):
         button_close_dialog_upgrade.click()
     else:
         if param_value:  # Если дилалог должен был появиться, но не появился
-                driver_class.refresh()
-                sleep(2)
+            driver_class.refresh()
+            sleep(2)

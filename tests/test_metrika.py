@@ -1,3 +1,5 @@
+"""Тесты наличия метрики."""
+
 import allure
 import pytest
 import requests
@@ -33,6 +35,12 @@ from core.config import settings
 )
 @allure.feature("Наличие метрики")
 def test_metrika(url):
+    """Проверка наличия метрики.
+
+    Args:
+        url (str): страница для проверки метрики.
+
+    """
     metrika = "(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};"
     response = requests.get(url)
     html = response.text

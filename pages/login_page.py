@@ -1,3 +1,5 @@
+"""Модуль для работы со страницей входа"""
+
 import email
 import imaplib
 import time
@@ -23,55 +25,81 @@ locator_register_start_btn = (By.ID, 'registerStartButton')
 locator_error_login = (By.XPATH, '//*[@id="login_form"]/div[1]/label[2]')
 
 class LoginPage(BasePage):
-    def click_auth_btn(self):
-        self.wait(locator_auth_btn)
-        self.find(locator_auth_btn).click()
+    """Класс работы со страницей входа"""
 
-    def enter_login_data(self, email, password):
+    def enter_login_data(self, email: str, password: str) -> None:
+        """Ввод логина и пароля.
+        
+        Args:
+            email (str): Электронная почта.
+            password (str): Пароль.
+
+        """
         self.find(locator_email_login).send_keys(email)
         self.find(locator_password_login).send_keys(password)
     
     def enter_login(self, email: str) -> None:
+        """Ввод логина.
+        
+        Args:
+            email (str): Электронная почта.
+
+        """
         element = self.find(locator_email_login)
         element.send_keys(Keys.CONTROL, 'a')
         element.send_keys(Keys.DELETE)
         element.send_keys(email)
     
     def enter_password(self, password: str) -> None:
+        """Ввод пароля.
+        
+        Args:
+            password (str): Пароль.
+
+        """
         element = self.find(locator_password_login)
         element.send_keys(Keys.CONTROL, 'a')
         element.send_keys(Keys.DELETE)
         element.send_keys(password)
 
     def enter_password2(self, password: str) -> None:
+        """Ввод пароля для подтверждения.
+        
+        Args:
+            password (str): Пароль.
+
+        """
         element = self.find(locator_password2_login)
         element.send_keys(Keys.CONTROL, 'a')
         element.send_keys(Keys.DELETE)
         element.send_keys(password)
 
     def click_enter_btn(self):
+        """Клик по кнопке входа."""
         self.wait(locator_enter_btn)
         self.find(locator_enter_btn).click()
 
     def get_state_label(self, attribute):
+        """Получение состояния лейбла."""
         return self.find(locator_error_login).get_attribute(attribute)
     
-    def get_text_label(self):
+    def get_text_label(self) -> str:
+        """Получение текста лейбла."""
         return self.find(locator_error_login).text
 
-    def open_login(self):
+    def open_login(self) -> None:
         """Открытие страницы входа"""
         host = get_host(add_credentials=True)
         self.driver.get(f'{host}/app/lk/client/index.php?r=loginClient')
         script = 'window.localStorage.setItem("videoShow", true);'
         self.driver.execute_script(script)
     
-    def click_register_login_btn(self):
+    def click_register_login_btn(self) -> None:
         """Клик по кнопке "Зарегистрироваться" сверху на странице входа"""
         self.wait(locator_register_btn)
         self.find(locator_register_btn).click()
 
-    def click_register_start_btn(self):
+    def click_register_start_btn(self) -> None:
         """Клик по кнопке "Зарегистрироваться" после ввода данных"""
         self.wait(locator_register_start_btn)
         self.find(locator_register_start_btn).click()

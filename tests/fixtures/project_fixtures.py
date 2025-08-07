@@ -20,6 +20,7 @@ def drop_project(
         project_id (str): ID проекта.
         phpsessid (str, optional): phpsessid cookie. По умолчанию None.
         auth (str, optional): auth cookie. По умолчанию None.
+
     """
     if not phpsessid:
         phpsessid = get_phpsessid(driver)
@@ -39,16 +40,17 @@ def drop_project(
         else:
             logger.error(
                 f"Проект {project_id} не удален. Ответ сервера: {response.json()}"
-                )
+            )
     else:
         logger.warning("Пользователь не авторизован")
 
 
 def drop_all_projects(driver) -> None:
     """Удаление всех проектов.
-    
+
     Args:
         driver (WebDriver): Драйвер браузера.
+
     """
     phpsessid = get_phpsessid(driver)
     auth = get_auth(driver)
@@ -68,23 +70,23 @@ def drop_all_projects(driver) -> None:
 
 def paste_project(driver) -> None:
     """Вставка проекта.
-    
+
     Args:
         driver (WebDriver): Драйвер браузера.
+
     """
     work = WorkPage(driver)
     work.open_main()
     time.sleep(3)
     work.click_start_button()
-    
+
     if settings.MODE == "TEST":
         project = "projects/test.json"
     else:
         project = "projects/prod.json"
 
     with open(project, "r") as file:
-        json = file.read(
-    )
+        json = file.read()
     script = f"core.Import({json});"
     driver.execute_script(script)
 
@@ -111,4 +113,3 @@ def paste_project_class(driver_class):
 def paste_project_function(driver):
     """Фикстура для вставки проекта для гостя при работе с функцией."""
     paste_project(driver)
-

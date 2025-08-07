@@ -13,9 +13,10 @@ from utils import get_auth, get_host, get_phpsessid
 def auth(driver, email: str) -> None:
     """Авторизация.
 
-    Args:    
+    Args:
         driver (WebDriver): Драйвер браузера.
         email (str): Электронная почта.
+
     """
     auth = LoginPage(driver)
     auth.open_login()
