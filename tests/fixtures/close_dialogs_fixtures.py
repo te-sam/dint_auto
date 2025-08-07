@@ -1,3 +1,5 @@
+"""Модуль фикстур для закрытия диалогов апгрейда."""
+
 import pytest
 
 from pages.work_page import (

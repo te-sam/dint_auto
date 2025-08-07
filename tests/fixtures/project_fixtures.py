@@ -1,16 +1,26 @@
+"""Модуль фикстур для работы с проектами."""
+
 import time
 import pytest
 import requests
 
 from core.config import settings
-from pages.work_page import WorkPage, locator_start_paint_btn
+from pages.work_page import WorkPage
 from utils import get_auth, get_host, get_phpsessid
 from loguru import logger
 
 
 def drop_project(
     driver, project_id: str, phpsessid: str = None, auth: str = None
-):
+) -> None:
+    """Удаление проекта.
+
+    Args:
+        driver (WebDriver): Драйвер браузера.
+        project_id (str): ID проекта.
+        phpsessid (str, optional): phpsessid cookie. По умолчанию None.
+        auth (str, optional): auth cookie. По умолчанию None.
+    """
     if not phpsessid:
         phpsessid = get_phpsessid(driver)
     if not auth:
@@ -34,7 +44,12 @@ def drop_project(
         logger.warning("Пользователь не авторизован")
 
 
-def drop_all_projects(driver):
+def drop_all_projects(driver) -> None:
+    """Удаление всех проектов.
+    
+    Args:
+        driver (WebDriver): Драйвер браузера.
+    """
     phpsessid = get_phpsessid(driver)
     auth = get_auth(driver)
     host = get_host()
@@ -51,32 +66,15 @@ def drop_all_projects(driver):
         logger.warning("Пользователь не авторизован")
 
 
-@pytest.fixture(scope="class")
-def drop_all_project_class(driver_class):
-    drop_all_projects(driver_class)
-
-
-@pytest.fixture(scope="function")
-def drop_all_projects_function(driver):
-    drop_all_projects(driver)
-
-
-@pytest.fixture(scope="class")
-def paste_project_class(driver_class):
-    """Фикстура для вставки проекта для гостя."""
-    paste_project(driver_class)
-
-
-@pytest.fixture(scope="function")
-def paste_project_function(driver):
-    """Фикстура для вставки проекта для гостя."""
-    paste_project(driver)
+def paste_project(driver) -> None:
+    """Вставка проекта.
     
-
-def paste_project(driver):
+    Args:
+        driver (WebDriver): Драйвер браузера.
+    """
     work = WorkPage(driver)
     work.open_main()
-    time.sleep(1)
+    time.sleep(3)
     work.click_start_button()
     
     if settings.MODE == "TEST":
@@ -90,4 +88,27 @@ def paste_project(driver):
     script = f"core.Import({json});"
     driver.execute_script(script)
 
+
+@pytest.fixture(scope="class")
+def drop_all_project_class(driver_class):
+    """Фикстура для удаления всех проектов при работе с классом."""
+    drop_all_projects(driver_class)
+
+
+@pytest.fixture(scope="function")
+def drop_all_projects_function(driver):
+    """Фикстура для удаления всех проектов при работе с функцией."""
+    drop_all_projects(driver)
+
+
+@pytest.fixture(scope="class")
+def paste_project_class(driver_class):
+    """Фикстура для вставки проекта для гостя при работе с классом."""
+    paste_project(driver_class)
+
+
+@pytest.fixture(scope="function")
+def paste_project_function(driver):
+    """Фикстура для вставки проекта для гостя при работе с функцией."""
+    paste_project(driver)
 

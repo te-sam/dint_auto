@@ -1,3 +1,5 @@
+"""Модуль фикстур для работы с авторизацией."""
+
 from loguru import logger
 import pytest
 import requests
@@ -8,7 +10,13 @@ from pages.login_page import LoginPage
 from utils import get_auth, get_host, get_phpsessid
 
 
-def auth(driver, email: str):
+def auth(driver, email: str) -> None:
+    """Авторизация.
+
+    Args:    
+        driver (WebDriver): Драйвер браузера.
+        email (str): Электронная почта.
+    """
     auth = LoginPage(driver)
     auth.open_login()
     auth.enter_login(email)
@@ -20,31 +28,37 @@ def auth(driver, email: str):
 
 @pytest.fixture(scope="function")
 def auth_base_function(driver, email=settings.BASE):
+    """Фикстура для авторизации аккаунта с бесплатным тарифом при работе с функцией."""
     auth(driver, email)
 
 
 @pytest.fixture(scope="class")
 def auth_base_class(driver_class, email=settings.BASE):
+    """Фикстура для авторизации аккаунта с бесплатным тарифом при работе с классом."""
     auth(driver_class, email)
 
 
 @pytest.fixture(scope="function")
 def auth_standart_function(driver, email=settings.STANDART):
+    """Фикстура для авторизации аккаунта со стандартным тарифом при работе с функцией."""
     auth(driver, email)
 
 
 @pytest.fixture(scope="class")
 def auth_standart_class(driver_class, email=settings.STANDART):
+    """Фикстура для авторизации аккаунта со стандартным тарифом при работе с классом."""
     auth(driver_class, email)
 
 
 @pytest.fixture(scope="function")
 def auth_premium_function(driver, email=settings.PREMIUM):
+    """"""
     auth(driver, email)
 
 
 @pytest.fixture(scope="class")
 def auth_premium_class(driver_class, email=settings.PREMIUM):
+    """Фикстура для авторизации аккаунта с премиум тарифом при работе с классом."""
     auth(driver_class, email)
 
 
@@ -55,6 +69,7 @@ def auth_profi_function(driver, email=settings.PROFI):
 
 @pytest.fixture(scope="class")
 def auth_profi_class(driver_class, email=settings.PROFI):
+    """Фикстура для авторизации аккаунта с премиум тарифом при работе с классом."""
     auth(driver_class, email)
 
 

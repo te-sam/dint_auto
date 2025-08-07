@@ -1,3 +1,5 @@
+"""Модуль фикстур для работы с тестами."""
+
 from loguru import logger
 import pytest
 import requests
