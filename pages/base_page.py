@@ -157,7 +157,10 @@ class BasePage:
 
     def check_stimulate_dialog_from_above(self, show_dialog: bool) -> None:
         """Проверить, отображается ли стимулирующий диалог сверху над сценой."""
-        self.wait(l_wall)
+        from pages.work_page import WorkPage
+
+        if isinstance(self, WorkPage):
+            self.wait(l_wall)
         dialog = self.find(l_stimulate_dialog_from_above)
         if show_dialog:
             assert dialog.is_displayed(), (

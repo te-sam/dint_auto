@@ -73,3 +73,22 @@ def test_show_dialog_from_above_dashboard(driver, request, use_auth):
                 assert dash.true_url(f"{host}/order.php")
         else:
             dash.check_stimulate_dialog_from_above(show_dialog=False)
+
+
+def test_hide_right_dialog_for_door(driver):
+    work = WorkPage(driver)
+    work.open_main()
+    work.click_doors()
+    work.click_door_in_catalog(1)
+    work.check_right_dialog(css_class="door-info", is_displayed=True)
+    work.first_click_by_canvas(view="2d", x=224, y=34)
+    work.check_right_dialog(css_class="door-info", is_displayed=False)
+
+def test_hide_right_dialog_for_window(driver):
+    work = WorkPage(driver)
+    work.open_main()
+    work.click_windows()
+    work.click_window_in_catalog(1)
+    work.check_right_dialog(css_class="window-info", is_displayed=True)
+    work.first_click_by_canvas(view="2d", x=224, y=34)
+    work.check_right_dialog(css_class="window-info", is_displayed=False)

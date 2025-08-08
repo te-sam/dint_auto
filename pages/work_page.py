@@ -48,6 +48,10 @@ from pages.locators.locators_work import (
     l_start_video,
     l_walk,
     l_wall,
+    l_catalog_doors,
+    l_catalog_windows,
+    l_stimulate_dialog_from_above,
+    l_btn_in_dialog_from_above,
 )
 
 
@@ -435,3 +439,50 @@ class WorkPage(BasePage):
         self.await_clickable(l_btn_in_dialog_count_models)
         self.find(l_btn_in_dialog_count_models).click()
         self.wait(l_price_contatiner)
+
+    def click_doors(self) -> None:
+        """Кликнуть по кнопке 'Двери' в меню слева."""
+        self.await_clickable(l_catalog_doors)
+        self.find(l_catalog_doors).click()
+
+    def click_door_in_catalog(self, num_door: int) -> None:
+        """Кликнуть по двери в каталоге с номером num_door.
+
+        Args:
+            num_door (int): Номер двери.
+
+        """
+        l_door_in_catalog = (By.CSS_SELECTOR, f'.menu_block[data-category="Двери"] > div:nth-child({num_door})')
+        self.await_clickable(l_door_in_catalog)
+        self.find(l_door_in_catalog).click()
+    
+    def check_right_dialog(self, css_class: str, is_displayed: bool = True) -> None:
+        """Проверить, отображается ли правый диалог.
+
+        Args:
+            css_class (str): CSS-класс правого диалога.
+
+        Return:
+            bool: True - если правый диалог отображается, False - если нет.
+        """
+        right_dialog = self.find((By.CLASS_NAME, css_class))
+        if is_displayed:
+            assert right_dialog.is_displayed(), "Правый диалог не появился"
+        else:
+            assert not right_dialog.is_displayed(), "Правый диалог появился"
+    
+    def click_windows(self) -> None:
+        """Кликнуть по кнопке 'Окна' в меню слева."""
+        self.await_clickable(l_catalog_windows)
+        self.find(l_catalog_windows).click()
+
+    def click_window_in_catalog(self, num_window: int) -> None:
+        """Кликнуть по окно в каталоге с номером num_window.
+
+        Args:
+            num_window (int): Номер окна.
+
+        """
+        l_window_in_catalog = (By.CSS_SELECTOR, f'.menu_block[data-category="Окна"] > div:nth-child({num_window})')
+        self.await_clickable(l_window_in_catalog)
+        self.find(l_window_in_catalog).click()
