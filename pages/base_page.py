@@ -2,7 +2,7 @@
 
 from time import sleep
 
-from loguru import logger
+from core.logger import logger
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -15,6 +15,7 @@ from pages.locators.locators_work import (
     l_close_dialog_constraint,
     l_start_video,
     l_stimulate_dialog_from_above,
+    l_wall
 )
 from utils import get_host
 
@@ -156,6 +157,7 @@ class BasePage:
 
     def check_stimulate_dialog_from_above(self, show_dialog: bool) -> None:
         """Проверить, отображается ли стимулирующий диалог сверху над сценой."""
+        self.wait(l_wall)
         dialog = self.find(l_stimulate_dialog_from_above)
         if show_dialog:
             assert dialog.is_displayed(), (

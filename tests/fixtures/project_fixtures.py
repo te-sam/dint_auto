@@ -4,7 +4,7 @@ import time
 
 import pytest
 import requests
-from loguru import logger
+from core.logger import logger
 
 from core.config import settings
 from pages.work_page import WorkPage

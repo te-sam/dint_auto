@@ -2,7 +2,7 @@
 
 import pytest
 import requests
-from loguru import logger
+from core.logger import logger
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 

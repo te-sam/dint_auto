@@ -2,7 +2,7 @@
 
 import pytest
 import requests
-from loguru import logger
+from core.logger import logger
 
 from core.config import settings
 from pages.locators.locators_dashboard import l_new_project_button

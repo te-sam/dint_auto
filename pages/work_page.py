@@ -3,7 +3,7 @@
 from time import sleep
 from typing import Literal
 
-from loguru import logger
+from core.logger import logger
 from PIL import Image, ImageChops
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By

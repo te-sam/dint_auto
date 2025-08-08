@@ -4,6 +4,7 @@ from loguru import logger
 
 from core.config import settings
 
+logger.remove()
 
 logger.add(
     sink=sys.stdout,  # Стандартный вывод с цветами

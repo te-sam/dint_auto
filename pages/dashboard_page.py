@@ -2,7 +2,7 @@
 
 from time import sleep
 
-from loguru import logger
+from core.logger import logger
 from selenium.webdriver.common.action_chains import ActionChains
 
 from pages.base_page import BasePage
