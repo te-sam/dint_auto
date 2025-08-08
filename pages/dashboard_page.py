@@ -7,11 +7,11 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 from pages.base_page import BasePage
 from pages.locators.locators_dashboard import (
-    locator_confirm_delete,
-    locator_new_project_button,
-    locator_project_delete,
-    locator_project_list,
-    locator_project_name_list,
+    l_confirm_delete,
+    l_new_project_button,
+    l_project_delete,
+    l_project_list,
+    l_project_name_list,
 )
 from utils import get_host
 
@@ -27,9 +27,9 @@ class DashboardPage(BasePage):
 
     def drop_first_project(self) -> None:
         """Удаление первого проекта."""
-        project_list = self.find(locator_project_list)
-        delete_button = self.find(locator_project_delete)
-        confirm_delete_button = self.find(locator_confirm_delete)
+        project_list = self.find(l_project_list)
+        delete_button = self.find(l_project_delete)
+        confirm_delete_button = self.find(l_confirm_delete)
 
         ActionChains(self.driver).move_to_element(
             project_list
@@ -38,11 +38,11 @@ class DashboardPage(BasePage):
 
     def drop_last_project(self) -> None:
         """Удаление последнего проекта."""
-        self.wait(locator_project_list)
+        self.wait(l_project_list)
 
-        projects = list(self.finds(locator_project_list))
-        delete_buttons = list(self.finds(locator_project_delete))
-        confirm_delete_button = self.find(locator_confirm_delete)
+        projects = list(self.finds(l_project_list))
+        delete_buttons = list(self.finds(l_project_delete))
+        confirm_delete_button = self.find(l_confirm_delete)
 
         self.scroll_to_element(projects[-1])
         ActionChains(self.driver).move_to_element(
@@ -53,16 +53,16 @@ class DashboardPage(BasePage):
 
     def drop_all_projects(self) -> None:
         """Удаление всех проектов."""
-        self.await_visibility(locator_new_project_button)
+        self.await_visibility(l_new_project_button)
         try:
-            self.wait(locator_project_list)
+            self.wait(l_project_list)
 
-            count_projects = len(self.finds(locator_project_list))
-            confirm_delete_button = self.find(locator_confirm_delete)
+            count_projects = len(self.finds(l_project_list))
+            confirm_delete_button = self.find(l_confirm_delete)
 
             for i in range(count_projects):
-                project = self.find(locator_project_list)
-                delete_button = self.find(locator_project_delete)
+                project = self.find(l_project_list)
+                delete_button = self.find(l_project_delete)
                 ActionChains(self.driver).move_to_element(
                     project
                 ).move_to_element(delete_button).click().perform()
@@ -82,8 +82,8 @@ class DashboardPage(BasePage):
 
         """
         try:
-            self.wait(locator_project_name_list)
-            project_names = list(self.finds(locator_project_name_list))
+            self.wait(l_project_name_list)
+            project_names = list(self.finds(l_project_name_list))
 
             for project in project_names:
                 logger.info(f"Название проект - {project.text}")
@@ -100,12 +100,12 @@ class DashboardPage(BasePage):
 
         """
         try:
-            self.wait(locator_project_list)
-            return len(self.finds(locator_project_list))
+            self.wait(l_project_list)
+            return len(self.finds(l_project_list))
         except:
             return 0
 
     def click_new_project(self) -> None:
         """Клик по кнопке создания нового проекта."""
-        self.wait(locator_new_project_button)
-        self.find(locator_new_project_button).click()
+        self.wait(l_new_project_button)
+        self.find(l_new_project_button).click()

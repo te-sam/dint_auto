@@ -1,3 +1,5 @@
+"""Модуль с локаторами страницы order."""
+
 from selenium.webdriver.common.by import By
 
-locator_price_contatiner = (By.ID, "price")
+l_price_contatiner = (By.ID, "price")

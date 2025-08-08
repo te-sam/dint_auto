@@ -5,7 +5,7 @@ import requests
 from loguru import logger
 
 from core.config import settings
-from pages.locators.locators_dashboard import locator_new_project_button
+from pages.locators.locators_dashboard import l_new_project_button
 from pages.login_page import LoginPage
 from utils import get_auth, get_host, get_phpsessid
 
@@ -24,7 +24,7 @@ def auth(driver, email: str) -> None:
     auth.enter_password(email)
     auth.click_enter_btn()
     # сюда надо проверку, если не вышло авторизоваться
-    auth.wait(locator_new_project_button)
+    auth.wait(l_new_project_button)
 
 
 @pytest.fixture(scope="function")

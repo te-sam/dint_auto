@@ -9,12 +9,12 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from core.config import settings
-from pages.locators.locators_order import locator_price_contatiner
+from pages.locators.locators_order import l_price_contatiner
 from pages.locators.locators_work import (
-    locator_btn_in_dialog_from_above,
-    locator_close_dialog_constraint,
-    locator_start_video,
-    locator_stimulate_dialog_from_above,
+    l_btn_in_dialog_from_above,
+    l_close_dialog_constraint,
+    l_start_video,
+    l_stimulate_dialog_from_above,
 )
 from utils import get_host
 
@@ -56,8 +56,8 @@ class BasePage:
         script = 'window.localStorage.setItem("videoShow", true);'
         self.driver.execute_script(script)
 
-        if self.find(locator_start_video).is_displayed():
-            self.find(locator_close_dialog_constraint).click()
+        if self.find(l_start_video).is_displayed():
+            self.find(l_close_dialog_constraint).click()
 
     def find(self, args):
         """Поиск элемента."""
@@ -156,7 +156,7 @@ class BasePage:
 
     def check_stimulate_dialog_from_above(self, show_dialog: bool) -> None:
         """Проверить, отображается ли стимулирующий диалог сверху над сценой."""
-        dialog = self.find(locator_stimulate_dialog_from_above)
+        dialog = self.find(l_stimulate_dialog_from_above)
         if show_dialog:
             assert dialog.is_displayed(), (
                 "Стимулирующий диалог сверху не появился"
@@ -168,6 +168,6 @@ class BasePage:
 
     def click_btn_in_dialog_from_above(self) -> None:
         """Кликнуть по кнопке в стимулирующем диалоге сверху."""
-        self.await_visibility(locator_btn_in_dialog_from_above)
-        self.find(locator_btn_in_dialog_from_above).click()
-        self.wait(locator_price_contatiner)
+        self.await_visibility(l_btn_in_dialog_from_above)
+        self.find(l_btn_in_dialog_from_above).click()
+        self.wait(l_price_contatiner)

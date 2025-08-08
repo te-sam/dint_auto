@@ -11,14 +11,14 @@ from selenium.webdriver.common.keys import Keys
 
 from core.config import settings
 from pages.base_page import BasePage
-from pages.locators.locator_login import (
-    locator_email_login,
-    locator_enter_btn,
-    locator_error_login,
-    locator_password2_login,
-    locator_password_login,
-    locator_register_btn,
-    locator_register_start_btn,
+from pages.locators.locators_login import (
+    l_email_login,
+    l_enter_btn,
+    l_error_login,
+    l_password2_login,
+    l_password_login,
+    l_register_btn,
+    l_register_start_btn,
 )
 from utils import get_host
 
@@ -34,8 +34,8 @@ class LoginPage(BasePage):
             password (str): Пароль.
 
         """
-        self.find(locator_email_login).send_keys(email)
-        self.find(locator_password_login).send_keys(password)
+        self.find(l_email_login).send_keys(email)
+        self.find(l_password_login).send_keys(password)
 
     def enter_login(self, email: str) -> None:
         """Ввод логина.
@@ -44,7 +44,7 @@ class LoginPage(BasePage):
             email (str): Электронная почта.
 
         """
-        element = self.find(locator_email_login)
+        element = self.find(l_email_login)
         element.send_keys(Keys.CONTROL, "a")
         element.send_keys(Keys.DELETE)
         element.send_keys(email)
@@ -56,7 +56,7 @@ class LoginPage(BasePage):
             password (str): Пароль.
 
         """
-        element = self.find(locator_password_login)
+        element = self.find(l_password_login)
         element.send_keys(Keys.CONTROL, "a")
         element.send_keys(Keys.DELETE)
         element.send_keys(password)
@@ -68,23 +68,23 @@ class LoginPage(BasePage):
             password (str): Пароль.
 
         """
-        element = self.find(locator_password2_login)
+        element = self.find(l_password2_login)
         element.send_keys(Keys.CONTROL, "a")
         element.send_keys(Keys.DELETE)
         element.send_keys(password)
 
     def click_enter_btn(self):
         """Клик по кнопке входа."""
-        self.wait(locator_enter_btn)
-        self.find(locator_enter_btn).click()
+        self.wait(l_enter_btn)
+        self.find(l_enter_btn).click()
 
     def get_state_label(self, attribute):
         """Получение состояния лейбла."""
-        return self.find(locator_error_login).get_attribute(attribute)
+        return self.find(l_error_login).get_attribute(attribute)
 
     def get_text_label(self) -> str:
         """Получение текста лейбла."""
-        return self.find(locator_error_login).text
+        return self.find(l_error_login).text
 
     def open_login(self) -> None:
         """Открытие страницы входа"""
@@ -95,13 +95,13 @@ class LoginPage(BasePage):
 
     def click_register_login_btn(self) -> None:
         """Клик по кнопке "Зарегистрироваться" сверху на странице входа"""
-        self.wait(locator_register_btn)
-        self.find(locator_register_btn).click()
+        self.wait(l_register_btn)
+        self.find(l_register_btn).click()
 
     def click_register_start_btn(self) -> None:
         """Клик по кнопке "Зарегистрироваться" после ввода данных"""
-        self.wait(locator_register_start_btn)
-        self.find(locator_register_start_btn).click()
+        self.wait(l_register_start_btn)
+        self.find(l_register_start_btn).click()
 
 
 def get_activation_link() -> str:
