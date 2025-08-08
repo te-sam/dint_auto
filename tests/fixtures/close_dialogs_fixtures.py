@@ -1,16 +1,17 @@
 """Модуль фикстур для закрытия диалогов апгрейда."""
 
+from time import sleep
+
 import pytest
 
-from pages.work_page import (
-    WorkPage,
+from pages.locators.locators_work import (
     locator_3d,
     locator_close_dialog_constraint,
     locator_dialog_guest_constraint,
     locator_dialog_upgrade,
     locator_dialog_upgrade_walk,
 )
-from time import sleep
+from pages.work_page import WorkPage
 
 
 @pytest.fixture(scope="function")

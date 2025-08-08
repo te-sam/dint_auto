@@ -2,13 +2,20 @@
 
 from time import sleep
 
+from loguru import logger
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
-
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from core.config import settings
+from pages.locators.locators_order import locator_price_contatiner
+from pages.locators.locators_work import (
+    locator_btn_in_dialog_from_above,
+    locator_close_dialog_constraint,
+    locator_start_video,
+    locator_stimulate_dialog_from_above,
+)
 from utils import get_host
 
 
@@ -18,6 +25,24 @@ class BasePage:
     def __init__(self, driver):
         """Инициализация драйвера."""
         self.driver = driver
+
+    @staticmethod
+    def get_url_without_credentials(url: str) -> str:
+        """Удаление логина и пароля из URL-адреса.
+
+        Args:
+            url: URL-адрес.
+
+        Returns:
+            str: URL-адрес без логина и пароля.
+
+        """
+        if settings.MODE == "TEST":
+            if "@" in url:
+                parts_url = url.split("//")
+                url = "".join([parts_url[0], "//", parts_url[1].split("@")[1]])
+
+        return url
 
     def open_main(self) -> None:
         """Открытие главной страницы."""
@@ -30,6 +55,9 @@ class BasePage:
 
         script = 'window.localStorage.setItem("videoShow", true);'
         self.driver.execute_script(script)
+
+        if self.find(locator_start_video).is_displayed():
+            self.find(locator_close_dialog_constraint).click()
 
     def find(self, args):
         """Поиск элемента."""
@@ -90,20 +118,11 @@ class BasePage:
             true_url: правильный URL-адрес.
 
         """
-        current_url = self.driver.current_url
+        current_url = self.get_url_without_credentials(self.driver.current_url)
+        true_url = self.get_url_without_credentials(true_url)
 
-        if settings.MODE == "TEST":
-            if "@" in current_url:
-                parts_url = current_url.split("//")
-                current_url = "".join(
-                    [parts_url[0], "//", parts_url[1].split("@")[1]]
-                )
-
-            if "@" in true_url:
-                parts_url = true_url.split("//")
-                true_url = "".join(
-                    [parts_url[0], "//", parts_url[1].split("@")[1]]
-                )
+        logger.debug(f"Текущий URL: {current_url}")
+        logger.debug(f"Ожидаемый URL: {true_url}")
 
         return current_url == true_url
 
@@ -134,3 +153,21 @@ class BasePage:
         """
         handles = self.driver.window_handles
         self.driver.switch_to.window(handles[number - 1])
+
+    def check_stimulate_dialog_from_above(self, show_dialog: bool) -> None:
+        """Проверить, отображается ли стимулирующий диалог сверху над сценой."""
+        dialog = self.find(locator_stimulate_dialog_from_above)
+        if show_dialog:
+            assert dialog.is_displayed(), (
+                "Стимулирующий диалог сверху не появился"
+            )
+        else:
+            assert not dialog.is_displayed(), (
+                "Стимулирующий диалог сверху появился"
+            )
+
+    def click_btn_in_dialog_from_above(self) -> None:
+        """Кликнуть по кнопке в стимулирующем диалоге сверху."""
+        self.await_visibility(locator_btn_in_dialog_from_above)
+        self.find(locator_btn_in_dialog_from_above).click()
+        self.wait(locator_price_contatiner)

@@ -1,13 +1,14 @@
 """Модуль фикстур для работы с проектами."""
 
 import time
+
 import pytest
 import requests
+from loguru import logger
 
 from core.config import settings
 from pages.work_page import WorkPage
 from utils import get_auth, get_host, get_phpsessid
-from loguru import logger
 
 
 def drop_project(

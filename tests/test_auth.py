@@ -1,10 +1,11 @@
 """Тесты авторизации."""
 
+import allure
 from loguru import logger
+
 from core.config import settings
 from pages.login_page import LoginPage, get_activation_link
 from utils import get_host
-import allure
 
 
 @allure.feature("Авторизация")

@@ -3,10 +3,11 @@
 from selenium.webdriver.common.by import By
 
 from pages.base_page import BasePage
-
-l_settings_btn = (By.CSS_SELECTOR, "li:nth-child(3)")
-l_delete_account_btn = (By.ID, "buttonDeleteAccount")
-l_confirm_deletion_btn = (By.ID, "deleteAccount")
+from pages.locators.locators_lk import (
+    l_confirm_deletion_btn,
+    l_delete_account_btn,
+    l_settings_btn,
+)
 
 
 class LKPage(BasePage):

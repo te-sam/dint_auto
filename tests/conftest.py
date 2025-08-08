@@ -1,37 +1,36 @@
 """Модуль фикстур для работы с тестами."""
 
-from loguru import logger
 import pytest
 import requests
+from loguru import logger
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 from core.config import settings
 from tests.fixtures.auth_fixtures import (
     auth_base_class,
-    auth_standart_class,
-    auth_premium_class,
-    auth_profi_class,
     auth_base_function,
-    auth_standart_function,
+    auth_premium_class,
     auth_premium_function,
+    auth_profi_class,
     auth_profi_function,
+    auth_standart_class,
+    auth_standart_function,
     delete_account,
-)
-from tests.fixtures.project_fixtures import (
-    drop_all_project_class,
-    paste_project_class,
-    drop_all_projects_function,
-    paste_project_function,
-    drop_project,
-    paste_project,
 )
 from tests.fixtures.close_dialogs_fixtures import (
     close_dialog_constraint_for_guest,
     close_dialog_upgrade,
     close_dialog_upgrade_walk,
 )
-
+from tests.fixtures.project_fixtures import (
+    drop_all_project_class,
+    drop_all_projects_function,
+    drop_project,
+    paste_project,
+    paste_project_class,
+    paste_project_function,
+)
 
 chrome_options = Options()
 chrome_options.add_argument("--disable-infobars")

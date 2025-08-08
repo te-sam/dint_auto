@@ -1,11 +1,11 @@
 """Модуль фикстур для работы с авторизацией."""
 
-from loguru import logger
 import pytest
 import requests
+from loguru import logger
 
 from core.config import settings
-from pages.dashboard_page import locator_new_project_button
+from pages.locators.locators_dashboard import locator_new_project_button
 from pages.login_page import LoginPage
 from utils import get_auth, get_host, get_phpsessid
 

@@ -4,31 +4,26 @@ from time import sleep
 
 from loguru import logger
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.by import By
 
-from core.config import settings
 from pages.base_page import BasePage
-
-locator_project_list = (By.CLASS_NAME, "project-actions")
-locator_project_delete = (By.ID, "delete")
-locator_confirm_delete = (By.CLASS_NAME, "btn-delete")
-locator_projects = (By.CLASS_NAME, "project")
-locator_project_name_list = (By.CLASS_NAME, "project-name")
-locator_new_project_button = (By.CLASS_NAME, "new_project_text")
+from pages.locators.locators_dashboard import (
+    locator_confirm_delete,
+    locator_new_project_button,
+    locator_project_delete,
+    locator_project_list,
+    locator_project_name_list,
+)
+from utils import get_host
 
 
 class DashboardPage(BasePage):
     """Класс работы с дашбордом."""
 
-    def get_dashboard(self) -> None:
+    def open_dashboard(self) -> None:
         """Открытие дашборда."""
-        if settings.MODE == "TEST":
-            url = f"https://{settings.USER}:{settings.PASSWORD}@online-dint.ulapr.ru/app/projects.php"
-        if settings.MODE == "PROD":
-            url = f"https://roomplan.ru/app/projects.php"
-
+        host = get_host(add_credentials=True)
         sleep(2)
-        self.driver.get(url)
+        self.driver.get(f"{host}/app/projects.php")
 
     def drop_first_project(self) -> None:
         """Удаление первого проекта."""
