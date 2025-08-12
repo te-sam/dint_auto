@@ -9,7 +9,14 @@ from utils import get_host
 @allure.feature("Отображение диалогов")
 @allure.title("Проверка диалога с количествои мебели в каталоге")
 @pytest.mark.parametrize("use_auth", [True, False])
-def test_show_dialog_count_models(driver, request, use_auth):
+def test_show_dialog_count_models(driver, request, use_auth: bool):
+    """Проверка диалога с количествои мебели в каталоге
+
+    Args:
+        use_auth(bool): True - авторизованный бесплатный пользователь,
+                        False - неавторизованный пользователь
+
+    """
     if use_auth:
         request.getfixturevalue("auth_base_function")
     work = WorkPage(driver)
@@ -35,6 +42,13 @@ def test_show_dialog_count_models(driver, request, use_auth):
 @allure.title("Проверка стимулирующего диалога сверху над сценой")
 @pytest.mark.parametrize("use_auth", [True, False])
 def test_show_dialog_from_above_2d(driver, request, use_auth):
+    """Проверка стимулирующего диалога сверху над сценой
+
+    Args:
+        use_auth(bool): True - авторизованный бесплатный пользователь,
+                        False - неавторизованный пользователь
+
+    """
     if use_auth:
         request.getfixturevalue("auth_base_function")
     work = WorkPage(driver)
@@ -57,6 +71,13 @@ def test_show_dialog_from_above_2d(driver, request, use_auth):
 @allure.title("Проверка стимулирующего диалога сверху в дашборде")
 @pytest.mark.parametrize("use_auth", [True, False])
 def test_show_dialog_from_above_dashboard(driver, request, use_auth):
+    """Проверка стимулирующего диалога сверху в дашборде
+
+    Args:
+        use_auth(bool): True - авторизованный бесплатный пользователь,
+                        False - неавторизованный пользователь
+
+    """
     if use_auth:
         request.getfixturevalue("auth_base_function")
     with allure.step("Перейти на дашборд"):
@@ -76,19 +97,34 @@ def test_show_dialog_from_above_dashboard(driver, request, use_auth):
 
 
 def test_hide_right_dialog_for_door(driver):
+    """Проверка скрытия панели справа для двери"""
     work = WorkPage(driver)
-    work.open_main()
-    work.click_doors()
-    work.click_door_in_catalog(1)
-    work.check_right_dialog(css_class="door-info", is_displayed=True)
-    work.first_click_by_canvas(view="2d", x=224, y=34)
-    work.check_right_dialog(css_class="door-info", is_displayed=False)
+
+    with allure.step("Открыть главную страницу"):
+        work.open_main()
+    with allure.step("Перейти в каталог дверей"):
+        work.click_doors()
+    with allure.step("Выбрать первую дверь в каталоге"):
+        work.click_door_in_catalog(1)
+    with allure.step("Проверить появление правой панели"):
+        work.check_right_dialog(css_class="door-info", is_displayed=True)
+    with allure.step("Проверить скрытие правой панели"):
+        work.first_click_by_canvas(view="2d", x=224, y=34)
+        work.check_right_dialog(css_class="door-info", is_displayed=False)
+
 
 def test_hide_right_dialog_for_window(driver):
+    """Проверка скрытия панели справа для окна"""
     work = WorkPage(driver)
-    work.open_main()
-    work.click_windows()
-    work.click_window_in_catalog(1)
-    work.check_right_dialog(css_class="window-info", is_displayed=True)
-    work.first_click_by_canvas(view="2d", x=224, y=34)
-    work.check_right_dialog(css_class="window-info", is_displayed=False)
+
+    with allure.step("Открыть главную страницу"):
+        work.open_main()
+    with allure.step("Перейти в каталог окон"):
+        work.click_windows()
+    with allure.step("Выбрать первое окно в каталоге"):
+        work.click_window_in_catalog(1)
+    with allure.step("Проверить появление правой панели"):
+        work.check_right_dialog(css_class="window-info", is_displayed=True)
+    with allure.step("Проверить скрытие правой панели"):
+        work.first_click_by_canvas(view="2d", x=224, y=34)
+        work.check_right_dialog(css_class="window-info", is_displayed=False)

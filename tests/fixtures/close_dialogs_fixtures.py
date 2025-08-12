@@ -19,9 +19,7 @@ def close_dialog_constraint_for_guest(driver_class, request):
     """Фикстура для закрытия диалога ограничений для гостя."""
     yield
     work = WorkPage(driver_class)
-    dialog_constraint = driver_class.find_element(
-        *l_dialog_guest_constraint
-    )
+    dialog_constraint = driver_class.find_element(*l_dialog_guest_constraint)
     button_close_dialog_constraint = driver_class.find_element(
         *l_close_dialog_constraint
     )
@@ -59,9 +57,7 @@ def close_dialog_upgrade(driver_class, request):
     param_value = request.param if hasattr(request, "param") else None
 
     if dialog_upgrade.is_displayed():
-        button_close_dialog_upgrade = work.find(
-            l_close_dialog_constraint
-        )
+        button_close_dialog_upgrade = work.find(l_close_dialog_constraint)
         button_close_dialog_upgrade.click()
     else:
         if param_value:  # Если дилалог должен был появиться, но не появился

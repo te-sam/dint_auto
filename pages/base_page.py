@@ -15,7 +15,7 @@ from pages.locators.locators_work import (
     l_close_dialog_constraint,
     l_start_video,
     l_stimulate_dialog_from_above,
-    l_wall
+    l_wall,
 )
 from utils import get_host
 

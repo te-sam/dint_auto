@@ -59,9 +59,7 @@ class WorkPage(BasePage):
     """Класс страницы работы с проектом."""
 
     @staticmethod
-    def check_dialog_constraint(
-        self, block: bool, l_dialog: tuple
-    ) -> None:
+    def check_dialog_constraint(self, block: bool, l_dialog: tuple) -> None:
         """Проверка диалога ограничений.
 
         Args:
@@ -230,9 +228,7 @@ class WorkPage(BasePage):
         else:
             l_dialog = l_dialog_upgrade
 
-        self.check_dialog_constraint(
-            self, block=block, l_dialog=l_dialog
-        )
+        self.check_dialog_constraint(self, block=block, l_dialog=l_dialog)
 
     def check_dialog_constraint_walk(self, block: bool = True) -> None:
         """Проверка диалога ограничений для режима прогулки.
@@ -452,11 +448,16 @@ class WorkPage(BasePage):
             num_door (int): Номер двери.
 
         """
-        l_door_in_catalog = (By.CSS_SELECTOR, f'.menu_block[data-category="Двери"] > div:nth-child({num_door})')
+        l_door_in_catalog = (
+            By.CSS_SELECTOR,
+            f'.menu_block[data-category="Двери"] > div:nth-child({num_door})',
+        )
         self.await_clickable(l_door_in_catalog)
         self.find(l_door_in_catalog).click()
-    
-    def check_right_dialog(self, css_class: str, is_displayed: bool = True) -> None:
+
+    def check_right_dialog(
+        self, css_class: str, is_displayed: bool = True
+    ) -> None:
         """Проверить, отображается ли правый диалог.
 
         Args:
@@ -464,13 +465,14 @@ class WorkPage(BasePage):
 
         Return:
             bool: True - если правый диалог отображается, False - если нет.
+
         """
         right_dialog = self.find((By.CLASS_NAME, css_class))
         if is_displayed:
             assert right_dialog.is_displayed(), "Правый диалог не появился"
         else:
             assert not right_dialog.is_displayed(), "Правый диалог появился"
-    
+
     def click_windows(self) -> None:
         """Кликнуть по кнопке 'Окна' в меню слева."""
         self.await_clickable(l_catalog_windows)
@@ -483,6 +485,9 @@ class WorkPage(BasePage):
             num_window (int): Номер окна.
 
         """
-        l_window_in_catalog = (By.CSS_SELECTOR, f'.menu_block[data-category="Окна"] > div:nth-child({num_window})')
+        l_window_in_catalog = (
+            By.CSS_SELECTOR,
+            f'.menu_block[data-category="Окна"] > div:nth-child({num_window})',
+        )
         self.await_clickable(l_window_in_catalog)
         self.find(l_window_in_catalog).click()
