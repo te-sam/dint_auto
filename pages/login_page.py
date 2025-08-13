@@ -11,15 +11,10 @@ from selenium.webdriver.common.keys import Keys
 
 from core.config import settings
 from pages.base_page import BasePage
-from pages.locators.locators_login import (
-    l_email_login,
-    l_enter_btn,
-    l_error_login,
-    l_password2_login,
-    l_password_login,
-    l_register_btn,
-    l_register_start_btn,
-)
+from pages.locators.locators_login import (l_email_login, l_enter_btn,
+                                           l_error_login, l_password2_login,
+                                           l_password_login, l_register_btn,
+                                           l_register_start_btn)
 from utils import get_host
 
 

@@ -4,9 +4,9 @@ import time
 
 import pytest
 import requests
-from core.logger import logger
 
 from core.config import settings
+from core.logger import logger
 from pages.work_page import WorkPage
 from utils import get_auth, get_host, get_phpsessid
 
@@ -62,7 +62,7 @@ def drop_all_projects(driver) -> None:
             f"{host}/app/lk/admin/index.php?r=user/getProjects",
             cookies={"PHPSESSID": phpsessid, "auth": auth},
         )
-        logger.info(f"Всего проектов: {len(response.json())}")
+        logger.debug(f"Всего проектов перед удалением: {len(response.json())}")
         for project in response.json():
             drop_project(driver, int(project["id"]), phpsessid, auth)
     else:

@@ -2,9 +2,9 @@
 
 import pytest
 import requests
-from core.logger import logger
 
 from core.config import settings
+from core.logger import logger
 from pages.locators.locators_dashboard import l_new_project_button
 from pages.login_page import LoginPage
 from utils import get_auth, get_host, get_phpsessid

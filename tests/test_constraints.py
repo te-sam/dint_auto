@@ -3,8 +3,8 @@ from typing import Literal
 
 import allure
 import pytest
-from core.logger import logger
 
+from core.logger import logger
 from pages.dashboard_page import DashboardPage
 from pages.work_page import WorkPage
 

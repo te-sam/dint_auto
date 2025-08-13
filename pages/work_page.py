@@ -3,12 +3,12 @@
 from time import sleep
 from typing import Literal
 
-from core.logger import logger
 from PIL import Image, ImageChops
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
+from core.logger import logger
 from pages.base_page import BasePage
 from pages.locators.locators_order import l_price_contatiner
 from pages.locators.locators_work import (
@@ -18,12 +18,15 @@ from pages.locators.locators_work import (
     l_apperture_button,
     l_auth_btn,
     l_btn_in_dialog_count_models,
+    l_btn_in_dialog_from_above,
     l_button_expand_settings_windowsill,
     l_button_turn_column_90_left,
     l_button_turn_column_90_right,
     l_canvas,
     l_canvas_3D,
+    l_catalog_doors,
     l_catalog_models,
+    l_catalog_windows,
     l_close_dialog_constraint,
     l_close_share_button,
     l_dashboard,
@@ -46,12 +49,9 @@ from pages.locators.locators_work import (
     l_share_button,
     l_start_paint_btn,
     l_start_video,
+    l_stimulate_dialog_from_above,
     l_walk,
     l_wall,
-    l_catalog_doors,
-    l_catalog_windows,
-    l_stimulate_dialog_from_above,
-    l_btn_in_dialog_from_above,
 )
 
 

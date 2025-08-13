@@ -2,11 +2,11 @@
 
 import pytest
 import requests
-from core.logger import logger
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 from core.config import settings
+from core.logger import logger
 from tests.fixtures.auth_fixtures import (
     auth_base_class,
     auth_base_function,

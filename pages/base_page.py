@@ -2,13 +2,13 @@
 
 from time import sleep
 
-from core.logger import logger
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from core.config import settings
+from core.logger import logger
 from pages.locators.locators_order import l_price_contatiner
 from pages.locators.locators_work import (
     l_btn_in_dialog_from_above,

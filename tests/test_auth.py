@@ -1,9 +1,9 @@
 """Тесты авторизации."""
 
 import allure
-from core.logger import logger
 
 from core.config import settings
+from core.logger import logger
 from pages.login_page import LoginPage, get_activation_link
 from utils import get_host
 
