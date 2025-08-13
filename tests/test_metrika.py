@@ -45,4 +45,4 @@ def test_metrika(url):
     response = requests.get(url)
     html = response.text
     html = html.replace("\n", "").replace("\r", "").replace(" ", "")
-    assert metrika in html
+    assert metrika in html, f"На странице {url} отсутствует метрика"

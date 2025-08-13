@@ -18,6 +18,7 @@ from pages.locators.locators_dashboard import (
     l_project_name_list,
 )
 from utils import get_host
+from core.config import settings
 
 
 class DashboardPage(BasePage):
@@ -27,7 +28,19 @@ class DashboardPage(BasePage):
         """Открытие дашборда."""
         host = get_host(add_credentials=True)
         sleep(2)
-        self.driver.get(f"{host}/app/projects.php")
+        if not self.true_url(
+            f"{host}/app/projects.php".replace(f"{settings.USER}:{settings.PASSWORD}@", "")
+        ):
+            self.driver.get(f"{host}/app/projects.php")
+    
+            host = get_host(add_credentials=False)
+            if not self.true_url(f"{host}/app/"):
+                logger.debug("Дашборд открыт")
+                self.wait(l_new_project_button)
+            else:
+                logger.debug("Дашборд не открыт, скорее всего был редирект")
+        else:
+            logger.debug("Нет перехода на дашборд, вы итак на дашборде")
 
     def drop_first_project(self) -> None:
         """Удаление первого проекта."""
