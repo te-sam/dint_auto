@@ -1,7 +1,5 @@
 """Модуль для работы со страницей личного кабинета."""
 
-from selenium.webdriver.common.by import By
-
 from pages.base_page import BasePage
 from pages.locators.locators_lk import (
     l_confirm_deletion_btn,

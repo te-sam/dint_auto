@@ -1,9 +1,11 @@
 """Модуль фикстур для работы с тестами."""
 
+import allure
 import pytest
 import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.remote.webdriver import WebDriver
 
 from core.config import settings
 from core.logger import logger
@@ -78,7 +80,8 @@ def driver():
     chrome_driver.maximize_window()
     chrome_driver.implicitly_wait(2)
     logger.info(f"Тестовая среда: {settings.MODE}")
-    return chrome_driver
+    yield chrome_driver
+    # chrome_driver.quit()
 
 
 @pytest.fixture(scope="class")
@@ -90,3 +93,16 @@ def driver_class(request):
     logger.info(f"Тестовая среда: {settings.MODE}")
     yield chrome_driver
     chrome_driver.quit()
+
+
+@pytest.fixture(scope="function", autouse=True)
+def create_screenshot_after_test(request):
+    """Фикстура для создания скриншота после теста."""
+    yield
+    for fixture_name, fixture_value in request.node.funcargs.items():
+        if isinstance(fixture_value, WebDriver):
+            allure.attach(
+                fixture_value.get_screenshot_as_png(),
+                name=f"Скриншот ({fixture_name})",
+                attachment_type=allure.attachment_type.PNG,
+            )

@@ -1,0 +1,1573 @@
+{
+    "connectors": [
+        {
+            "x": 578,
+            "y": 200,
+            "z": 0,
+            "adjacency": [
+                1,
+                3
+            ]
+        },
+        {
+            "x": 1030,
+            "y": 200,
+            "z": 0,
+            "adjacency": [
+                0,
+                2
+            ]
+        },
+        {
+            "x": 1030,
+            "y": 548,
+            "z": 0,
+            "adjacency": [
+                1,
+                3
+            ]
+        },
+        {
+            "x": 578,
+            "y": 548,
+            "z": 0,
+            "adjacency": [
+                2,
+                0
+            ]
+        }
+    ],
+    "segments": [
+        {
+            "left": 0,
+            "right": 1,
+            "textureChange": true,
+            "userChangeFront": true,
+            "length": 4.5200000000000005,
+            "uuid": "w_0",
+            "half_width_left": 10,
+            "half_width_right": 10,
+            "materials": {
+                "front": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/20d9973f1ae29da4953a58d8b336f986.jpg"
+                },
+                "back": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/deea10d13c925a25460d51e7f02a7afc.jpg"
+                },
+                "slope": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/20d9973f1ae29da4953a58d8b336f986.jpg"
+                }
+            },
+            "isSeptum": false,
+            "cross_left": "sides",
+            "cross_right": "sides",
+            "align_left": "center",
+            "align_right": "center",
+            "height": 2.5,
+            "roomClockWise": true
+        },
+        {
+            "left": 1,
+            "right": 2,
+            "textureChange": true,
+            "userChangeFront": true,
+            "length": 3.4800000000000004,
+            "uuid": "w_1",
+            "half_width_left": 10,
+            "half_width_right": 10,
+            "materials": {
+                "front": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/20d9973f1ae29da4953a58d8b336f986.jpg"
+                },
+                "back": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/deea10d13c925a25460d51e7f02a7afc.jpg"
+                },
+                "slope": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/2cc0cbb26d3caaf2122209066529c65b.jpg"
+                }
+            },
+            "isSeptum": false,
+            "cross_left": "sides",
+            "cross_right": "sides",
+            "align_left": "center",
+            "align_right": "center",
+            "height": 2.5,
+            "roomClockWise": true
+        },
+        {
+            "left": 2,
+            "right": 3,
+            "textureChange": true,
+            "userChangeBack": true,
+            "userChangeFront": true,
+            "length": 4.5200000000000005,
+            "uuid": "w_2",
+            "half_width_left": 10,
+            "half_width_right": 10,
+            "materials": {
+                "front": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/20d9973f1ae29da4953a58d8b336f986.jpg"
+                },
+                "back": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/deea10d13c925a25460d51e7f02a7afc.jpg"
+                },
+                "slope": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/20d9973f1ae29da4953a58d8b336f986.jpg"
+                }
+            },
+            "isSeptum": false,
+            "cross_left": "sides",
+            "cross_right": "sides",
+            "align_left": "center",
+            "align_right": "center",
+            "height": 2.5,
+            "roomClockWise": true
+        },
+        {
+            "left": 3,
+            "right": 0,
+            "textureChange": true,
+            "userChangeFront": true,
+            "length": 3.4800000000000004,
+            "uuid": "w_3",
+            "half_width_left": 10,
+            "half_width_right": 10,
+            "materials": {
+                "front": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/20d9973f1ae29da4953a58d8b336f986.jpg"
+                },
+                "back": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/deea10d13c925a25460d51e7f02a7afc.jpg"
+                },
+                "slope": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/2cc0cbb26d3caaf2122209066529c65b.jpg"
+                }
+            },
+            "isSeptum": false,
+            "cross_left": "sides",
+            "cross_right": "sides",
+            "align_left": "center",
+            "align_right": "center",
+            "height": 2.5,
+            "roomClockWise": true
+        }
+    ],
+    "areas": [
+        {
+            "name": "",
+            "points": [
+                3,
+                0,
+                1,
+                2
+            ],
+            "reversed": false,
+            "allTexturesChange": true,
+            "last_area_clockwise": true,
+            "NEED_UPDATE": false,
+            "start_clockwise": true,
+            "materials": {
+                "flooring": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/fcb15f09e05dec514af05aa58518d008.jpg"
+                },
+                "ceiling": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/0bbfcd6b183e51128529f8cf6ba5c218.jpg"
+                },
+                "walls": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/20d9973f1ae29da4953a58d8b336f986.jpg"
+                },
+                "outsidewalls": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/deea10d13c925a25460d51e7f02a7afc.jpg"
+                }
+            },
+            "clockwise": true,
+            "area_value": 14.169600000000003
+        }
+    ],
+    "elements": [
+        {
+            "type": "floorItem",
+            "uuid": "63220a50-0b84-4935-912d-8eadb87c38c4",
+            "modelMaterials": [
+                {
+                    "uuid": "5c81075a-a117-4753-8633-25ea0d1c8abe",
+                    "name": "Nojki",
+                    "color": "#ffffff",
+                    "fileName": "Chyornyy matovyy metall.jpg"
+                },
+                {
+                    "uuid": "e6ae9d13-ec6e-4e9e-b893-c371ed630a18",
+                    "name": "Osnova",
+                    "color": "#ffffff",
+                    "fileName": "Velyur Alkantara-2.jpg"
+                }
+            ],
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/da8e712f74f88b5f0d1463f474d7b134.zip",
+            "x": 6.720009999999999,
+            "y": 3.50999,
+            "elevation": 0,
+            "rotation": -1.5707963267948966,
+            "flipX": false,
+            "flipZ": false,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -1.41001,
+                    "y": -0.00001,
+                    "z": -0.84001
+                },
+                "max": {
+                    "x": 1.40999,
+                    "y": 0.72,
+                    "z": 0.83999
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "no_render": true
+        },
+        {
+            "name": "",
+            "segment": 0,
+            "type": "window",
+            "configuration": 0,
+            "width": 217,
+            "height": 2.10001,
+            "anchor": "percent",
+            "offset": 0.6715527571833944,
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/1f67b4aee3a9c7afbc05b8c96e0911ed.zip",
+            "data": "",
+            "modelMaterials": [
+                {
+                    "uuid": "e61b876c-5a61-4fb0-a9b7-6a28262d570b",
+                    "name": "Osnova",
+                    "color": "#c8c8c8",
+                    "fileName": null
+                },
+                {
+                    "uuid": "8aae9366-4107-41cc-b633-bd31b52c02a6",
+                    "name": "Steklo",
+                    "color": "#99afc8",
+                    "fileName": null
+                }
+            ],
+            "elevation": 0,
+            "shift": 0.5,
+            "flipX": false,
+            "flipZ": false,
+            "sill": [
+                {
+                    "x": -0.385,
+                    "y": 0.69999
+                },
+                {
+                    "x": 1.085,
+                    "y": 0.69999
+                }
+            ],
+            "sillHeight": 0.04,
+            "sillMarginDepth": 0.18,
+            "sillMarginWidth": 0,
+            "sillRoundness": 0.25
+        },
+        {
+            "type": "edgeItem",
+            "uuid": "10e66ee3-7b73-4645-97f6-baca86176c4c",
+            "modelMaterials": [
+                {
+                    "uuid": "fdc1f5b3-6c44-411b-b6bf-f333c00a6348",
+                    "name": "Osnova",
+                    "color": "#ffffff",
+                    "fileName": "Belyy metall.jpg"
+                }
+            ],
+            "wall": "w_0",
+            "front": true,
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/3dd11fcdd940f2b3f2823928ac1ede1c.zip",
+            "elevation": 0.1,
+            "offset": 0,
+            "snapPosition": 3.5480657841353542,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.4,
+                    "y": -0.00001,
+                    "z": 0
+                },
+                "max": {
+                    "x": 0.4,
+                    "y": 0.56409,
+                    "z": 0.12
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "no_render": true
+        },
+        {
+            "type": "columnItem",
+            "uuid": "ea4f5c7e-c741-4c32-8276-0c6db5d2ee05",
+            "x": 10.049999999999999,
+            "y": 2.2,
+            "rotation": 0,
+            "cylindred": false,
+            "radius": 0.1,
+            "width": 0.3,
+            "depth": 0.2,
+            "height": 2.5,
+            "materials": {
+                "column": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/20d9973f1ae29da4953a58d8b336f986.jpg"
+                }
+            },
+            "no_render": true
+        },
+        {
+            "type": "columnItem",
+            "uuid": "6f7e2aba-93aa-4724-a113-bc0eb741d3f6",
+            "x": 8.70610393909117,
+            "y": 2.1950000000000003,
+            "rotation": 0,
+            "cylindred": false,
+            "radius": 0.1,
+            "width": 0.55,
+            "depth": 0.19,
+            "height": 0.67,
+            "materials": {
+                "column": {
+                    "url": "https://online-dint.ulapr.ru/app/uploads/images/20d9973f1ae29da4953a58d8b336f986.jpg"
+                }
+            },
+            "no_render": true
+        },
+        {
+            "type": "edgeItem",
+            "uuid": "6e36822e-beb3-4403-9607-31e6ae6b0732",
+            "modelMaterials": [
+                {
+                    "uuid": "4eadc955-ee6b-442d-8a2f-21fd2fa5e647",
+                    "name": "Osnova",
+                    "color": "#ffffff",
+                    "fileName": "Dub Sonoma 2.jpg"
+                }
+            ],
+            "wall": "w_0",
+            "front": true,
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/2bce23c11f2e635294de9fcc5058b89b.zip",
+            "elevation": 0,
+            "offset": 0.16,
+            "snapPosition": 3.566540929801749,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.45,
+                    "y": -0.00001,
+                    "z": 0
+                },
+                "max": {
+                    "x": 0.45,
+                    "y": 0.6,
+                    "z": 0.03
+                }
+            },
+            "scale3": {
+                "x": 1.0222222222222221,
+                "y": 1.1166480558657357,
+                "z": 1
+            },
+            "no_render": true
+        },
+        {
+            "type": "floorItem",
+            "uuid": "875ef740-0cfe-472c-a2d1-04bdf4ea7eb1",
+            "modelMaterials": [
+                {
+                    "uuid": "da98ed29-8900-47a3-8bc3-d54f7b2001d2",
+                    "name": "Fasad",
+                    "color": "#ffffff",
+                    "fileName": "Plastik sero-korichnevyy.jpg"
+                },
+                {
+                    "uuid": "dd2888fd-90af-435c-931d-5d08cbf724b2",
+                    "name": "Nojki",
+                    "color": "#ffffff",
+                    "fileName": "Chyornyy metall.jpg"
+                },
+                {
+                    "uuid": "cdf5648e-0a74-4caa-a71b-e3f03fbaa645",
+                    "name": "Osnova",
+                    "color": "#ffffff",
+                    "fileName": "Dub Sonoma 2.jpg"
+                },
+                {
+                    "uuid": "fecb7b3c-0569-4892-aab7-9c5baf266c91",
+                    "name": "Ruchki",
+                    "color": "#ffffff",
+                    "fileName": "Chyornyy metall.jpg"
+                }
+            ],
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/e481f7d084d778a97c3213e108bf7a2c.zip",
+            "x": 10.044996274128025,
+            "y": 2.588126756014323,
+            "elevation": 0,
+            "rotation": -4.71238898038469,
+            "flipX": false,
+            "flipZ": false,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.2505,
+                    "y": -0.00001,
+                    "z": -0.20801
+                },
+                "max": {
+                    "x": 0.2505,
+                    "y": 1.914,
+                    "z": 0.208
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 0.7451743948462778
+            },
+            "no_render": true
+        },
+        {
+            "type": "floorItem",
+            "uuid": "5a95243a-6d04-4cdc-a66c-f895bcd22c17",
+            "modelMaterials": [
+                {
+                    "uuid": "dc010279-86a9-418d-b396-73cd14157dca",
+                    "name": "Fasad",
+                    "color": "#ffffff",
+                    "fileName": "Plastik sero-korichnevyy.jpg"
+                },
+                {
+                    "uuid": "06c34b44-343c-469e-b9ad-9846d43bbc32",
+                    "name": "Nojki",
+                    "color": "#ffffff",
+                    "fileName": "Chyornyy metall.jpg"
+                },
+                {
+                    "uuid": "e3ac897d-e694-4988-8cb3-7e73b6cc2ca0",
+                    "name": "Osnova",
+                    "color": "#ffffff",
+                    "fileName": "Dub Sonoma 2.jpg"
+                },
+                {
+                    "uuid": "01490f8a-5549-4a92-97d7-ecf454a7e3cc",
+                    "name": "Ruchki",
+                    "color": "#ffffff",
+                    "fileName": "Chyornyy metall.jpg"
+                }
+            ],
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/b58a140e9808ab06a750aff77a731ad0.zip",
+            "x": 10.045,
+            "y": 3.6448147343185773,
+            "elevation": 0,
+            "rotation": -4.71238898038469,
+            "flipX": false,
+            "flipZ": false,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.8005,
+                    "y": -0.00001,
+                    "z": -0.209
+                },
+                "max": {
+                    "x": 0.8005,
+                    "y": 0.368,
+                    "z": 0.209
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 0.7416267942583732
+            },
+            "no_render": true
+        },
+        {
+            "type": "floorItem",
+            "uuid": "c9d24e85-e99f-43e6-ad0a-cf556d9c7885",
+            "modelMaterials": [
+                {
+                    "uuid": "2af4be79-8066-42d8-b068-56b918363d6d",
+                    "name": "Fasad",
+                    "color": "#ffffff",
+                    "fileName": "Plastik sero-korichnevyy.jpg"
+                },
+                {
+                    "uuid": "d74c365c-ee18-49a4-aed3-7a4f6c8243dd",
+                    "name": "Nojki",
+                    "color": "#ffffff",
+                    "fileName": "Chyornyy metall.jpg"
+                },
+                {
+                    "uuid": "d5278aa4-6ff7-40da-98be-5b3293914921",
+                    "name": "Osnova",
+                    "color": "#ffffff",
+                    "fileName": "Dub Sonoma 2.jpg"
+                },
+                {
+                    "uuid": "9935c1b6-05aa-4283-8bc3-f3b339841f2c",
+                    "name": "Ruchki",
+                    "color": "#ffffff",
+                    "fileName": "Chyornyy metall.jpg"
+                }
+            ],
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/11eefd34b9b0a3b18d2e1ff94eb28eae.zip",
+            "x": 10.044996274128025,
+            "y": 4.895147479342872,
+            "elevation": 0,
+            "rotation": -4.71238898038469,
+            "flipX": false,
+            "flipZ": false,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.4505,
+                    "y": -0.00001,
+                    "z": -0.20801
+                },
+                "max": {
+                    "x": 0.4505,
+                    "y": 1.286,
+                    "z": 0.208
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 0.7451743948462778
+            },
+            "no_render": true
+        },
+        {
+            "type": "edgeItem",
+            "uuid": "09bf757f-86ae-4659-81d0-5206a0b6940f",
+            "modelMaterials": [
+                {
+                    "uuid": "6804533f-0351-48d3-9b19-b361ba6c7fef",
+                    "name": "ZadnyayaChast",
+                    "color": "#ffffff",
+                    "fileName": "Chyornyy matovyy metall.jpg"
+                },
+                {
+                    "uuid": "6f59d70c-3925-44bb-b639-9d6c12bc05de",
+                    "name": "Kartina",
+                    "color": "#ffffff",
+                    "fileName": "Tyomnoe steklo.jpg"
+                },
+                {
+                    "uuid": "5f159b0e-451c-46e9-924d-492e41aae3e6",
+                    "name": "Ramka",
+                    "color": "#ffffff",
+                    "fileName": "Ramka TV.jpg"
+                }
+            ],
+            "wall": "w_1",
+            "front": true,
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/f7390d8bcaaeb5bc85d6f9a08ae6a7f3.zip",
+            "elevation": 0.58,
+            "offset": 0,
+            "snapPosition": 1.5505923637522994,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.415,
+                    "y": -0.00001,
+                    "z": 0
+                },
+                "max": {
+                    "x": 0.415,
+                    "y": 0.63,
+                    "z": 0.035
+                }
+            },
+            "scale3": {
+                "x": 1.493975903614458,
+                "y": 1.1110934747067507,
+                "z": 1
+            },
+            "no_render": true
+        },
+        {
+            "type": "edgeItem",
+            "uuid": "4ada3c51-6b6f-4a94-acfd-f1330456d9a5",
+            "modelMaterials": [
+                {
+                    "uuid": "8882ed8f-f333-45d1-a04b-1aae5dc6eb51",
+                    "name": "Karkas",
+                    "color": "#ffffff",
+                    "fileName": "Buk temno-seryy.jpg"
+                },
+                {
+                    "uuid": "e919c7f2-a93c-40e5-99ee-943be79690ad",
+                    "name": "ZadnyayaChast",
+                    "color": "#ffffff",
+                    "fileName": "DVP.jpg"
+                },
+                {
+                    "uuid": "7810674b-d7a2-4608-b9f5-8a9fc5899874",
+                    "name": "Kartina_2",
+                    "color": "#ffffff",
+                    "fileName": "Poster arhitektura-2.jpg"
+                },
+                {
+                    "uuid": "b2316e43-f345-4260-9b4f-4ecdcf1850c5",
+                    "name": "Kartina_1",
+                    "color": "#ffffff",
+                    "fileName": "Poster arhitektura-1.jpg"
+                }
+            ],
+            "wall": "w_3",
+            "front": true,
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/9f94c247230d974354ed81c8afa96669.zip",
+            "elevation": 1.25,
+            "offset": 0,
+            "snapPosition": 1.3992495386566506,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.4125,
+                    "y": -0.00001,
+                    "z": 0
+                },
+                "max": {
+                    "x": 0.4125,
+                    "y": 0.425,
+                    "z": 0.025
+                }
+            },
+            "scale3": {
+                "x": 1.490909090909091,
+                "y": 1.4823180631043975,
+                "z": 1
+            },
+            "no_render": true
+        },
+        {
+            "type": "wallAlcove",
+            "uuid": "56c4a904-d759-41e0-919b-ab6c5e0af9a3",
+            "wall": "w_3",
+            "elevation": 0,
+            "flipX": false,
+            "flipZ": false,
+            "shift": 0.5,
+            "snapPosition": 1.1258190790474671,
+            "hole": [
+                {
+                    "x": 0.255,
+                    "y": 2.5
+                },
+                {
+                    "x": -0.255,
+                    "y": 2.5
+                },
+                {
+                    "x": -0.255,
+                    "y": 0
+                },
+                {
+                    "x": 0.255,
+                    "y": 0
+                }
+            ],
+            "arched": false,
+            "arcHeight": 0.5,
+            "width": 0.51,
+            "height": 2.5,
+            "front": true,
+            "depthFactor": 0.05,
+            "useEdgeMaterial": false,
+            "no_render": true
+        },
+        {
+            "type": "wallAlcove",
+            "uuid": "ca254eb2-112e-4a32-901f-ad6811874ed3",
+            "wall": "w_3",
+            "elevation": 0,
+            "flipX": false,
+            "flipZ": false,
+            "shift": 0.5,
+            "snapPosition": 1.8709095300059242,
+            "hole": [
+                {
+                    "x": 0.255,
+                    "y": 1.9
+                },
+                {
+                    "x": 0.25010024650282375,
+                    "y": 1.9448707740637095
+                },
+                {
+                    "x": 0.23558928079037814,
+                    "y": 1.9880171894439707
+                },
+                {
+                    "x": 0.21202475113714903,
+                    "y": 2.0277811535945083
+                },
+                {
+                    "x": 0.18031222920256965,
+                    "y": 2.062634559672906
+                },
+                {
+                    "x": 0.1416704094199986,
+                    "y": 2.0912380108295854
+                },
+                {
+                    "x": 0.09758427525309792,
+                    "y": 2.112492292477596
+                },
+                {
+                    "x": 0.049748032114112724,
+                    "y": 2.1255806144927427
+                },
+                {
+                    "x": 1.5614246689128753e-17,
+                    "y": 2.13
+                },
+                {
+                    "x": -0.04974803211411269,
+                    "y": 2.1255806144927427
+                },
+                {
+                    "x": -0.09758427525309789,
+                    "y": 2.112492292477596
+                },
+                {
+                    "x": -0.1416704094199985,
+                    "y": 2.0912380108295854
+                },
+                {
+                    "x": -0.18031222920256962,
+                    "y": 2.062634559672906
+                },
+                {
+                    "x": -0.21202475113714905,
+                    "y": 2.0277811535945083
+                },
+                {
+                    "x": -0.23558928079037814,
+                    "y": 1.9880171894439707
+                },
+                {
+                    "x": -0.25010024650282375,
+                    "y": 1.9448707740637095
+                },
+                {
+                    "x": -0.255,
+                    "y": 1.9
+                },
+                {
+                    "x": -0.255,
+                    "y": 0
+                },
+                {
+                    "x": 0.255,
+                    "y": 0
+                }
+            ],
+            "arched": true,
+            "arcHeight": 0.23,
+            "width": 0.51,
+            "height": 1.9,
+            "front": true,
+            "depthFactor": 0.05,
+            "useEdgeMaterial": false,
+            "no_render": true
+        },
+        {
+            "type": "edgeItem",
+            "uuid": "19e38ac7-eb61-45ff-a545-85eb50a9a5bc",
+            "modelMaterials": [
+                {
+                    "uuid": "0609e407-255d-4478-b702-000475da3e47",
+                    "name": "Osnova",
+                    "color": "#ffffff",
+                    "fileName": "Belyy metall.jpg"
+                },
+                {
+                    "uuid": "5480d4ff-fd3b-4c80-9493-b3f57e18564a",
+                    "name": "Svet",
+                    "color": "#ffffff",
+                    "fileName": null
+                },
+                {
+                    "uuid": "43bddc27-360c-454a-a85e-2c592e9deb84",
+                    "name": "Abazhur",
+                    "color": "#ffffff",
+                    "fileName": "000wallpaper004.jpg"
+                }
+            ],
+            "wall": "w_3",
+            "front": true,
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/471bc3f7ec59fa3a2bd4e85cc3eb4fc1.zip",
+            "elevation": 1.4,
+            "offset": 0,
+            "snapPosition": 2.777355356540238,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.15,
+                    "y": -0.00001,
+                    "z": -0.00001
+                },
+                "max": {
+                    "x": 0.15,
+                    "y": 0.44,
+                    "z": 0.09999
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "no_render": true
+        },
+        {
+            "type": "floorItem",
+            "uuid": "fd3223eb-9c0f-4871-b0f1-0502f897ad8f",
+            "modelMaterials": [
+                {
+                    "uuid": "ed2c0170-fd2a-44c5-837e-ceb42cd0ae67",
+                    "name": "Stoleshnica",
+                    "color": "#ffffff",
+                    "fileName": "Dub Kraft zolotoy.jpg"
+                }
+            ],
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/a489bf86fb971d01d225db8e882aa119.zip",
+            "x": 7.607887874108922,
+            "y": 4.013918726184677,
+            "elevation": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipZ": false,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.6,
+                    "y": 0.00029,
+                    "z": -1.20001
+                },
+                "max": {
+                    "x": 0.6,
+                    "y": 0.75,
+                    "z": 1.2
+                }
+            },
+            "scale3": {
+                "x": 0.5833333333333334,
+                "y": 0.5068626535593763,
+                "z": 0.5208311632034867
+            },
+            "no_render": true
+        },
+        {
+            "type": "floorItem",
+            "uuid": "d0c03e5d-c846-4756-aded-81bd49853a4f",
+            "modelMaterials": [
+                {
+                    "uuid": "be72253d-9b26-4723-9af3-47b37c3208ae",
+                    "name": "Serviz",
+                    "color": "#ffffff",
+                    "fileName": null
+                },
+                {
+                    "uuid": "bce46843-e0b0-40c5-9275-41fcbc583167",
+                    "name": "Kofe i pechene",
+                    "color": "#ffffff",
+                    "fileName": "Kofe i pechene.jpg"
+                },
+                {
+                    "uuid": "78d9cb78-cbf6-4c0f-a418-ab45fb427d37",
+                    "name": "Podnos",
+                    "color": "#ffffff",
+                    "fileName": "Dub Verona.jpg"
+                }
+            ],
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/e1e28197b809b807245e3d4cb0d5ecca.zip",
+            "x": 7.5886660300869675,
+            "y": 3.845108823427723,
+            "elevation": 0.38,
+            "rotation": -1.2217304763960306,
+            "flipX": false,
+            "flipZ": false,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.25501,
+                    "y": -0.00001,
+                    "z": -0.16501
+                },
+                "max": {
+                    "x": 0.255,
+                    "y": 0.06586,
+                    "z": 0.165
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "no_render": true
+        },
+        {
+            "type": "wallAlcove",
+            "uuid": "dbf5bd59-4338-437e-967a-ae4c73d5d08b",
+            "wall": "w_1",
+            "elevation": 0,
+            "flipX": false,
+            "flipZ": false,
+            "shift": 0.5,
+            "snapPosition": 1.6436018997386777,
+            "hole": [
+                {
+                    "x": 0.805,
+                    "y": 1.37
+                },
+                {
+                    "x": 0.7950891141790859,
+                    "y": 1.4482172325201155
+                },
+                {
+                    "x": 0.7656004956175987,
+                    "y": 1.5245084971874738
+                },
+                {
+                    "x": 0.7172602519716362,
+                    "y": 1.5969952498697735
+                },
+                {
+                    "x": 0.6512586804718328,
+                    "y": 1.6638926261462368
+                },
+                {
+                    "x": 0.5692209588551709,
+                    "y": 1.7235533905932738
+                },
+                {
+                    "x": 0.4731671280954409,
+                    "y": 1.7745084971874738
+                },
+                {
+                    "x": 0.3654623522903352,
+                    "y": 1.815503262094184
+                },
+                {
+                    "x": 0.24875868047183272,
+                    "y": 1.845528258147577
+                },
+                {
+                    "x": 0.1259297443573859,
+                    "y": 1.863844170297569
+                },
+                {
+                    "x": 4.929203366568097e-17,
+                    "y": 1.87
+                },
+                {
+                    "x": -0.125929744357386,
+                    "y": 1.863844170297569
+                },
+                {
+                    "x": -0.2487586804718326,
+                    "y": 1.845528258147577
+                },
+                {
+                    "x": -0.36546235229033514,
+                    "y": 1.815503262094184
+                },
+                {
+                    "x": -0.4731671280954408,
+                    "y": 1.7745084971874738
+                },
+                {
+                    "x": -0.5692209588551708,
+                    "y": 1.7235533905932738
+                },
+                {
+                    "x": -0.6512586804718327,
+                    "y": 1.6638926261462368
+                },
+                {
+                    "x": -0.7172602519716361,
+                    "y": 1.5969952498697735
+                },
+                {
+                    "x": -0.7656004956175987,
+                    "y": 1.5245084971874738
+                },
+                {
+                    "x": -0.7950891141790859,
+                    "y": 1.4482172325201157
+                },
+                {
+                    "x": -0.805,
+                    "y": 1.37
+                },
+                {
+                    "x": -0.805,
+                    "y": 0
+                },
+                {
+                    "x": 0.805,
+                    "y": 0
+                }
+            ],
+            "arched": true,
+            "arcHeight": 0.5,
+            "width": 1.61,
+            "height": 1.37,
+            "front": true,
+            "depthFactor": 0.05,
+            "useEdgeMaterial": false,
+            "no_render": true
+        },
+        {
+            "type": "edgeItem",
+            "uuid": "0b2ff35e-17cd-411c-9e02-4d0db206f548",
+            "modelMaterials": [
+                {
+                    "uuid": "47307214-8713-40a4-9ef4-139ffe1933c4",
+                    "name": "Detali",
+                    "color": "#ffffff",
+                    "fileName": "Metall seryy.jpg"
+                },
+                {
+                    "uuid": "2d4dd3f0-993c-4862-be88-55ad6290d5fe",
+                    "name": "Osnova",
+                    "color": "#ffffff",
+                    "fileName": "Dub Sonoma 2.jpg"
+                }
+            ],
+            "wall": "w_1",
+            "front": true,
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/63b41f0042269571d241de71d80bdf60.zip",
+            "elevation": 1.58,
+            "offset": 0,
+            "snapPosition": 2.770464551791688,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.30501,
+                    "y": 0,
+                    "z": -0.00001
+                },
+                "max": {
+                    "x": 0.305,
+                    "y": 0.61,
+                    "z": 0.04
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "no_render": true
+        },
+        {
+            "type": "floorItem",
+            "uuid": "2d39759b-be9b-4a37-9b75-dd617c741b68",
+            "modelMaterials": [
+                {
+                    "uuid": "5c7356ae-e33a-455c-8ef8-ffb547e7f44a",
+                    "name": "Centr cvetka",
+                    "color": "#ffffff",
+                    "fileName": "Serdcevina gerbery.jpg"
+                },
+                {
+                    "uuid": "20891b7f-9daf-4239-952c-566ca9492681",
+                    "name": "Stebel",
+                    "color": "#ffffff",
+                    "fileName": "Stebel rasteniya.jpg"
+                },
+                {
+                    "uuid": "ebe109a6-ebfa-40ac-83ee-a80ba8c7c573",
+                    "name": "Lepestok",
+                    "color": "#ffffff",
+                    "fileName": "Lepestok gerbery.jpg"
+                },
+                {
+                    "uuid": "a145c4ec-0b95-49c6-8058-ff2a16367ce7",
+                    "name": "Vaza",
+                    "color": "#ffffff",
+                    "fileName": "Keramogranit 4.jpg"
+                }
+            ],
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/9f9c22ec2f4cc29889570edf1e0a6acf.zip",
+            "x": 9.763611505763608,
+            "y": 2.155368309678318,
+            "elevation": 0.7,
+            "rotation": 0,
+            "flipX": false,
+            "flipZ": false,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.12156,
+                    "y": 0,
+                    "z": -0.11845
+                },
+                "max": {
+                    "x": 0.11475,
+                    "y": 0.52899,
+                    "z": 0.1162
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "no_render": true
+        },
+        {
+            "type": "floorItem",
+            "uuid": "762d9401-44d1-4357-83a7-05f4b5d59c78",
+            "modelMaterials": [
+                {
+                    "uuid": "cc59ff65-b285-479b-92dd-f877f3eb9c15",
+                    "name": "Light",
+                    "color": "#ffffff",
+                    "fileName": null
+                },
+                {
+                    "uuid": "042f82b4-d64f-49d8-9a24-8a215b196654",
+                    "name": "VnutrennyayaChastAbajura",
+                    "color": "#ffffff",
+                    "fileName": "Plastik belyy.jpg"
+                },
+                {
+                    "uuid": "5539f7f9-b119-4b9e-829c-a1663ac10665",
+                    "name": "Abajur",
+                    "color": "#ffffff",
+                    "fileName": "000wallpaper004.jpg"
+                },
+                {
+                    "uuid": "8f716b8e-abb8-4f5d-af7a-2ecbc33248f4",
+                    "name": "Osnova",
+                    "color": "#ffffff",
+                    "fileName": "Metall seryy.jpg"
+                }
+            ],
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/41d5c93160b9f74b5155ff19862e321c.zip",
+            "x": 6.4079265375840135,
+            "y": 4.9825124009226816,
+            "elevation": 0,
+            "rotation": -3.7699111843077517,
+            "flipX": false,
+            "flipZ": false,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.43836,
+                    "y": 0,
+                    "z": -0.19747
+                },
+                "max": {
+                    "x": 0.50909,
+                    "y": 1.52948,
+                    "z": 0.19746
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "no_render": true
+        },
+        {
+            "type": "floorItem",
+            "uuid": "e2bb9ada-7cd5-422a-b178-dfe9cdb0c7a4",
+            "modelMaterials": [
+                {
+                    "uuid": "568bdabc-fd97-4cda-aebd-67f1b51ee871",
+                    "name": "Knigi",
+                    "color": "#ffffff",
+                    "fileName": "Knigi-2.jpg"
+                }
+            ],
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/16f72b553804a419a491a8bb3523e5c7.zip",
+            "x": 10.02501,
+            "y": 4.653373459859792,
+            "elevation": 0.63,
+            "rotation": -4.71238898038469,
+            "flipX": false,
+            "flipZ": false,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.175,
+                    "y": -0.00001,
+                    "z": -0.1
+                },
+                "max": {
+                    "x": 0.17499,
+                    "y": 0.30113,
+                    "z": 0.09289
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "no_render": true
+        },
+        {
+            "type": "floorItem",
+            "uuid": "ee61eff1-de2d-4f98-a3f8-4718c078eee0",
+            "modelMaterials": [
+                {
+                    "uuid": "941ebf5c-7a22-465d-96a8-aa4a7e48a528",
+                    "name": "Knigi",
+                    "color": "#ffffff",
+                    "fileName": "Knigi-1.jpg"
+                }
+            ],
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/5532d5b03058315ddecc38163eea18f7.zip",
+            "x": 10.060896703601895,
+            "y": 4.641720481625236,
+            "elevation": 0.98,
+            "rotation": -4.71238898038469,
+            "flipX": false,
+            "flipZ": false,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.16316,
+                    "y": -0.00011,
+                    "z": -0.13799
+                },
+                "max": {
+                    "x": 0.15333,
+                    "y": 0.18127,
+                    "z": 0.12883
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "no_render": true
+        },
+        {
+            "name": "",
+            "segment": 2,
+            "type": "door",
+            "configuration": 2,
+            "width": 168.625,
+            "height": 2.20194,
+            "anchor": "percent",
+            "offset": 0.3857578828114585,
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/6d136ac109f93c21378ea0000226d033.zip",
+            "data": "",
+            "modelMaterials": [
+                {
+                    "uuid": "e432ecd5-01b1-4476-9a08-70ae175db554",
+                    "name": "Osnova",
+                    "color": "#ffffff",
+                    "fileName": "Dub Sonoma 2.jpg"
+                },
+                {
+                    "uuid": "78dbd4ff-71bc-4edc-93fa-640a5450ecfc",
+                    "name": "Steklo",
+                    "color": "#99afc8",
+                    "fileName": null
+                },
+                {
+                    "uuid": "b4ef2535-30bf-4ef7-8569-384054aa919d",
+                    "name": "Steklo_ncl1_2",
+                    "color": "#99afc8",
+                    "fileName": null
+                }
+            ],
+            "elevation": 0,
+            "shift": 0.5,
+            "flipX": false,
+            "flipZ": false,
+            "doorRotation": 45,
+            "doorDepth": 0
+        },
+        {
+            "type": "ceilingItem",
+            "uuid": "d10aa32f-31de-4f68-999b-918ba6100ab0",
+            "modelMaterials": [
+                {
+                    "uuid": "ab2b27dd-a5b2-4e6e-892c-2c089b886b2b",
+                    "name": "plastik",
+                    "color": "#ffffff",
+                    "fileName": "Chernyy plastik-2.jpg"
+                },
+                {
+                    "uuid": "65d03470-faf8-41e4-bb16-0b8ad9f7d382",
+                    "name": "Light",
+                    "color": "#ffffff",
+                    "fileName": null
+                },
+                {
+                    "uuid": "25d14c0e-e29e-40c6-a341-4c7a81ea58fd",
+                    "name": "korpus_ncl1_1",
+                    "color": "#ffffff",
+                    "fileName": "Metall seryy.jpg"
+                }
+            ],
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/79e2c71f3026c33f9a233d103ff34d7e.zip",
+            "x": 6.982703364741396,
+            "y": 4.570872386870338,
+            "elevation": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipZ": false,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.06001,
+                    "y": -0.03001,
+                    "z": -0.06001
+                },
+                "max": {
+                    "x": 0.06,
+                    "y": 0,
+                    "z": 0.06
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "no_render": true
+        },
+        {
+            "type": "ceilingItem",
+            "uuid": "b7745701-4731-4d35-a122-9d04b556c86a",
+            "modelMaterials": [
+                {
+                    "uuid": "ab2b27dd-a5b2-4e6e-892c-2c089b886b2b",
+                    "name": "plastik",
+                    "color": "#ffffff",
+                    "fileName": "Chernyy plastik-2.jpg"
+                },
+                {
+                    "uuid": "65d03470-faf8-41e4-bb16-0b8ad9f7d382",
+                    "name": "Light",
+                    "color": "#ffffff",
+                    "fileName": null
+                },
+                {
+                    "uuid": "25d14c0e-e29e-40c6-a341-4c7a81ea58fd",
+                    "name": "korpus_ncl1_1",
+                    "color": "#ffffff",
+                    "fileName": "Metall seryy.jpg"
+                }
+            ],
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/79e2c71f3026c33f9a233d103ff34d7e.zip",
+            "x": 6.919286975058387,
+            "y": 2.9199073236613504,
+            "elevation": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipZ": false,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.06001,
+                    "y": -0.03001,
+                    "z": -0.06001
+                },
+                "max": {
+                    "x": 0.06,
+                    "y": 0,
+                    "z": 0.06
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "no_render": true
+        },
+        {
+            "type": "ceilingItem",
+            "uuid": "032938b9-ce22-468d-a372-0045fb3d1935",
+            "modelMaterials": [
+                {
+                    "uuid": "ab2b27dd-a5b2-4e6e-892c-2c089b886b2b",
+                    "name": "plastik",
+                    "color": "#ffffff",
+                    "fileName": "Chernyy plastik-2.jpg"
+                },
+                {
+                    "uuid": "65d03470-faf8-41e4-bb16-0b8ad9f7d382",
+                    "name": "Light",
+                    "color": "#ffffff",
+                    "fileName": null
+                },
+                {
+                    "uuid": "25d14c0e-e29e-40c6-a341-4c7a81ea58fd",
+                    "name": "korpus_ncl1_1",
+                    "color": "#ffffff",
+                    "fileName": "Metall seryy.jpg"
+                }
+            ],
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/79e2c71f3026c33f9a233d103ff34d7e.zip",
+            "x": 9.03282884624635,
+            "y": 2.8807140794602706,
+            "elevation": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipZ": false,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.06001,
+                    "y": -0.03001,
+                    "z": -0.06001
+                },
+                "max": {
+                    "x": 0.06,
+                    "y": 0,
+                    "z": 0.06
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "no_render": true
+        },
+        {
+            "type": "ceilingItem",
+            "uuid": "cc380a2e-26e3-487a-b611-22cf2e5db122",
+            "modelMaterials": [
+                {
+                    "uuid": "ab2b27dd-a5b2-4e6e-892c-2c089b886b2b",
+                    "name": "plastik",
+                    "color": "#ffffff",
+                    "fileName": "Chernyy plastik-2.jpg"
+                },
+                {
+                    "uuid": "65d03470-faf8-41e4-bb16-0b8ad9f7d382",
+                    "name": "Light",
+                    "color": "#ffffff",
+                    "fileName": null
+                },
+                {
+                    "uuid": "25d14c0e-e29e-40c6-a341-4c7a81ea58fd",
+                    "name": "korpus_ncl1_1",
+                    "color": "#ffffff",
+                    "fileName": "Metall seryy.jpg"
+                }
+            ],
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/79e2c71f3026c33f9a233d103ff34d7e.zip",
+            "x": 9.003015076785754,
+            "y": 4.591717149333779,
+            "elevation": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipZ": false,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.06001,
+                    "y": -0.03001,
+                    "z": -0.06001
+                },
+                "max": {
+                    "x": 0.06,
+                    "y": 0,
+                    "z": 0.06
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "no_render": true
+        },
+        {
+            "type": "ceilingItem",
+            "uuid": "570b1e2a-cc55-4ffc-89ff-18122133447e",
+            "modelMaterials": [
+                {
+                    "uuid": "1b0c2562-9e7e-4be6-b96f-6c785a3035b3",
+                    "name": "Light",
+                    "color": "#ffffff",
+                    "fileName": null
+                },
+                {
+                    "uuid": "0f9ffa06-ff3e-48fb-b81d-cc4169a5090e",
+                    "name": "DerevyannieProbki",
+                    "color": "#ffffff",
+                    "fileName": "Tennesi.jpg"
+                },
+                {
+                    "uuid": "1879cad0-b425-4b4f-9156-95d639614805",
+                    "name": "Prutya",
+                    "color": "#ffffff",
+                    "fileName": "Chernyy metall-2.jpg"
+                },
+                {
+                    "uuid": "6bd825ce-529a-4bbf-aeb8-cc46df66fc96",
+                    "name": "osnova",
+                    "color": "#ffffff",
+                    "fileName": "Metall seryy.jpg"
+                }
+            ],
+            "modelURL": "https://online-dint.ulapr.ru/app/uploads/models/40c3dbee78c44b2750c8af2567272819.zip",
+            "x": 8.013407990801662,
+            "y": 3.6863549622709737,
+            "elevation": 0,
+            "rotation": 0,
+            "flipX": false,
+            "flipZ": false,
+            "box3": {
+                "isBox3": true,
+                "min": {
+                    "x": -0.4703,
+                    "y": -0.20001,
+                    "z": -0.49001
+                },
+                "max": {
+                    "x": 0.47029,
+                    "y": 0,
+                    "z": 0.41311
+                }
+            },
+            "scale3": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "no_render": true
+        }
+    ],
+    "project_version": "4.4.1",
+    "editable": true,
+    "camera": {
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "w": 0
+    }
+}

@@ -4,7 +4,9 @@ from selenium.webdriver.common.by import By
 
 l_wall = (By.CSS_SELECTOR, '.item[data-tool="wall"]')
 l_canvas = (By.ID, "canvas")
-l_canvas_3D = (By.ID, "view3d")
+# l_canvas_3D = (By.ID, "view3d")
+l_canvas_3D = (By.CSS_SELECTOR, "#view3d > canvas")
+
 l_2d = (By.CSS_SELECTOR, '[data-view="2D"]')
 l_3d = (By.CSS_SELECTOR, '[data-mode="orbit"][data-view="3D"]')
 l_walk = (By.CSS_SELECTOR, '[data-mode="firstPerson"][data-view="3D"]')
@@ -67,3 +69,4 @@ l_btn_in_dialog_from_above = (
     By.CLASS_NAME,
     "stimulate-plane-content-btn",
 )
+l_info_panel_for_walk = (By.CSS_SELECTOR, (".tips-content.first_person"))

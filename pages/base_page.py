@@ -2,8 +2,8 @@
 
 from time import sleep
 
+import requests
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -17,7 +17,7 @@ from pages.locators.locators_work import (
     l_stimulate_dialog_from_above,
     l_wall,
 )
-from utils import get_host
+from utils import get_host, get_phpsessid
 
 
 class BasePage:
@@ -99,8 +99,11 @@ class BasePage:
             element: искомый элемент.
 
         """
-        wait = WebDriverWait(self.driver, 5)
-        wait.until(EC.element_to_be_clickable(element))
+        try:
+            wait = WebDriverWait(self.driver, 5)
+            wait.until(EC.element_to_be_clickable(element))
+        except:
+            logger.error(f"Элемент {element} не кликабелен")
 
     def await_visibility(self, element) -> None:
         """Ожидание видимости элемента.
@@ -176,3 +179,35 @@ class BasePage:
         self.await_visibility(l_btn_in_dialog_from_above)
         self.find(l_btn_in_dialog_from_above).click()
         self.wait(l_price_contatiner)
+
+    def check_loaded_project(self) -> bool:
+        """Проверка загрузки проекта.
+
+        Args:
+            driver (WebDriver): Драйвер браузера.
+
+        Returns:
+            bool: True, если проект загружен, False в противном случае.
+
+        """
+        respose = self.driver.execute_script("return core.Export3D();")
+        return respose["areas"]
+
+    def create_some_projects(self, count_projects: int) -> None:
+        """Создание нескольких проектов.
+
+        Args:
+            count_projects (int): Количество проектов.
+
+        """
+        host = get_host(add_credentials=False)
+        phpsessid = get_phpsessid(self.driver)
+
+        for num in range(count_projects):
+            response = requests.post(
+                f"{host}/app/lk/admin/index.php?r=user/saveProject",
+                json={"name": f"project_{num + 1}"},
+                cookies={"PHPSESSID": phpsessid},
+            )
+            logger.debug(response.text)
+        logger.debug(f"Создано {count_projects} проектов")

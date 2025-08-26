@@ -18,7 +18,6 @@ from pages.locators.locators_work import (
     l_apperture_button,
     l_auth_btn,
     l_btn_in_dialog_count_models,
-    l_btn_in_dialog_from_above,
     l_button_expand_settings_windowsill,
     l_button_turn_column_90_left,
     l_button_turn_column_90_right,
@@ -49,7 +48,6 @@ from pages.locators.locators_work import (
     l_share_button,
     l_start_paint_btn,
     l_start_video,
-    l_stimulate_dialog_from_above,
     l_walk,
     l_wall,
 )
@@ -105,6 +103,8 @@ class WorkPage(BasePage):
         """Кликнуть по кнопке 'Прогулка'."""
         self.await_clickable(l_walk)
         self.find(l_walk).click()
+        # self.await_visibility(l_info_panel_for_walk)
+        # logger.debug("Инфо панель снизу в прогулке видна")
 
     def first_click_by_canvas(
         self, view: Literal["2d", "3d"], x: int, y: int
@@ -327,7 +327,7 @@ class WorkPage(BasePage):
         ):
             self.find(l_button_expand_settings_windowsill).click()
 
-    def change_windowsill(self, id_trackbar: str):
+    def change_windowsill(self, id_trackbar: str) -> None:
         """Кликнуть по трекбару настроек подоконника с id_trackbar.
 
         Args:
@@ -336,6 +336,7 @@ class WorkPage(BasePage):
         """
         trackbar = self.find((By.ID, id_trackbar))
         self.await_visibility((By.ID, id_trackbar))
+        sleep(0.5)
         actions = ActionChains(self.driver)
         actions.click_and_hold(trackbar).move_by_offset(
             0.07, 0
@@ -409,8 +410,8 @@ class WorkPage(BasePage):
     def click_start_button(self):
         """Кликнуть по кнокпке 'Нарисуйте стены' по середине сцены."""
         start_paint_btn = self.find(l_start_paint_btn)
+        self.await_clickable(l_start_paint_btn)
         if start_paint_btn.is_displayed():
-            self.await_clickable(l_start_paint_btn)
             start_paint_btn.click()
 
     def check_dialog_count_models(self, show_dialog: bool) -> None:

@@ -7,10 +7,37 @@ import pytest
 from core.logger import logger
 from pages.dashboard_page import DashboardPage
 from pages.work_page import WorkPage
+from tests.fixtures.project_fixtures import drop_all_projects
 
 
 class BaseConstraints:
     """Базовый класс для тестов ограничений"""
+
+    def max_project(self, count_projects: int, block: bool = True):
+        """Проверка ограничений для максимального количества проектов
+
+        Args:
+            count_projects (int): Количество проектов.
+            block (bool, optional): Должен ли появиться диалог ограничений.
+
+        """
+        dash = DashboardPage(self.driver_class)
+        drop_all_projects(self.driver_class)
+
+        with allure.step("Открыть главную страницу"):
+            dash.open_dashboard()
+
+        with allure.step(f"Создать {count_projects} проектов"):
+            dash.create_some_projects(count_projects)
+
+        with allure.step("Кликнуть создать новый проект"):
+            dash.click_new_project()
+
+        with allure.step("Проверка диалога ограничений"):
+            work = WorkPage(self.driver_class)
+            work.check_dialog_constraint_upgrade(block, self.tarif)
+
+        drop_all_projects(self.driver_class)
 
     def rename_project(self, block=False):
         """Проверка ограничений для переименования проекта
@@ -613,6 +640,9 @@ class TestsFreeConstraints(BaseConstraints):
         """
         super().constraint_animation_door(id_animation)
 
+    def test_max_project(self, count_projects=3, block=True):
+        super().max_project(count_projects, block)
+
 
 @pytest.mark.usefixtures(
     "auth_standart_class", "drop_all_project_class", "paste_project_class"
@@ -761,6 +791,9 @@ class TestsStandartConstraints(BaseConstraints):
 
         """
         super().constraint_animation_door(id_animation)
+
+    def test_max_project(self, count_projects=20, block=True):
+        super().max_project(count_projects, block)
 
 
 @pytest.mark.usefixtures(
@@ -916,6 +949,9 @@ class TestsPremiumConstraints(BaseConstraints):
 
         """
         super().constraint_animation_door(id_animation)
+
+    def test_max_project(self, count_projects=50, block=True):
+        super().max_project(count_projects, block)
 
 
 @pytest.mark.usefixtures(

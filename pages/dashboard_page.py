@@ -3,9 +3,9 @@
 from time import sleep
 
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 
+from core.config import settings
 from core.logger import logger
 from pages.base_page import BasePage
 from pages.locators.locators_dashboard import (
@@ -18,7 +18,6 @@ from pages.locators.locators_dashboard import (
     l_project_name_list,
 )
 from utils import get_host
-from core.config import settings
 
 
 class DashboardPage(BasePage):
@@ -29,10 +28,12 @@ class DashboardPage(BasePage):
         host = get_host(add_credentials=True)
         sleep(2)
         if not self.true_url(
-            f"{host}/app/projects.php".replace(f"{settings.USER}:{settings.PASSWORD}@", "")
+            f"{host}/app/projects.php".replace(
+                f"{settings.USER}:{settings.PASSWORD}@", ""
+            )
         ):
             self.driver.get(f"{host}/app/projects.php")
-    
+
             host = get_host(add_credentials=False)
             if not self.true_url(f"{host}/app/"):
                 logger.debug("Дашборд открыт")

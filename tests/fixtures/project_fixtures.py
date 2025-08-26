@@ -1,7 +1,5 @@
 """Модуль фикстур для работы с проектами."""
 
-import time
-
 import pytest
 import requests
 
@@ -69,7 +67,7 @@ def drop_all_projects(driver) -> None:
         logger.warning("Пользователь не авторизован")
 
 
-def paste_project(driver) -> None:
+def paste_project(driver, project_path: str = None) -> None:
     """Вставка проекта.
 
     Args:
@@ -78,18 +76,26 @@ def paste_project(driver) -> None:
     """
     work = WorkPage(driver)
     work.open_main()
-    time.sleep(3)
+
+    n = 1
+    while not work.check_loaded_project():
+        logger.debug(f"Проект ещё не загружен, попытка {n}")
+        n += 1
+
+        if not project_path:
+            if settings.MODE == "TEST":
+                project_path = "projects/test.json"
+            else:
+                project_path = "projects/prod.json"
+
+        with open(project_path, "r") as file:
+            json = file.read()
+        script = f"core.Import({json});"
+        driver.execute_script(script)
+
+    logger.success("Проект загружен")
+    # time.sleep(10)
     work.click_start_button()
-
-    if settings.MODE == "TEST":
-        project = "projects/test.json"
-    else:
-        project = "projects/prod.json"
-
-    with open(project, "r") as file:
-        json = file.read()
-    script = f"core.Import({json});"
-    driver.execute_script(script)
 
 
 @pytest.fixture(scope="class")
