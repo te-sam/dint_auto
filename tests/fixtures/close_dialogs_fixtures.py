@@ -38,7 +38,7 @@ def close_dialog_constraint_for_guest(driver_class, request):
                 driver_class.refresh()
                 element_3d = work.find(l_3d)
                 sleep(2)
-                work.click_3d()
+                work.open_3d()
             else:
                 driver_class.refresh()
                 sleep(2)
@@ -65,7 +65,7 @@ def close_dialog_upgrade(driver_class, request):
                 driver_class.refresh()
                 element_3d = work.find(l_3d)
                 sleep(2)
-                work.click_3d()
+                work.open_3d()
             else:
                 driver_class.refresh()
                 sleep(2)

@@ -192,7 +192,7 @@ class BaseConstraints:
         work = WorkPage(self.driver_class)
 
         with allure.step("Перейти в 3D"):
-            work.click_3d()
+            work.open_3d()
 
         with allure.step("Кликнуть по дивану"):
             work.first_click_by_canvas("3d", 168, 23)
@@ -212,7 +212,7 @@ class BaseConstraints:
         """
         work = WorkPage(self.driver_class)
         with allure.step("Перейти в 3D"):
-            work.click_3d()
+            work.open_3d()
 
         with allure.step("Кликнуть по дивану"):
             work.first_click_by_canvas("3d", 168, 23)
@@ -258,8 +258,7 @@ class BaseConstraints:
         """
         work = WorkPage(self.driver_class)
         with allure.step("Кликнуть по колонне"):
-            # X = 0, Y = -79.5
-            x, y = 0, -79.5
+            x, y = 10, -79.5
 
             if self.tarif == "premium" or self.tarif == "profi":
                 x, y = 20, -78.5

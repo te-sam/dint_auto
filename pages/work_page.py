@@ -88,16 +88,25 @@ class WorkPage(BasePage):
         self.await_clickable(l_wall)
         self.find(l_wall).click()
 
-    def click_2d(self) -> None:
+    def open_2d(self) -> None:
         """Кликнуть по кнопке '2D'."""
         self.await_clickable(l_2d)
-        self.find(l_2d).click()
+        element_2d = self.find(l_2d)
+        if "active" not in element_2d.get_attribute("class"):
+            logger.debug("Режим 2D не выбран")
+            element_2d.click()
+        else:
+            logger.debug("Режим 2D уже выбран")
 
-    def click_3d(self) -> None:
+    def open_3d(self) -> None:
         """Кликнуть по кнопке '3D'."""
         self.await_clickable(l_3d)
-        self.await_visibility(l_3d)
-        self.find(l_3d).click()
+        element_3d = self.find(l_3d)
+        if "active" not in element_3d.get_attribute("class"):
+            logger.debug("Режим 3D не выбран, выбираю")
+            element_3d.click()
+        else:
+            logger.debug("Режим 3D уже выбран")
 
     def click_walk(self) -> None:
         """Кликнуть по кнопке 'Прогулка'."""
